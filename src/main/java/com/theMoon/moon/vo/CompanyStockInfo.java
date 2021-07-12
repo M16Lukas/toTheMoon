@@ -1,32 +1,33 @@
 package com.theMoon.moon.vo;
 
-import java.math.BigDecimal;
 
 import lombok.Getter;
 import lombok.Setter;
+import yahoofinance.quotes.stock.StockDividend;
+import yahoofinance.quotes.stock.StockQuote;
 
 @Getter
 @Setter
 public class CompanyStockInfo {
+	
 	private String symbol;
 	private String name;
 	private String exchange;
-	private BigDecimal price = new BigDecimal("0.0");
-	private BigDecimal change = new BigDecimal("0.0");
-	private BigDecimal peg = new BigDecimal("0.0");
-	private BigDecimal dividend = new BigDecimal("0.0");
 	
+	private StockQuote quote = null;
+	private StockDividend dividend = null;
 	
-	public CompanyStockInfo(String symbol, String name, String exchange, BigDecimal price, BigDecimal change, BigDecimal peg,
-			BigDecimal dividend) {
+	public CompanyStockInfo(String symbol, String name, String exchange, StockQuote quote, StockDividend dividend) {
+		super();
 		this.symbol = symbol;
 		this.name = name;
 		this.exchange = exchange;
-		this.price = price;
-		this.change = change;
-		this.peg = peg;
+		this.quote = quote;
 		this.dividend = dividend;
 	}
+	
+	
+
 	
 	
 }

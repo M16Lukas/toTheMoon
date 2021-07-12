@@ -37,6 +37,26 @@
 	<br>
 	annualYieldPercent : ${info.dividend.annualYieldPercent}
 	
+	<p>----------------------------------------------------</p>
+	
+	<div class="period">
+		<a>1D</a>
+		<a>5D</a>
+		<a>1M</a>
+		<a>3M</a>
+		<a>1Y</a>
+		<a>1Y</a>
+	</div>
+
+	<p>----------------------------------------------------</p>
+	
+	
+	
+	<div class="chart">
+		<c:forEach var="list" items="${lists }">
+			${list } <br>
+		</c:forEach>	
+	</div>
 	
 
 </body>
