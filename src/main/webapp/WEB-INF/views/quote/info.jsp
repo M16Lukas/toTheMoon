@@ -5,59 +5,204 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+ 	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<!-- js -->
-<script type="text/javascript">
-	
-</script>
+    <title>SB Admin 2 - Cards</title>
+
+	<!-- Navigation -->
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/resources/home/css/styles.css" rel="stylesheet" />
+    
+    <!-- Page Content -->
+
+    <!-- Custom fonts for this template-->
+    <link href="/resources/pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
+	<!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <a class="navbar-brand" href="/">TTM</a>
+       	<div>
+        	<a class="navbar-brand" href="/">HOME</a>
+	        <a class="navbar-brand" href="/quote">MARKET</a>
+	        <a class="navbar-brand" href="/help">HELP</a>
+      	</div>
 
-	symbol : ${info.symbol }
-	<br>
-	name : ${info.name}
-	<br>
-	stockExchange : ${info.exchange}
-	<br>
-	<h2>price : ${info.quote.price} </h2> 
-	<p>----------------------------------------------------</p>
-	previousClose : ${info.quote.previousClose}
-	<br>
-	open : ${info.quote.open}
-	<br>
-	dayLow : ${info.quote.dayLow}
-	<br>
-	dayHigh : ${info.quote.dayHigh}
-	<br>
-	Avg.Volume : ${info.quote.avgVolume}
-	<br>
-	annualYield : ${info.dividend.annualYield}
-	<br>
-	annualYieldPercent : ${info.dividend.annualYieldPercent}
-	
-	<p>----------------------------------------------------</p>
-	
-	<div class="period">
-		<a>1D</a>
-		<a>5D</a>
-		<a>1M</a>
-		<a>3M</a>
-		<a>1Y</a>
-		<a>1Y</a>
+        <!-- Topbar Search -->
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="" name="topSearch">
+        	<div class="input-group">
+            	<input type="text" id="topSearchSymbol" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                	<button class="btn btn-primary" type="button" onclick="topSearchChk();">
+                    	<i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+         	</div>
+    	</form>
+
+		<div>
+           <a class="btn btn-primary" href="/member/register">SIGN UP</a>
+           <a class="btn btn-primary" href="/member/login">LOG IN</a>
+       	</div>
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+        	<!-- Nav Item - User Information -->
+          	<li class="nav-item dropdown no-arrow">
+          		<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                	<span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                    <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
+               	</a>
+               	<!-- Dropdown - User Information -->
+               	<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                	<a class="dropdown-item" href="#">
+	                 	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+	                    Profile
+                 	</a>
+                  	<a class="dropdown-item" href="#">
+                    	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                 	</a>
+                    <a class="dropdown-item" href="#">
+                    	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Activity Log
+                  	</a>
+                 	<div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                   	</a>
+               	</div>
+       		</li>
+		</ul>
+	</nav>
+    <!-- End of Topbar -->
+
+	<!-- start quote-header-info -->
+	<div class="row font-weight-bold text-gray-100 bg-gradient-primary" id="quote-header-info">
+		<div class="col">
+			${info.symbol }
+			<br>
+			${info.name}
+			<br>
+			${info.exchange}
+			<br>
+			<div>
+				<h2>${info.quote.price} </h2> 
+				<c:set var="upDown" value="${info.quote.price - info.quote.previousClose}" />
+			    <c:choose>
+			    	<c:when test="${upDown gt 0}">
+			        	+<c:out value="${upDown }"/>
+			      	</c:when>
+			        <c:otherwise>
+			        	<c:out value="${upDown }" />
+			       	</c:otherwise>
+			 	</c:choose>
+			</div>	
+		</div>
 	</div>
-
-	<p>----------------------------------------------------</p>
+	<!-- end quote-header-info -->
 	
+	<!-- start Main Part -->
 	
-	
-	<div class="chart">
-		<c:forEach var="list" items="${lists }">
-			${list } <br>
-		</c:forEach>	
+	<!-- start main navigation-->
+	<nav class="navbar navbar-light bg-white static-top ">
+    	<div>
+        	<a class="navbar-brand" href="#">Summary</a>
+	        <a class="navbar-brand" href="community">Conversations</a>
+	        <a class="navbar-brand" href="history">Historical Data</a>
+        </div>
+    </nav>	
+	<!-- end main navigation-->
+		
+	<!-- start container-fluid -->
+	<div class="container-fluid">
+		<!-- chart -->
+		<div>
+		</div>
+		
+		<!-- summary -->
+		<div>
+			<table style="table-layout: auto;">
+				<tr>
+					<td>Open</td>
+					<td>${info.quote.open}</td>
+					<td>Previous Close</td>
+					<td>${info.quote.previousClose}</td>
+				</tr>
+				<tr>
+					<td>High</td>
+					<td>${info.quote.dayHigh}</td>
+					<td>Low</td>
+					<td>${info.quote.dayLow}</td>
+				</tr>
+				<tr>
+					<td>Ask</td>
+					<td>${info.quote.ask}</td>
+					<td>Bid</td>
+					<td>${info.quote.bid}</td>
+				</tr>
+				<tr>
+					<td>PE Ratio(P/E)</td>
+					<td>${info.stats.pe}</td>
+					<td>EPS</td>
+					<td>${info.stats.eps}</td>
+				</tr>
+				<tr>
+					<td>Market Cap</td>
+					<td>${info.stats.marketCap}</td>
+					<td>dividend</td>
+					<td>${info.dividend.annualYield}</td>
+				</tr>
+				<tr>
+					<td>52 Week High</td>
+					<td>${info.quote.yearHigh}</td>
+					<td>52 Week Low</td>
+					<td>${info.quote.yearLow}</td>
+				</tr>
+				<tr>
+					<td>Volume</td>
+					<td>${info.quote.volume}</td>
+					<td>Avg. Volume</td>
+					<td>${info.quote.avgVolume}</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-	
+	<!-- end container-fluid -->
 
+
+	<!-- Bootstrap core JS-->
+		
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/resources/home/js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+	
+	<!-- Page Content -->
+
+    <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
+    <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/resources/pages/js/sb-admin-2.min.js"></script>
 </body>
 </html>

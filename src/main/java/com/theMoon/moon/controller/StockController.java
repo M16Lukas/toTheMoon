@@ -2,6 +2,7 @@ package com.theMoon.moon.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.theMoon.moon.service.StockService;
-import com.theMoon.moon.vo.CompanyStockInfo;
+import com.theMoon.moon.vo.StockInfo;
 
 import yahoofinance.histquotes.HistoricalQuote;
 
@@ -23,19 +24,49 @@ public class StockController {
 	private StockService service;
 	
 	@RequestMapping(value = "")
-	private String index() {
-		return "quote/index";
+	private String index(Model model) {
+		Map<String, StockInfo> stocks = null;
+		
+		try {
+			stocks = service.index();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "redirect:/";
+		}
+		
+		model.addAttribute("stocks", stocks);
+		return "/quote/index";
 	}
 	
 	@RequestMapping(value = "/{symbol}", method = RequestMethod.GET)
 	private String searchSymbol(@PathVariable String symbol, Model model){
-		CompanyStockInfo info = null;
+		StockInfo info = null;
+		
+		try {
+			info = service.searchSymbol(symbol);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "redirect:/";
+		}
+		
+		if (info == null) {
+			return "redirect:/";
+		} else {
+			model.addAttribute("info", info);
+			return "/quote/info";
+		}
+	}	
+	
+	@RequestMapping(value = "/{symbol}/community", method = RequestMethod.GET)
+	private String communitySymbol(@PathVariable String symbol, Model model){
+		StockInfo info = null;
 		List<HistoricalQuote> lists = null;
 		
 		try {
-			info = service.searchTicker(symbol);
+			info = service.searchSymbol(symbol);
 			lists = service.chart(symbol, "1D");
 		} catch (IOException e) {
+			e.printStackTrace();
 			return "redirect:/";
 		}
 		
@@ -44,7 +75,29 @@ public class StockController {
 		} else {
 			model.addAttribute("info", info);
 			model.addAttribute("lists", lists);
-			return "quote/info";
+			return "/quote/community";
 		}
-	}	
+	}
+	
+	@RequestMapping(value = "/{symbol}/history", method = RequestMethod.GET)
+	private String historySymbol(@PathVariable String symbol, Model model){
+		StockInfo info = null;
+		List<HistoricalQuote> lists = null;
+		
+		try {
+			info = service.searchSymbol(symbol);
+			lists = service.chart(symbol, "1D");
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "redirect:/";
+		}
+		
+		if (info == null) {
+			return "redirect:/";
+		} else {
+			model.addAttribute("info", info);
+			model.addAttribute("lists", lists);
+			return "/quote/history";
+		}
+	}
 }

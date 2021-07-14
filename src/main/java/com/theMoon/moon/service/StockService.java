@@ -6,14 +6,16 @@ import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.histquotes.Interval;
 import yahoofinance.quotes.stock.StockDividend;
 import yahoofinance.quotes.stock.StockQuote;
+import yahoofinance.quotes.stock.StockStats;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.theMoon.moon.vo.CompanyStockInfo;
+import com.theMoon.moon.vo.StockInfo;
 
 @Service
 public class StockService {
@@ -21,7 +23,19 @@ public class StockService {
 	private Calendar from = Calendar.getInstance();
 	private Calendar to = Calendar.getInstance();
 	
-	public CompanyStockInfo searchTicker(String symbol) throws IOException{
+	public HashMap<String, StockInfo> index() throws IOException{
+		String[] symbols = new String[] {"ES=F", "YM=F", "NQ=F", "RTY=F"};
+		
+		HashMap<String, StockInfo> stocks = new HashMap<String, StockInfo>();
+
+		for(String symbol : symbols) {
+			stocks.put(symbol, searchSymbol(symbol));
+		}
+		
+		return stocks;
+	}
+	
+	public StockInfo searchSymbol(String symbol) throws IOException{
 		Stock stock = YahooFinance.get(symbol);
 		
 		if (stock == null) {
@@ -32,9 +46,10 @@ public class StockService {
 		String exchange = stock.getStockExchange();
 		
 		StockQuote quote = stock.getQuote(true);
+		StockStats stats = stock.getStats();
 		StockDividend dividend = stock.getDividend();
 		
-		return new CompanyStockInfo(symbol, name, exchange, quote, dividend);
+		return new StockInfo(symbol, name, exchange, quote, stats, dividend);
 	}
 	
 	public List<HistoricalQuote> chart(String symbol, String period) throws IOException{
