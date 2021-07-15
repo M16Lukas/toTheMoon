@@ -5,6 +5,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+    	<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>TTM - To the Moon</title>
+        
+        
         <!-- Bootstrap icons-->
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
 	    <!-- Google fonts-->
@@ -75,6 +82,7 @@
                         <div class="text-center text-white">
                             <!-- Page heading-->
                             <h1 class="mb-5">Enjoy Investing.</h1>
+                            <!-- Email address input-->
                             <div class="form-subscribe" id="contactForm" >
                                 <div class="row">
                                     <div class="col">

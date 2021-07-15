@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Cards</title>
+    <title>TTM - To the Moon</title>
     
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
@@ -40,16 +40,11 @@
       	</div>
 
         <!-- Topbar Search -->
-        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="" name="topSearch">
+        <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         	<div class="input-group">
-            	<input type="text" id="topSearchSymbol" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                	<button class="btn btn-primary" type="button" onclick="topSearchChk(this.form);">
-                    	<i class="fas fa-search fa-sm"></i>
-                    </button>
-                </div>
+                <input class="form-control bg-light border-0 small" id="symbol" type="text" placeholder="Symbol" aria-label="Search" aria-describedby="basic-addon2" onkeyup="sendSymbol();"/>
          	</div>
-    	</form>
+    	</div>
 
 		<div>
            <a class="btn btn-primary" href="/member/register">SIGN UP</a>

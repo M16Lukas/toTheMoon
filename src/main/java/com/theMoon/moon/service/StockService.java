@@ -10,6 +10,7 @@ import yahoofinance.quotes.stock.StockStats;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,9 +20,6 @@ import com.theMoon.moon.vo.StockInfo;
 
 @Service
 public class StockService {
-	
-	private Calendar from = Calendar.getInstance();
-	private Calendar to = Calendar.getInstance();
 	
 	public HashMap<String, StockInfo> index() throws IOException{
 		String[] symbols = new String[] {"ES=F", "YM=F", "NQ=F", "RTY=F"};
@@ -52,43 +50,19 @@ public class StockService {
 		return new StockInfo(symbol, name, exchange, quote, stats, dividend);
 	}
 	
-	public List<HistoricalQuote> chart(String symbol, String period) throws IOException{
-		List<HistoricalQuote> list = null;
-		
+	public List<HistoricalQuote> history(String symbol) throws IOException{
 		Stock stock = YahooFinance.get(symbol);
 		
-		if (stock == null) {
-			return null;
-		}
+		Calendar from = Calendar.getInstance();
+		Calendar to = Calendar.getInstance();
 		
-		switch (period) {
-		case "1D":
-			from.add(Calendar.DATE, -1);
-			break;
-		case "5D":
-			from.add(Calendar.DATE, -5);
-			break;
-		case "1M":
-			from.add(Calendar.MONTH, -1);
-			break;
-		case "3M":
-			from.add(Calendar.MONTH, -3);
-			break;
-		case "1Y":
-			from.add(Calendar.YEAR, -1);
-			break;
-		case "5Y":
-			from.add(Calendar.YEAR, -5);
-			break;
-		default:
-			break;
-		}
+		from.add(Calendar.YEAR, -1);
+		List<HistoricalQuote> lists = stock.getHistory(from, to, Interval.DAILY);
 		
+		// desc sort
+		Collections.reverse(lists);
 		
-		list = stock.getHistory(from, to, Interval.DAILY);
-
-		
-		return list;
+		return lists;
 	}
 	
 }

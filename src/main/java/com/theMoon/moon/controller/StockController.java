@@ -1,6 +1,8 @@
 package com.theMoon.moon.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -60,11 +62,9 @@ public class StockController {
 	@RequestMapping(value = "/{symbol}/community", method = RequestMethod.GET)
 	private String communitySymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;
-		List<HistoricalQuote> lists = null;
 		
 		try {
 			info = service.searchSymbol(symbol);
-			lists = service.chart(symbol, "1D");
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
@@ -74,7 +74,6 @@ public class StockController {
 			return "redirect:/";
 		} else {
 			model.addAttribute("info", info);
-			model.addAttribute("lists", lists);
 			return "/quote/community";
 		}
 	}
@@ -83,10 +82,12 @@ public class StockController {
 	private String historySymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;
 		List<HistoricalQuote> lists = null;
+		List<String> dates = new ArrayList<String>();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
 			info = service.searchSymbol(symbol);
-			lists = service.chart(symbol, "1D");
+			lists = service.history(symbol);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
@@ -95,8 +96,13 @@ public class StockController {
 		if (info == null) {
 			return "redirect:/";
 		} else {
+			for(HistoricalQuote list : lists) {
+		        dates.add(dateFormat.format(list.getDate().getTime()));
+			}
+			
 			model.addAttribute("info", info);
 			model.addAttribute("lists", lists);
+			model.addAttribute("dates", dates);
 			return "/quote/history";
 		}
 	}

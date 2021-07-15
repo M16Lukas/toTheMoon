@@ -1,6 +1,7 @@
 package com.theMoon.moon.vo;
 
 
+
 import lombok.Getter;
 import lombok.Setter;
 import yahoofinance.quotes.stock.StockDividend;
@@ -18,6 +19,9 @@ public class StockInfo {
 	private StockQuote quote = null;
 	private StockStats stats = null;
 	private StockDividend dividend = null;
+	
+	
+	public StockInfo() {}
 	
 	public StockInfo(String symbol, String name, String exchange, StockQuote quote, StockStats stats,
 			StockDividend dividend) {

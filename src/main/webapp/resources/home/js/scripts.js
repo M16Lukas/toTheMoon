@@ -10,18 +10,9 @@ function sendSymbol(){
 	var symbol = document.getElementById("symbol").value;
 		
 	if(window.event.keyCode === 13 && symbol !== ""){
-		location.href = "quote/" + symbol;	
+		location.href = "/quote/" + symbol;	
 	} else {
-		locatio.herf = "redirect:/";
+		locatio.herf = "redirect:/" + window.location.pathname;
 	}
 }
 
-function topSearchChk(){
-	var topSearchSymbol = document.getElementById("topSearchSymbol").value;
-	
-	if(topSearchSymbol !== "") {
-		location.href = "/quote/" + topSearchSymbol;	
-	} else {
-		locatio.herf = "redirect:#";
-	}
-}
