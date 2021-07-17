@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,57 +32,58 @@
 </head>
 <body>
 	<!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <a class="navbar-brand" href="/">TTM</a>
-       	<div>
-        	<a class="navbar-brand" href="/">HOME</a>
-	        <a class="navbar-brand" href="/quote">MARKET</a>
-	        <a class="navbar-brand" href="/help">HELP</a>
-      	</div>
-
-        <!-- Topbar Search -->
-        <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        	<div class="input-group">
-                <input class="form-control bg-light border-0 small" id="symbol" type="text" placeholder="Symbol" aria-label="Search" aria-describedby="basic-addon2" onkeyup="sendSymbol();"/>
-         	</div>
-    	</div>
-
+	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
 		<div>
-           <a class="btn btn-primary" href="/member/register">SIGN UP</a>
-           <a class="btn btn-primary" href="/member/login">LOG IN</a>
-       	</div>
-
-        <!-- Topbar Navbar -->
-        <ul class="navbar-nav ml-auto">
-        	<!-- Nav Item - User Information -->
-          	<li class="nav-item dropdown no-arrow">
-          		<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                	<span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                    <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
-               	</a>
-               	<!-- Dropdown - User Information -->
-               	<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                	<a class="dropdown-item" href="#">
-	                 	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-	                    Profile
-                 	</a>
-                  	<a class="dropdown-item" href="#">
-                    	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                 	</a>
-                    <a class="dropdown-item" href="#">
-                    	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Activity Log
-                  	</a>
-                 	<div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                   	</a>
-               	</div>
-       		</li>
-		</ul>
+			<a class="navbar-brand" href="/">TTM</a>
+	   	</div>
+	    <div>
+	    	<a class="navbar-brand" href="/">HOME</a>
+		    <a class="navbar-brand" href="/quote">MARKET</a>
+		    <a class="navbar-brand" href="/help">HELP</a>
+	   	</div>
+		<div>
+			<c:choose>
+				<c:when test="${empty sessionScope.loginEmail }">
+					<div>
+				    	<a class="btn btn-primary" href="/member/register">SIGN UP</a>
+				        <a class="btn btn-primary" href="/member/login">LOG IN</a>
+				    </div>
+				</c:when>
+				<c:otherwise>
+					<!-- Topbar Navbar -->
+				    <ul class="navbar-nav ml-auto">
+				    	<!-- Nav Item - User Information -->
+				        <li class="nav-item dropdown no-arrow">
+				        	<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginFisrtName }&nbsp;${sessionScope.loginLastName }</span>
+				                <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
+				           	</a>
+				            <!-- Dropdown - User Information -->
+				            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+				            	<a class="dropdown-item" href="#">
+					            	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+					                Profile
+				                </a>
+				                <a class="dropdown-item" href="#">
+				                	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+				                </a>
+				                <a class="dropdown-item" href="#">
+				                	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+				                    Activity Log
+				               	</a>
+				                <div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/member/logout">
+				                	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+				                    Logout
+				              	</a>
+				          	</div>
+				       	</li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</nav>
-    <!-- End of Topbar -->
+	<!-- End of Topbar -->
 
 	<!-- start quote-header-info -->
 	<div class="row font-weight-bold text-gray-100 bg-gradient-primary" id="quote-header-info">
@@ -122,57 +123,82 @@
 	<!-- end main navigation-->
 		
 	<!-- start container-fluid -->
-	<div class="container-fluid">
-		<!-- chart -->
-		<div>
-		</div>
-		
-		<!-- summary -->
-		<div>
-			<table>
-				<tr>
-					<td>Open</td>
-					<td>${info.quote.open}</td>
-					<td>Previous Close</td>
-					<td>${info.quote.previousClose}</td>
-				</tr>
-				<tr>
-					<td>High</td>
-					<td>${info.quote.dayHigh}</td>
-					<td>Low</td>
-					<td>${info.quote.dayLow}</td>
-				</tr>
-				<tr>
-					<td>Ask</td>
-					<td>${info.quote.ask}</td>
-					<td>Bid</td>
-					<td>${info.quote.bid}</td>
-				</tr>
-				<tr>
-					<td>PE Ratio(P/E)</td>
-					<td>${info.stats.pe}</td>
-					<td>EPS</td>
-					<td>${info.stats.eps}</td>
-				</tr>
-				<tr>
-					<td>Market Cap</td>
-					<td>${info.stats.marketCap}</td>
-					<td>dividend</td>
-					<td>${info.dividend.annualYield}</td>
-				</tr>
-				<tr>
-					<td>52 Week High</td>
-					<td>${info.quote.yearHigh}</td>
-					<td>52 Week Low</td>
-					<td>${info.quote.yearLow}</td>
-				</tr>
-				<tr>
-					<td>Volume</td>
-					<td>${info.quote.volume}</td>
-					<td>Avg. Volume</td>
-					<td>${info.quote.avgVolume}</td>
-				</tr>
-			</table>
+	<div class="container-fluid">		
+		<div class="row">
+			<!-- summary -->
+			<div class="col-lg-5">
+				<div class="card shadow mb-4">
+                	<div class="card-header py-3">
+                   	</div>
+                    <div class="card-body">
+                    	<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
+                    		<tbody>
+								<tr>
+									<td>Open</td>
+									<td>${info.quote.open}</td>
+									<td>Previous Close</td>
+									<td>${info.quote.previousClose}</td>
+								</tr>
+								<tr>
+									<td>High</td>
+									<td>${info.quote.dayHigh}</td>
+									<td>Low</td>
+									<td>${info.quote.dayLow}</td>
+								</tr>
+								<tr>
+									<td>Ask</td>
+									<td>${info.quote.ask}</td>
+									<td>Bid</td>
+									<td>${info.quote.bid}</td>
+								</tr>
+								<tr>
+									<td>PE Ratio(P/E)</td>
+									<td>${info.stats.pe}</td>
+									<td>EPS</td>
+									<td>${info.stats.eps}</td>
+								</tr>
+								<tr>
+									<td>Market Cap</td>
+									<td>${info.stats.marketCap}</td>
+									<td>dividend</td>
+									<td>${info.dividend.annualYield}</td>
+								</tr>
+								<tr>
+									<td>52 Week High</td>
+									<td>${info.quote.yearHigh}</td>
+									<td>52 Week Low</td>
+									<td>${info.quote.yearLow}</td>
+								</tr>
+								<tr>
+									<td>Volume</td>
+									<td>${info.quote.volume}</td>
+									<td>Avg. Volume</td>
+									<td>${info.quote.avgVolume}</td>
+								</tr>
+							</tbody>
+						</table>
+                   	</div>
+               	</div>
+			</div>
+			<!-- chart -->
+			<div class="col-lg-5">
+				<div class="card shadow mb-4">
+                	<div class="card-header py-3">
+                    	<a>3D</a>
+                    	<a>5D</a>
+                    	<a>1M</a>
+                    	<a>3M</a>
+                    	<a>1Y</a>
+                    	<a>5Y</a>
+                   	</div>
+                    <div class="card-body">
+                    	<div class="chart-area">
+                    		
+                        	<canvas id="myAreaChart"></canvas>
+                        </div>
+                   	</div>
+               	</div>
+			</div>
 		</div>
 	</div>
 	<!-- end container-fluid -->
@@ -199,5 +225,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/resources/pages/js/sb-admin-2.min.js"></script>
+    
+    <!-- Core plugin JavaScript-->
+    <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/resources/pages/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/resources/pages/js/demo/chart-area-demo.js"></script>
 </body>
 </html>

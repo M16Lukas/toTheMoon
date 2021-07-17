@@ -39,34 +39,32 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" id="registerAccount" action="/member/register" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                        <input type="text" class="form-control form-control-user" id="firstName" name="firstName"
                                             placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                        <input type="text" class="form-control form-control-user" id="lastName" name="lastName"
                                             placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    <input type="email" class="form-control form-control-user" id="inputEmail" name="email"
                                         placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="inputPassword" name="pw" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            id="repeatPassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <a href="login" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                                <input type="button" class="btn btn-primary btn-user btn-block" value="Register Account" onclick="register();">
                                 <hr>
                                 <a href="/" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -94,6 +92,9 @@
     <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+	<!-- Core theme JS-->
+    <script src="/resources/home/js/scripts.js"></script>
+    
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
 

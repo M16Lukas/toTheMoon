@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,57 +32,58 @@
 </head>
 <body>
 	<!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <a class="navbar-brand" href="/">TTM</a>
-       	<div>
-        	<a class="navbar-brand" href="/">HOME</a>
-	        <a class="navbar-brand" href="/quote">MARKET</a>
-	        <a class="navbar-brand" href="/help">HELP</a>
-      	</div>
-
-        <!-- Topbar Search -->
-        <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        	<div class="input-group">
-                <input class="form-control bg-light border-0 small" id="symbol" type="text" placeholder="Symbol" aria-label="Search" aria-describedby="basic-addon2" onkeyup="sendSymbol();"/>
-         	</div>
-    	</div>
-
+	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
 		<div>
-           <a class="btn btn-primary" href="/member/register">SIGN UP</a>
-           <a class="btn btn-primary" href="/member/login">LOG IN</a>
-       	</div>
-
-        <!-- Topbar Navbar -->
-        <ul class="navbar-nav ml-auto">
-        	<!-- Nav Item - User Information -->
-          	<li class="nav-item dropdown no-arrow">
-          		<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                	<span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                    <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
-               	</a>
-               	<!-- Dropdown - User Information -->
-               	<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                	<a class="dropdown-item" href="#">
-	                 	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-	                    Profile
-                 	</a>
-                  	<a class="dropdown-item" href="#">
-                    	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                 	</a>
-                    <a class="dropdown-item" href="#">
-                    	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Activity Log
-                  	</a>
-                 	<div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                   	</a>
-               	</div>
-       		</li>
-		</ul>
+			<a class="navbar-brand" href="/">TTM</a>
+	   	</div>
+	    <div>
+	    	<a class="navbar-brand" href="/">HOME</a>
+		    <a class="navbar-brand" href="/quote">MARKET</a>
+		    <a class="navbar-brand" href="/help">HELP</a>
+	   	</div>
+		<div>
+			<c:choose>
+				<c:when test="${empty sessionScope.loginEmail }">
+					<div>
+				    	<a class="btn btn-primary" href="/member/register">SIGN UP</a>
+				        <a class="btn btn-primary" href="/member/login">LOG IN</a>
+				    </div>
+				</c:when>
+				<c:otherwise>
+					<!-- Topbar Navbar -->
+				    <ul class="navbar-nav ml-auto">
+				    	<!-- Nav Item - User Information -->
+				        <li class="nav-item dropdown no-arrow">
+				        	<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginFisrtName }&nbsp;${sessionScope.loginLastName }</span>
+				                <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
+				           	</a>
+				            <!-- Dropdown - User Information -->
+				            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+				            	<a class="dropdown-item" href="#">
+					            	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+					                Profile
+				                </a>
+				                <a class="dropdown-item" href="#">
+				                	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+				                </a>
+				                <a class="dropdown-item" href="#">
+				                	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+				                    Activity Log
+				               	</a>
+				                <div class="dropdown-divider"></div>
+				                <a class="dropdown-item" href="/member/logout">
+				                	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+				                    Logout
+				              	</a>
+				          	</div>
+				       	</li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</nav>
-    <!-- End of Topbar -->
+	<!-- End of Topbar -->
 
 	<!-- start quote-header-info -->
 	<div class="row font-weight-bold text-gray-100 bg-gradient-primary" id="quote-header-info">
@@ -127,9 +128,9 @@
 		<div class="card shadow mb-4">
         	<div class="card-header py-3">
              	<div class="row">
-			     	<div class="col-sm-12 col-md-6">
-			        	<div class="dataTables_length" id="dataTable_length">
-			           		<label>Show 
+			     	<div class="col-sm-12 col-md-3">
+			           		<span>Show</span>
+			           		<label>
 				           		<select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
 				           			<option value="10">10</option>
 				           			<option value="25">25</option>
@@ -137,11 +138,11 @@
 				           			<option value="100">100</option>
 				           		</select>
 			           		</label>
-			           	</div>
 			       	</div>
-			        <div class="col-sm-12 col-md-6">
+			        <div class="col-sm-12 col-md-3">
 			        	<div class="dataTables_length" id="dataTable_length">
-			           		<label>Frequency 
+			        		<span>Frequency</span>
+			           		<label> 
 				           		<select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
 				           			<option value="DAILY">Daily</option>
 				           			<option value="WEEKLY">Weekly</option>
@@ -150,11 +151,25 @@
 			           		</label>
 			           	</div>
 			      	</div>
+			      	<div class="col-sm-12 col-md-3">
+			        	<div class="dataTables_length" id="dataTable_length">
+			        		<a href="#" class="btn btn-primary btn-icon-split">
+                                <span class="text">Apply</span>
+                          	</a>
+			        	</div>
+			        </div>
 			   	</div>
            	</div>
 			<div class="card-body">
 	        	<div class="table-responsive">
 	        		<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+	        			<div class="row">
+			           		<div class="col-sm-12 col-md-5">
+			           			<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+			           				Currency in USD
+			           			</div>
+			           		</div>
+			           	</div>
 			           	<div class="row">
 			           		<div class="col-sm-12">
 			           			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
@@ -178,8 +193,8 @@
 			                     				<td>${list.open }</td>
 			                     				<td>${list.high }</td>
 			                     				<td>${list.low }</td>
-			                     				<td>${list.close }</td>
-			                     				<td>${list.adjClose }</td>
+			                     				<td>${list.close }*</td>
+			                     				<td>${list.adjClose }**</td>
 			                     				<td>${list.volume }</td>
 			                     			</tr>
 			                     		</c:forEach>
@@ -190,7 +205,7 @@
 			           	<div class="row">
 			           		<div class="col-sm-12 col-md-5">
 			           			<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-			           				Showing 1 to 10 of 57 entries
+			           				*Close price adjusted for splits.**Adjusted close price adjusted for both dividends and splits.
 			           			</div>
 			           		</div>
 			           		<div class="col-sm-12 col-md-7">
@@ -201,21 +216,6 @@
 			           					</li>
 			           					<li class="paginate_button page-item active">
 			           						<a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-			           					</li>
-			           					<li class="paginate_button page-item ">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-			           					</li>
-			           					<li class="paginate_button page-item ">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-			           					</li>
-			           					<li class="paginate_button page-item ">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-			           					</li>
-			           					<li class="paginate_button page-item ">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-			           					</li>
-			           					<li class="paginate_button page-item ">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a>
 			           					</li>
 			           					<li class="paginate_button page-item next" id="dataTable_next">
 			           						<a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>

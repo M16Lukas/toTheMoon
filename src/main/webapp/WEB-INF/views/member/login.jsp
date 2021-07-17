@@ -44,15 +44,15 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="/member/login" method="post" onsubmit="return login();">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                name="email" id="inputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                name="pw" id="inputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -61,9 +61,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="/" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
                                         <hr>
                                         <a href="/" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -71,7 +69,7 @@
                                         <a href="/" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
-                                    </form>
+                                  	</form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password">Forgot Password?</a>
@@ -91,10 +89,13 @@
 
     </div>
 
+	<!-- Core theme JS-->
+    <script src="/resources/home/js/scripts.js"></script>
+	
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
 
