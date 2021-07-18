@@ -15,12 +15,12 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	
-	<!-- HomePage -->
+	<!-- home folder -->
 	<resources mapping="/home/assets/**" location="/resources/home/assets/" />
 	<resources mapping="/home/css/**" location="/resources/home/css/" />
 	<resources mapping="/home/js/**" location="/resources/home/js/" />
 	
-	<!-- Others Pages -->
+	<!-- page folder -->
 	<resources mapping="/pages/css/**" location="/resources/pages/css/" />
 	<resources mapping="/pages/js/**" location="/resources/pages/js/" />
 	<resources mapping="/pages/img/**" location="/resources/pages/img/" />
@@ -36,6 +36,8 @@
 	
 	<context:component-scan base-package="com.theMoon.moon" />
 	
+	<!-- Login interceptor -->
+	<beans:bean id="loginInterceptor" class="com.theMoon.moon.interceptor.LoginInterceptor"></beans:bean>
 	
 	
 </beans:beans>

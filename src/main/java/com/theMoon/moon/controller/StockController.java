@@ -1,9 +1,6 @@
 package com.theMoon.moon.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.theMoon.moon.service.StockService;
 import com.theMoon.moon.vo.StockInfo;
 
-import yahoofinance.histquotes.HistoricalQuote;
 
 @Controller
 @RequestMapping(value = "/quote")
@@ -79,15 +76,18 @@ public class StockController {
 	}
 	
 	@RequestMapping(value = "/{symbol}/history", method = RequestMethod.GET)
-	private String historySymbol(@PathVariable String symbol, Model model){
+	private String historySymbol(Model model
+								,@PathVariable String symbol
+								,@RequestParam(name="countPerPage", defaultValue = "10") int countPerPage
+								,@RequestParam(name="frequency", defaultValue = "1D") String frequency
+								,@RequestParam(name="p", defaultValue = "1") int p){
+		
 		StockInfo info = null;
-		List<HistoricalQuote> lists = null;
-		List<String> dates = new ArrayList<String>();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Map<String, Object> map = null;
 		
 		try {
 			info = service.searchSymbol(symbol);
-			lists = service.history(symbol);
+			map = service.history(symbol, frequency, countPerPage, p);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
@@ -96,13 +96,11 @@ public class StockController {
 		if (info == null) {
 			return "redirect:/";
 		} else {
-			for(HistoricalQuote list : lists) {
-		        dates.add(dateFormat.format(list.getDate().getTime()));
-			}
-			
 			model.addAttribute("info", info);
-			model.addAttribute("lists", lists);
-			model.addAttribute("dates", dates);
+			model.addAttribute("lists", map.get("history"));
+			model.addAttribute("page", map.get("page"));
+			model.addAttribute("countPerPage", countPerPage);
+			model.addAttribute("frequency", frequency);
 			return "/quote/history";
 		}
 	}

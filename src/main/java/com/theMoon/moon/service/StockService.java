@@ -9,13 +9,17 @@ import yahoofinance.quotes.stock.StockQuote;
 import yahoofinance.quotes.stock.StockStats;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.theMoon.moon.vo.PageDTO;
+import com.theMoon.moon.vo.StockHistory;
 import com.theMoon.moon.vo.StockInfo;
 
 @Service
@@ -50,19 +54,48 @@ public class StockService {
 		return new StockInfo(symbol, name, exchange, quote, stats, dividend);
 	}
 	
-	public List<HistoricalQuote> history(String symbol) throws IOException{
+	public Map<String, Object> history(String symbol, String frequency, int countPerPage, int currentPage) throws IOException{
 		Stock stock = YahooFinance.get(symbol);
+		Interval interval = null;
 		
 		Calendar from = Calendar.getInstance();
 		Calendar to = Calendar.getInstance();
-		
 		from.add(Calendar.YEAR, -1);
-		List<HistoricalQuote> lists = stock.getHistory(from, to, Interval.DAILY);
 		
+		switch (frequency) {
+		case "1D":
+			interval = Interval.DAILY;
+			break;
+		case "1W":
+			interval = Interval.WEEKLY;
+			break;
+		case "1M":
+			interval = Interval.MONTHLY;
+			break;
+		default:
+			interval = Interval.DAILY;
+			break;
+		}
+		
+		List<HistoricalQuote> lists = stock.getHistory(from, to, interval);
 		// desc sort
 		Collections.reverse(lists);
 		
-		return lists;
+		// paging
+		PageDTO page = new PageDTO(countPerPage, currentPage, lists.size());
+		
+		List<StockHistory> history = new ArrayList<StockHistory>();
+		for(int i = page.getStartDataIdxNum(); i <= page.getEndDataIdxNum(); i++) {
+			history.add(new StockHistory(lists.get(i)));
+		}
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("history", history);
+		map.put("page", page);
+		
+		return map;
 	}
 	
 }

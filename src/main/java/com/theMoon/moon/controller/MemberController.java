@@ -24,7 +24,7 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@PostMapping(value = "/login")
+	@PostMapping(value = "/login_check")
 	private String login(Member member) {
 		return service.login(member);
 	}

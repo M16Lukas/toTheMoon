@@ -31,91 +31,13 @@
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-	<!-- Topbar -->
-	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
-		<div>
-			<a class="navbar-brand" href="/">TTM</a>
-	   	</div>
-	    <div>
-	    	<a class="navbar-brand" href="/">HOME</a>
-		    <a class="navbar-brand" href="/quote">MARKET</a>
-		    <a class="navbar-brand" href="/help">HELP</a>
-	   	</div>
-		<div>
-			<c:choose>
-				<c:when test="${empty sessionScope.loginEmail }">
-					<div>
-				    	<a class="btn btn-primary" href="/member/register">SIGN UP</a>
-				        <a class="btn btn-primary" href="/member/login">LOG IN</a>
-				    </div>
-				</c:when>
-				<c:otherwise>
-					<!-- Topbar Navbar -->
-				    <ul class="navbar-nav ml-auto">
-				    	<!-- Nav Item - User Information -->
-				        <li class="nav-item dropdown no-arrow">
-				        	<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginFisrtName }&nbsp;${sessionScope.loginLastName }</span>
-				                <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
-				           	</a>
-				            <!-- Dropdown - User Information -->
-				            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-				            	<a class="dropdown-item" href="#">
-					            	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-					                Profile
-				                </a>
-				                <a class="dropdown-item" href="#">
-				                	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-				                </a>
-				                <a class="dropdown-item" href="#">
-				                	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-				                    Activity Log
-				               	</a>
-				                <div class="dropdown-divider"></div>
-				               	<a class="dropdown-item" href="/member/logout">
-				                	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-				                    Logout
-				              	</a>
-				          	</div>
-				       	</li>
-					</ul>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</nav>
-	<!-- End of Topbar -->
-
-	<!-- start quote-header-info -->
-	<div class="row font-weight-bold text-gray-100 bg-gradient-primary" id="quote-header-info">
-		<div class="col">
-			${info.symbol }
-			<br>
-			${info.name}
-			<br>
-			${info.exchange}
-			<br>
-			<div>
-				<h2>${info.quote.price} </h2> 
-				<c:set var="upDown" value="${info.quote.price - info.quote.previousClose}" />
-			    <c:choose>
-			    	<c:when test="${upDown gt 0}">
-			        	+<c:out value="${upDown }"/>
-			      	</c:when>
-			        <c:otherwise>
-			        	<c:out value="${upDown }" />
-			       	</c:otherwise>
-			 	</c:choose>
-			</div>	
-		</div>
-	</div>
-	<!-- end quote-header-info -->
-	
-	<!-- start Main Part -->
+	<!-- bode-header -->
+	<%@ include file="../includes/header.jsp" %>
 	
 	<!-- start main navigation-->
 	<nav class="navbar navbar-light bg-white static-top ">
     	<div>
-        	<a class="navbar-brand" href="">Summary</a>
+        	<a class="navbar-brand" href="/quote/${info.symbol }">Summary</a>
 	        <a class="navbar-brand border-bottom-primary" href="">Conversations</a>
 	        <a class="navbar-brand" href="history">Historical Data</a>
         </div>
@@ -140,26 +62,7 @@
 	<!-- end container-fluid -->
 
 
-	<!-- Bootstrap core JS-->
-		
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="/resources/home/js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-	
-	<!-- Page Content -->
-
-    <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/resources/pages/js/sb-admin-2.min.js"></script>
+	<!-- footer -->
+	<%@ include file="../includes/footer.jsp" %>
 </body>
 </html>

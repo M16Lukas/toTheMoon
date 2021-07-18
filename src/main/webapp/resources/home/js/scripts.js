@@ -78,3 +78,10 @@ function sendSymbol(){
 	}
 }
 
+function historyPaging(p){
+	var countPerPage = document.getElementById("countPerPage").value;
+	var frequency = document.getElementById("frequency").value;
+	
+	location.href = "history?countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
+}
+

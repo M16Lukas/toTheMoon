@@ -31,91 +31,13 @@
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-	<!-- Topbar -->
-	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
-		<div>
-			<a class="navbar-brand" href="/">TTM</a>
-	   	</div>
-	    <div>
-	    	<a class="navbar-brand" href="/">HOME</a>
-		    <a class="navbar-brand" href="/quote">MARKET</a>
-		    <a class="navbar-brand" href="/help">HELP</a>
-	   	</div>
-		<div>
-			<c:choose>
-				<c:when test="${empty sessionScope.loginEmail }">
-					<div>
-				    	<a class="btn btn-primary" href="/member/register">SIGN UP</a>
-				        <a class="btn btn-primary" href="/member/login">LOG IN</a>
-				    </div>
-				</c:when>
-				<c:otherwise>
-					<!-- Topbar Navbar -->
-				    <ul class="navbar-nav ml-auto">
-				    	<!-- Nav Item - User Information -->
-				        <li class="nav-item dropdown no-arrow">
-				        	<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginFisrtName }&nbsp;${sessionScope.loginLastName }</span>
-				                <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
-				           	</a>
-				            <!-- Dropdown - User Information -->
-				            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-				            	<a class="dropdown-item" href="#">
-					            	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-					                Profile
-				                </a>
-				                <a class="dropdown-item" href="#">
-				                	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-				                </a>
-				                <a class="dropdown-item" href="#">
-				                	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-				                    Activity Log
-				               	</a>
-				                <div class="dropdown-divider"></div>
-				                <a class="dropdown-item" href="/member/logout">
-				                	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-				                    Logout
-				              	</a>
-				          	</div>
-				       	</li>
-					</ul>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</nav>
-	<!-- End of Topbar -->
-
-	<!-- start quote-header-info -->
-	<div class="row font-weight-bold text-gray-100 bg-gradient-primary" id="quote-header-info">
-		<div class="col">
-			${info.symbol }
-			<br>
-			${info.name}
-			<br>
-			${info.exchange}
-			<br>
-			<div>
-				<h2>${info.quote.price} </h2> 
-				<c:set var="upDown" value="${info.quote.price - info.quote.previousClose}" />
-			    <c:choose>
-			    	<c:when test="${upDown gt 0}">
-			        	+<c:out value="${upDown }"/>
-			      	</c:when>
-			        <c:otherwise>
-			        	<c:out value="${upDown }" />
-			       	</c:otherwise>
-			 	</c:choose>
-			</div>	
-		</div>
-	</div>
-	<!-- end quote-header-info -->
-	
-	<!-- start Main Part -->
+	<!-- bode-header -->
+	<%@ include file="../includes/header.jsp" %>
 	
 	<!-- start main navigation-->
 	<nav class="navbar navbar-light bg-white static-top ">
     	<div>
-        	<a class="navbar-brand" href="">Summary</a>
+        	<a class="navbar-brand" href="/quote/${info.symbol }">Summary</a>
 	        <a class="navbar-brand" href="community">Conversations</a>
 	        <a class="navbar-brand border-bottom-primary" href="">Historical Data</a>
         </div>
@@ -127,38 +49,38 @@
 		<!-- DataTales -->
 		<div class="card shadow mb-4">
         	<div class="card-header py-3">
-             	<div class="row">
-			     	<div class="col-sm-12 col-md-3">
-			           		<span>Show</span>
-			           		<label>
-				           		<select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-				           			<option value="10">10</option>
-				           			<option value="25">25</option>
-				           			<option value="50">50</option>
-				           			<option value="100">100</option>
-				           		</select>
-			           		</label>
-			       	</div>
-			        <div class="col-sm-12 col-md-3">
-			        	<div class="dataTables_length" id="dataTable_length">
-			        		<span>Frequency</span>
-			           		<label> 
-				           		<select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-				           			<option value="DAILY">Daily</option>
-				           			<option value="WEEKLY">Weekly</option>
-				           			<option value="MONTHLY">Monthly</option>
-				           		</select>
-			           		</label>
-			           	</div>
-			      	</div>
-			      	<div class="col-sm-12 col-md-3">
-			        	<div class="dataTables_length" id="dataTable_length">
-			        		<a href="#" class="btn btn-primary btn-icon-split">
-                                <span class="text">Apply</span>
-                          	</a>
-			        	</div>
-			        </div>
-			   	</div>
+             	<form action="" method="get">
+             		<div class="row">
+             			<div class="col-sm-12 col-md-3">
+				         	<span>Show</span>
+				           	<label>
+					        	<select name="countPerPage" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+					           		<option value="10">10</option>
+					           		<option value="25">25</option>
+					           		<option value="50">50</option>
+					           		<option value="100">100</option>
+					           	</select>
+				           	</label>
+				       	</div>
+				        <div class="col-sm-12 col-md-3">
+				        	<div class="dataTables_length" id="dataTable_length">
+				        		<span>Frequency</span>
+				           		<label> 
+					           		<select name="frequency" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+					           			<option value="1D">Daily</option>
+					           			<option value="1W">Weekly</option>
+					           			<option value="1M">Monthly</option>
+					           		</select>
+				           		</label>
+				           	</div>
+				      	</div>
+				      	<div class="col-sm-12 col-md-3">
+				        	<div class="dataTables_length" id="dataTable_length">
+				        		<input type="submit" class="btn btn-primary" value="Apply">
+				        	</div>
+				        </div>
+             		</div>
+			   	</form>
            	</div>
 			<div class="card-body">
 	        	<div class="table-responsive">
@@ -172,29 +94,27 @@
 			           	</div>
 			           	<div class="row">
 			           		<div class="col-sm-12">
-			           			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
+			           			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing: 0;">
 			                    	<thead>
 			                        	<tr>
 			                            	<th>Date</th>
 			                                <th>Open</th>
 			                                <th>High</th>
 			                                <th>Low</th>
-			                                <th>Close</th>
-			                                <th>Adj Close</th>
+			                                <th>Close*</th>
+			                                <th>Adj Close**</th>
 			                                <th>Volume</th>
 			                         	</tr>
 			                     	</thead>
 			                     	<tbody>
-			                     		<c:forEach var="list" items="${lists }" varStatus="statusNm">
+			                     		<c:forEach var="list" items="${lists }">
 			                     			<tr>
-			                     				<c:forEach var="date" items="${dates[statusNm.index] }" varStatus="status">
-			                     					<td>${date }</td>
-			                     				</c:forEach>
+			                     				<td>${list.date }</td>
 			                     				<td>${list.open }</td>
 			                     				<td>${list.high }</td>
 			                     				<td>${list.low }</td>
-			                     				<td>${list.close }*</td>
-			                     				<td>${list.adjClose }**</td>
+			                     				<td>${list.close }</td>
+			                     				<td>${list.adjClose }</td>
 			                     				<td>${list.volume }</td>
 			                     			</tr>
 			                     		</c:forEach>
@@ -205,21 +125,29 @@
 			           	<div class="row">
 			           		<div class="col-sm-12 col-md-5">
 			           			<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-			           				*Close price adjusted for splits.**Adjusted close price adjusted for both dividends and splits.
+			           				*Close price adjusted for splits.&nbsp;**Adjusted close price adjusted for both dividends and splits.
 			           			</div>
 			           		</div>
 			           		<div class="col-sm-12 col-md-7">
+			           			<input type="hidden" id="frequency" value="${frequency }">
+			           			<input type="hidden" id="countPerPage" value="${countPerPage }">
 			           			<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
 			           				<ul class="pagination">
-			           					<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-			           					</li>
-			           					<li class="paginate_button page-item active">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-			           					</li>
-			           					<li class="paginate_button page-item next" id="dataTable_next">
-			           						<a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-			           					</li>
+			           					<c:if test="${page.prev }">
+			           						<li class="paginate_button page-item previous" id="dataTable_previous">
+				           						<a href="javascript:historyPaging(${page.startPageGroup - page.pagePerGroup });" aria-controls="dataTable" class="page-link">Previous</a>
+				           					</li>
+			           					</c:if>
+			           					<c:forEach var="num" begin="${page.startPageGroup }" end="${page.endPageGroup }">
+			        	   					<li class="paginate_button page-item <c:if test='${page.currentPage eq num }' >active</c:if>">
+				           						<a href="javascript:historyPaging(${num });" aria-controls="dataTable" aria-controls="dataTable" class="page-link">${num }</a>
+				           					</li>
+			           					</c:forEach>
+			           					<c:if test="${page.next }">
+			           						<li class="paginate_button page-item next" id="dataTable_next">
+				           						<a href="javascript:historyPaging(${page.startPageGroup + page.pagePerGroup });" aria-controls="dataTable" class="page-link">Next</a>
+				           					</li>
+			           					</c:if>
 			           				</ul>
 			           			</div>
 			           		</div>
@@ -232,26 +160,7 @@
 	<!-- end container-fluid -->
 
 
-	<!-- Bootstrap core JS-->
-		
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="/resources/home/js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-	
-	<!-- Page Content -->
-
-    <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/resources/pages/js/sb-admin-2.min.js"></script>
+	<!-- footer -->
+	<%@ include file="../includes/footer.jsp" %>
 </body>
 </html>
