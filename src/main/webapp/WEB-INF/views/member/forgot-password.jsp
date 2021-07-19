@@ -84,6 +84,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/resources/pages/js/sb-admin-2.min.js"></script>
+    
+    <script src="/resources/js/js-member.js"></script>
 
 </body>
 

@@ -39,7 +39,7 @@
 				    	<!-- Nav Item - User Information -->
 				        <li class="nav-item dropdown no-arrow">
 				        	<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginFisrtName }&nbsp;${sessionScope.loginLastName }</span>
+				            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginFirstName } ${sessionScope.loginLastName }</span>
 				                <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
 				           	</a>
 				            <!-- Dropdown - User Information -->

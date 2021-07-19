@@ -51,7 +51,7 @@ public class MemberService {
 		Member loginUser = dao.login(member);
 		
 		if (loginUser == null) {
-			path = "redirect:" + request.getRequestURI();
+			path = "redirect:/member/login";
 		} else {
 			session.setAttribute("loginFirstName", loginUser.getFirstName());
 			session.setAttribute("loginLastName", loginUser.getLastName());
@@ -72,7 +72,6 @@ public class MemberService {
 		session.removeAttribute("loginFirstName");
 		session.removeAttribute("loginLastName");
 		session.removeAttribute("loginEmail");
-		System.out.println("logout");
 		return "redirect:/";
 	}
 }

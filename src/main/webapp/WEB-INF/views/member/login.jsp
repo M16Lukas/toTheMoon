@@ -90,7 +90,7 @@
     </div>
 
 	<!-- Core theme JS-->
-    <script src="/resources/home/js/scripts.js"></script>
+    <script src="/resources/js/js-member.js"></script>
 	
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>

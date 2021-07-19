@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.theMoon.moon.vo.Member" alias="member" />
+		<typeAlias type="com.theMoon.moon.vo.Community" alias="community" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/memberMapper.xml" />
+		<mapper resource="mapper/communityMapper.xml" />
 	</mappers>
 </configuration>

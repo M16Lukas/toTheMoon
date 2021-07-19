@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.theMoon.moon.dao.CommunityMapper">
+
+<!-- 댓글 등록 -->
+<insert id="insertContent" parameterType="community">
+	insert into
+		community(
+			content_nm
+			,symbol
+			,email
+			,content
+	) values (
+		community_nm_seq.nextval
+		,#{symbol}
+		,#{email}
+		,#{content,jdbcType=CLOB}
+	) 
+</insert>
+
+<!-- 해당 주식의 댓글 가져오기 -->
+<resultMap type="hashmap" id="getContentList">
+	<result property="CONTENT" column="content" jdbcType="CLOB" javaType="java.lang.String"/>
+</resultMap>
+<select id="printContent" parameterType="String" resultType="hashmap" resultMap="getContentList">
+select
+	content_nm
+	,symbol
+	,email
+	,content
+	,content_up
+	,content_down
+	,to_char(content_indate, 'YYYY-MM-DD HH24:MI:SS') as content_indate
+from
+	community
+where
+	symbol = #{symbol}
+</select>
+</mapper>

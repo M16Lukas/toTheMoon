@@ -1,6 +1,7 @@
 package com.theMoon.moon.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.theMoon.moon.service.CommunityService;
 import com.theMoon.moon.service.StockService;
+import com.theMoon.moon.vo.Community;
 import com.theMoon.moon.vo.StockInfo;
 
 
@@ -20,14 +23,17 @@ import com.theMoon.moon.vo.StockInfo;
 public class StockController {
 
 	@Autowired
-	private StockService service;
+	private StockService stockService;
+	
+	@Autowired
+	private CommunityService commuService;
 	
 	@RequestMapping(value = "")
 	private String index(Model model) {
 		Map<String, StockInfo> stocks = null;
 		
 		try {
-			stocks = service.index();
+			stocks = stockService.index();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
@@ -42,7 +48,7 @@ public class StockController {
 		StockInfo info = null;
 		
 		try {
-			info = service.searchSymbol(symbol);
+			info = stockService.searchSymbol(symbol);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
@@ -59,9 +65,9 @@ public class StockController {
 	@RequestMapping(value = "/{symbol}/community", method = RequestMethod.GET)
 	private String communitySymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;
-		
+		ArrayList<Community> lists = null;
 		try {
-			info = service.searchSymbol(symbol);
+			info = stockService.searchSymbol(symbol);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
@@ -70,9 +76,17 @@ public class StockController {
 		if (info == null) {
 			return "redirect:/";
 		} else {
+			lists = commuService.printContent(info.getSymbol());
+			
 			model.addAttribute("info", info);
+			model.addAttribute("lists", lists);
 			return "/quote/community";
 		}
+	}
+	
+	@RequestMapping(value = "/{symbol}/community/register", method = RequestMethod.POST)
+	private String insertContent(@PathVariable String symbol, String content){
+		return commuService.insertContent(symbol, content);
 	}
 	
 	@RequestMapping(value = "/{symbol}/history", method = RequestMethod.GET)
@@ -86,8 +100,8 @@ public class StockController {
 		Map<String, Object> map = null;
 		
 		try {
-			info = service.searchSymbol(symbol);
-			map = service.history(symbol, frequency, countPerPage, p);
+			info = stockService.searchSymbol(symbol);
+			map = stockService.history(symbol, frequency, countPerPage, p);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";

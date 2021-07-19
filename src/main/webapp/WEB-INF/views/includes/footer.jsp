@@ -7,10 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- JS-->
+    <script src="/resources/js/js-member.js"></script>
+    <script src="/resources/js/js-stock.js"></script>
+    <script src="/resources/js/js-community.js"></script>
+
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="/resources/home/js/scripts.js"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

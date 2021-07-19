@@ -93,7 +93,7 @@
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core theme JS-->
-    <script src="/resources/home/js/scripts.js"></script>
+    <script src="/resources/js/js-member.js"></script>
     
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>

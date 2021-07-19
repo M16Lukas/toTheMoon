@@ -49,13 +49,72 @@
 		<!-- community -->
 		<div class="community-body">
 			<div class="row">
+				<div class="row text-lg">
+					reactions on conversion
+				</div>
+				<div class="row">
+					<c:choose>
+						<c:when test="${empty sessionScope.loginEmail }">
+							<div class="card mb-4">
+                                <div class="card-body">
+                                    <a target="_blank" href="/member/login">Sign in to post a message</a>
+                                </div>
+                            </div>	
+						</c:when>
+						<c:otherwise>
+							<div class="input-wrapper">
+								<form action="community/register" method="post">
+									<div class="input">
+										<textarea class="form-control bg-light border-0 small" name="content" onkeyup="resize(this)" 
+		                                	maxlength="8000" required="required" style="width: 60%; height: 70px;"></textarea>
+									</div>
+									<div class="btn">
+										<button type="submit" class="btn btn-info">Reigster</button>
+									</div>
+								</form>
+                            </div>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
 			<div class="row">
 			</div>
 			<div class="row">
-				<ul>
-					
-				</ul>
+				<c:choose>
+					<c:when test="${empty lists }">
+						<p>Nothing</p>
+					</c:when>
+					<c:otherwise>
+						<ul>
+							<c:forEach var="list" items="#{lists }" >
+								<li>
+			                        <div class="card shadow mb-4">
+			                        	<!-- Card Header - Dropdown -->
+			                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			                            	<h6 class="m-0 font-weight-bold text-primary">${list.email }&nbsp;${list.content_indate }</h6>
+			                                <div class="dropdown no-arrow">
+			                                	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+			                                    	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			                                   		<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+			                                  	</a>
+			                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+			                                        <a class="dropdown-item" href="#">Action</a>
+			                                        <a class="dropdown-item" href="#">Another action</a>
+			                                    </div>
+			                               	</div>
+			                          	</div>
+			                            <!-- Card Body -->
+			                            <div class="card-body">
+			                            	${list.content }
+			                            	<br>
+			                            	${list.content_up }&nbsp; ${list.content_down }
+			                           	</div>
+			                      	</div>
+								</li>
+							</c:forEach>				
+						</ul>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
