@@ -49,8 +49,8 @@
 		<!-- community -->
 		<div class="community-body">
 			<div class="row">
-				<div class="row text-lg">
-					reactions on conversion
+				<div class="row">
+					<p class="text-lg"> ${reactions } reactions on ${info.symbol } conversion</p> 
 				</div>
 				<div class="row">
 					<c:choose>
@@ -91,7 +91,7 @@
 			                        <div class="card shadow mb-4">
 			                        	<!-- Card Header - Dropdown -->
 			                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-			                            	<h6 class="m-0 font-weight-bold text-primary">${list.email }&nbsp;${list.content_indate }</h6>
+			                            	<h6 class="m-0 font-weight-bold text-primary">${list.firstName }&nbsp;${list.lastName}&nbsp;${list.content_indate }</h6>
 			                                <div class="dropdown no-arrow">
 			                                	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
 			                                    	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,9 +105,30 @@
 			                          	</div>
 			                            <!-- Card Body -->
 			                            <div class="card-body">
-			                            	${list.content }
-			                            	<br>
-			                            	${list.content_up }&nbsp; ${list.content_down }
+			                            	<div class="row">
+			                            		${list.content }
+			                            	</div>
+			                            	<div class="row">
+			                            		<div>
+			                            			<a>
+			                            				<i class="far fa-comment-dots"></i>
+			                            				<span>reply</span>
+			                            			</a>
+			                            			<a>
+			                            				<span>Replies()</span>
+			                            			</a>
+			                            		</div>
+			                            		<div>
+			                            			<a href="">
+			                            				<i class="far fa-thumbs-up"></i>
+			                            				<span>${list.content_up }</span>
+			                            			</a>
+			                            			<a href="">
+			                            				<i class="far fa-thumbs-down"></i>
+			                            				<span>${list.content_down }</span>
+			                            			</a>
+			                            		</div>
+			                            	</div>
 			                           	</div>
 			                      	</div>
 								</li>

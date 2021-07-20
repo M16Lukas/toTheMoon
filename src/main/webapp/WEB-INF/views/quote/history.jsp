@@ -46,6 +46,9 @@
 		
 	<!-- start container-fluid -->
 	<div class="container-fluid">	
+		<input type="hidden" id="frequency" value="${frequency }">
+		<input type="hidden" id="countPerPage" value="${countPerPage }">
+			           			
 		<!-- DataTales -->
 		<div class="card shadow mb-4">
         	<div class="card-header py-3">
@@ -86,10 +89,12 @@
 	        	<div class="table-responsive">
 	        		<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 	        			<div class="row">
-			           		<div class="col-sm-12 col-md-5">
-			           			<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-			           				Currency in USD
-			           			</div>
+			           		<div class="col-sm-10">Currency in USD</div>
+			           		<div class="col-sm-2">
+			           			<a class="nav-link" href="javascript:historyDownload();">
+			           				<i class="fas fa-file-download"></i>
+			           				<span>Download</span>
+			           			</a>
 			           		</div>
 			           	</div>
 			           	<div class="row">
@@ -129,8 +134,6 @@
 			           			</div>
 			           		</div>
 			           		<div class="col-sm-12 col-md-7">
-			           			<input type="hidden" id="frequency" value="${frequency }">
-			           			<input type="hidden" id="countPerPage" value="${countPerPage }">
 			           			<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
 			           				<ul class="pagination">
 			           					<c:if test="${page.prev }">

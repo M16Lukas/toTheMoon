@@ -27,16 +27,20 @@
 </resultMap>
 <select id="printContent" parameterType="String" resultType="hashmap" resultMap="getContentList">
 select
-	content_nm
-	,symbol
-	,email
-	,content
-	,content_up
-	,content_down
-	,to_char(content_indate, 'YYYY-MM-DD HH24:MI:SS') as content_indate
+	c.content_nm 										as content_nm
+	,c.symbol 											as symbol
+	,c.email 											as email
+	,m.firstName 										as firstName
+	,m.lastName 										as lastName
+	,c.content 											as content
+	,c.content_up 										as content_up
+	,c.content_down 									as content_down
+	,to_char(c.content_indate, 'YYYY-MM-DD HH24:MI:SS') as content_indate
 from
-	community
+	community c, member m
 where
+	c.email = m.email
+and
 	symbol = #{symbol}
 </select>
 </mapper>

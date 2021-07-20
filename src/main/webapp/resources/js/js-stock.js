@@ -23,3 +23,8 @@ function historyPaging(p){
 	location.href = "history?countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
 }
 
+function historyDownload(){
+	var frequency = document.getElementById("frequency").value;
+	
+	location.href = "history/download?freq=" + frequency;
+}
