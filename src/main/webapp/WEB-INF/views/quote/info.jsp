@@ -31,99 +31,102 @@
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-	<!-- bode-header -->
-	<%@ include file="../includes/header.jsp" %>
-	
-	<!-- start main navigation-->
-	<nav class="navbar navbar-light bg-white static-top ">
-    	<div>
-        	<a class="navbar-brand border-bottom-primary" href="">Summary</a>
-	        <a class="navbar-brand" href="/quote/${info.symbol }/community">Conversations</a>
-	        <a class="navbar-brand" href="/quote/${info.symbol }/history">Historical Data</a>
-        </div>
-    </nav>	
-	<!-- end main navigation-->
+	<div class="container">
+		<!-- bode-header -->
+		<%@ include file="../includes/header.jsp" %>
 		
-	<!-- start container-fluid -->
-	<div class="container-fluid">		
-		<div class="row">
-			<!-- summary -->
-			<div class="col-lg-5">
-				<div class="card shadow mb-4">
-                	<div class="card-header py-3">
-                   	</div>
-                    <div class="card-body">
-                    	<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
-                    		<tbody>
-								<tr>
-									<td>Open</td>
-									<td>${info.quote.open}</td>
-									<td>Previous Close</td>
-									<td>${info.quote.previousClose}</td>
-								</tr>
-								<tr>
-									<td>High</td>
-									<td>${info.quote.dayHigh}</td>
-									<td>Low</td>
-									<td>${info.quote.dayLow}</td>
-								</tr>
-								<tr>
-									<td>Ask</td>
-									<td>${info.quote.ask}</td>
-									<td>Bid</td>
-									<td>${info.quote.bid}</td>
-								</tr>
-								<tr>
-									<td>PE Ratio(P/E)</td>
-									<td>${info.stats.pe}</td>
-									<td>EPS</td>
-									<td>${info.stats.eps}</td>
-								</tr>
-								<tr>
-									<td>Market Cap</td>
-									<td>${info.stats.marketCap}</td>
-									<td>dividend</td>
-									<td>${info.dividend.annualYield}</td>
-								</tr>
-								<tr>
-									<td>52 Week High</td>
-									<td>${info.quote.yearHigh}</td>
-									<td>52 Week Low</td>
-									<td>${info.quote.yearLow}</td>
-								</tr>
-								<tr>
-									<td>Volume</td>
-									<td>${info.quote.volume}</td>
-									<td>Avg. Volume</td>
-									<td>${info.quote.avgVolume}</td>
-								</tr>
-							</tbody>
-						</table>
-                   	</div>
-               	</div>
-			</div>
-			<!-- chart -->
-			<div class="col-lg-5">
-				<div class="card shadow mb-4">
-                	<div class="card-header py-3">
-                    	<a>3D</a>
-                    	<a>5D</a>
-                    	<a>1M</a>
-                    	<a>3M</a>
-                    	<a>1Y</a>
-                    	<a>5Y</a>
-                   	</div>
-                    <div class="card-body">
-                    	<div class="chart-area">
-                    		
-                        	<canvas id="myAreaChart"></canvas>
-                        </div>
-                   	</div>
-               	</div>
+			
+		<!-- start container-fluid -->
+		<div class="container-fluid">		
+			<!-- start main navigation-->
+			<nav class="navbar navbar-light bg-white static-top ">
+		    	<div>
+		        	<a class="navbar-brand border-bottom-primary" href="">Summary</a>
+			        <a class="navbar-brand" href="/quote/${info.symbol }/community">Conversations</a>
+			        <a class="navbar-brand" href="/quote/${info.symbol }/history">Historical Data</a>
+		        </div>
+		    </nav>	
+			<!-- end main navigation-->
+			<div class="row">
+				<!-- summary -->
+				<div class="col-lg-6">
+					<div class="card shadow mb-4">
+	                	<div class="card-header py-3">
+	                   	</div>
+	                    <div class="card-body">
+	                    	<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
+	                    		<tbody>
+									<tr>
+										<td>Open</td>
+										<td>${info.quote.open}</td>
+										<td>Previous Close</td>
+										<td>${info.quote.previousClose}</td>
+									</tr>
+									<tr>
+										<td>High</td>
+										<td>${info.quote.dayHigh}</td>
+										<td>Low</td>
+										<td>${info.quote.dayLow}</td>
+									</tr>
+									<tr>
+										<td>Ask</td>
+										<td>${info.quote.ask}</td>
+										<td>Bid</td>
+										<td>${info.quote.bid}</td>
+									</tr>
+									<tr>
+										<td>PE Ratio(P/E)</td>
+										<td>${info.stats.pe}</td>
+										<td>EPS</td>
+										<td>${info.stats.eps}</td>
+									</tr>
+									<tr>
+										<td>Market Cap</td>
+										<td>${info.stats.marketCap}</td>
+										<td>dividend</td>
+										<td>${info.dividend.annualYield}</td>
+									</tr>
+									<tr>
+										<td>52 Week High</td>
+										<td>${info.quote.yearHigh}</td>
+										<td>52 Week Low</td>
+										<td>${info.quote.yearLow}</td>
+									</tr>
+									<tr>
+										<td>Volume</td>
+										<td>${info.quote.volume}</td>
+										<td>Avg. Volume</td>
+										<td>${info.quote.avgVolume}</td>
+									</tr>
+								</tbody>
+							</table>
+	                   	</div>
+	               	</div>
+				</div>
+				<!-- chart -->
+				<div class="col-lg-6">
+					<div class="card shadow mb-4">
+	                	<div class="card-header py-3">
+	                    	<a>3D</a>
+	                    	<a>5D</a>
+	                    	<a>1M</a>
+	                    	<a>3M</a>
+	                    	<a>1Y</a>
+	                    	<a>5Y</a>
+	                   	</div>
+	                    <div class="card-body">
+	                    	<div class="chart-area">
+	                    		
+	                        	<canvas id="myAreaChart"></canvas>
+	                        </div>
+	                   	</div>
+	               	</div>
+				</div>
 			</div>
 		</div>
+		<!-- end container-fluid -->
 	</div>
-	<!-- end container-fluid -->
+	
 
 	<!-- footer -->
 	<%@ include file="../includes/footer.jsp" %>

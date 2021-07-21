@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,13 +65,25 @@ public class StockService {
 		return new StockInfo(symbol, name, exchange, quote, stats, dividend);
 	}
 	
-	public List<HistoricalQuote> historicalList(String symbol, String frequency) throws IOException{
+	public List<HistoricalQuote> historicalList(String symbol, Date period1, Date period2, String frequency) throws IOException{
 		Stock stock = YahooFinance.get(symbol);
 		Interval interval = null;
 		
 		Calendar from = Calendar.getInstance();
 		Calendar to = Calendar.getInstance();
-		from.add(Calendar.YEAR, -1);
+		
+		// 검색 기간을 설정한 경우
+		// startdate
+		if (period1 != null) {
+			from.setTime(period1);
+		} else {
+			from.add(Calendar.YEAR, -1);
+		}
+		
+		// EndDate
+		if (period2 != null) {
+			to.setTime(period2);
+		}
 		
 		switch (frequency) {
 		case "1D":
@@ -94,9 +107,9 @@ public class StockService {
 		return lists;
 	}
 	
-	public Map<String, Object> history(String symbol, String frequency, int countPerPage, int currentPage) throws IOException{
+	public Map<String, Object> history(String symbol, Date period1, Date period2, String frequency, int countPerPage, int currentPage) throws IOException{
 		
-		List<HistoricalQuote> lists = historicalList(symbol, frequency);
+		List<HistoricalQuote> lists = historicalList(symbol, period1, period2, frequency);
 		
 		// paging
 		PageDTO page = new PageDTO(countPerPage, currentPage, lists.size());
@@ -116,11 +129,11 @@ public class StockService {
 	}
 	
 	
-	public void excelDownload(HttpServletResponse response, String symbol, String freq) throws IOException {
+	public void excelDownload(HttpServletResponse response, String symbol, Date period1, Date period2, String freq) throws IOException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		ServletOutputStream fileout = response.getOutputStream();
 		
-		List<HistoricalQuote> lists = historicalList(symbol, freq);
+		List<HistoricalQuote> lists = historicalList(symbol, period1, period2, freq);
 		
 		Workbook wb = new XSSFWorkbook(); // ect : xls
 		

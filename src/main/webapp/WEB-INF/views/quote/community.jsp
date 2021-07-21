@@ -31,115 +31,117 @@
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-	<!-- bode-header -->
-	<%@ include file="../includes/header.jsp" %>
-	
-	<!-- start main navigation-->
-	<nav class="navbar navbar-light bg-white static-top ">
-    	<div>
-        	<a class="navbar-brand" href="/quote/${info.symbol }">Summary</a>
-	        <a class="navbar-brand border-bottom-primary" href="">Conversations</a>
-	        <a class="navbar-brand" href="history">Historical Data</a>
-        </div>
-    </nav>	
-	<!-- end main navigation-->
+	<div class="container">
+		<!-- bode-header -->
+		<%@ include file="../includes/header.jsp" %>
 		
-	<!-- start container-fluid -->
-	<div class="container-fluid">
-		<!-- community -->
-		<div class="community-body">
-			<div class="row">
+		<!-- start main navigation-->
+		<nav class="navbar navbar-light bg-white static-top ">
+	    	<div>
+	        	<a class="navbar-brand" href="/quote/${info.symbol }">Summary</a>
+		        <a class="navbar-brand border-bottom-primary" href="">Conversations</a>
+		        <a class="navbar-brand" href="history">Historical Data</a>
+	        </div>
+	    </nav>	
+		<!-- end main navigation-->
+			
+		<!-- start container-fluid -->
+		<div class="container-fluid">
+			<!-- community -->
+			<div class="community-body">
 				<div class="row">
-					<p class="text-lg"> ${reactions } reactions on ${info.symbol } conversion</p> 
+					<div class="row">
+						<p class="text-lg text-gray-900"> ${reactions } reactions on ${info.symbol } conversion</p> 
+					</div>
+					<div class="row">
+						<c:choose>
+							<c:when test="${empty sessionScope.loginEmail }">
+								<div class="card mb-4 col-lg-9">
+	                                <div class="card-body">
+	                                    <a target="_blank" href="/member/login">Sign in to post a message</a>
+	                                </div>
+	                            </div>	
+							</c:when>
+							<c:otherwise>
+								<div class="row input-wrapper col-lg-9">
+									<form action="community/register" method="post">
+										<div class="input">
+											<textarea class="form-control bg-light border-0 small" name="content" onkeyup="resize(this)" 
+			                                	maxlength="8000" required="required" style="width: 60%; height: 70px;"></textarea>
+										</div>
+										<div class="btn">
+											<button type="submit" class="btn btn-info">Reigster</button>
+										</div>
+									</form>
+	                            </div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+				<div class="row">
 				</div>
 				<div class="row">
 					<c:choose>
-						<c:when test="${empty sessionScope.loginEmail }">
-							<div class="card mb-4">
-                                <div class="card-body">
-                                    <a target="_blank" href="/member/login">Sign in to post a message</a>
-                                </div>
-                            </div>	
+						<c:when test="${empty lists }">
+							<p>Nothing</p>
 						</c:when>
 						<c:otherwise>
-							<div class="input-wrapper">
-								<form action="community/register" method="post">
-									<div class="input">
-										<textarea class="form-control bg-light border-0 small" name="content" onkeyup="resize(this)" 
-		                                	maxlength="8000" required="required" style="width: 60%; height: 70px;"></textarea>
-									</div>
-									<div class="btn">
-										<button type="submit" class="btn btn-info">Reigster</button>
-									</div>
-								</form>
-                            </div>
+							<ul>
+								<c:forEach var="list" items="#{lists }" >
+									<li style="list-style: none;">
+				                        <div class="card col-lg-9 mb-4">
+				                        	<!-- Card Header - Dropdown -->
+				                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				                            	<h6 class="m-0 font-weight-bold text-primary">${list.firstName }&nbsp;${list.lastName}&nbsp;${list.content_indate }</h6>
+				                                <div class="dropdown no-arrow">
+				                                	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+				                                    	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				                                   		<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+				                                  	</a>
+				                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+				                                        <a class="dropdown-item" href="#">modify</a>
+				                                        <a class="dropdown-item" href="#">remove</a>
+				                                    </div>
+				                               	</div>
+				                          	</div>
+				                            <!-- Card Body -->
+				                            <div class="card-body">
+				                            	<div class="row">
+				                            		${list.content }
+				                            	</div>
+				                            	<div class="row">
+				                            		<div class="col">
+				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            				<i class="far fa-comment-dots"></i>
+				                            				<span>reply</span>
+				                            			</a>
+				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            				<span>Replies()</span>
+				                            			</a>
+				                            		</div>
+				                            		<div class="col">
+				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            				<i class="far fa-thumbs-up"></i>
+				                            				<span>${list.content_up }</span>
+				                            			</a>
+				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            				<i class="far fa-thumbs-down"></i>
+				                            				<span>${list.content_down }</span>
+				                            			</a>
+				                            		</div>
+				                            	</div>
+				                           	</div>
+				                      	</div>
+									</li>
+								</c:forEach>				
+							</ul>
 						</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
-			<div class="row">
-			</div>
-			<div class="row">
-				<c:choose>
-					<c:when test="${empty lists }">
-						<p>Nothing</p>
-					</c:when>
-					<c:otherwise>
-						<ul>
-							<c:forEach var="list" items="#{lists }" >
-								<li>
-			                        <div class="card shadow mb-4">
-			                        	<!-- Card Header - Dropdown -->
-			                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-			                            	<h6 class="m-0 font-weight-bold text-primary">${list.firstName }&nbsp;${list.lastName}&nbsp;${list.content_indate }</h6>
-			                                <div class="dropdown no-arrow">
-			                                	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-			                                    	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			                                   		<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-			                                  	</a>
-			                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-			                                        <a class="dropdown-item" href="#">Action</a>
-			                                        <a class="dropdown-item" href="#">Another action</a>
-			                                    </div>
-			                               	</div>
-			                          	</div>
-			                            <!-- Card Body -->
-			                            <div class="card-body">
-			                            	<div class="row">
-			                            		${list.content }
-			                            	</div>
-			                            	<div class="row">
-			                            		<div>
-			                            			<a>
-			                            				<i class="far fa-comment-dots"></i>
-			                            				<span>reply</span>
-			                            			</a>
-			                            			<a>
-			                            				<span>Replies()</span>
-			                            			</a>
-			                            		</div>
-			                            		<div>
-			                            			<a href="">
-			                            				<i class="far fa-thumbs-up"></i>
-			                            				<span>${list.content_up }</span>
-			                            			</a>
-			                            			<a href="">
-			                            				<i class="far fa-thumbs-down"></i>
-			                            				<span>${list.content_down }</span>
-			                            			</a>
-			                            		</div>
-			                            	</div>
-			                           	</div>
-			                      	</div>
-								</li>
-							</c:forEach>				
-						</ul>
-					</c:otherwise>
-				</c:choose>
-			</div>
 		</div>
+		<!-- end container-fluid -->
 	</div>
-	<!-- end container-fluid -->
 
 
 	<!-- footer -->

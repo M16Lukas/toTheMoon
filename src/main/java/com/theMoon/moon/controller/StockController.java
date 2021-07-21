@@ -2,11 +2,13 @@ package com.theMoon.moon.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -98,16 +100,18 @@ public class StockController {
 	@GetMapping(value = "/{symbol}/history")
 	private String historySymbol(Model model
 								,@PathVariable String symbol
+								,@DateTimeFormat(pattern = "yyyy-MM-dd") Date period1
+								,@DateTimeFormat(pattern = "yyyy-MM-dd") Date period2
 								,@RequestParam(name="countPerPage", defaultValue = "10") int countPerPage
 								,@RequestParam(name="frequency", defaultValue = "1D") String frequency
 								,@RequestParam(name="p", defaultValue = "1") int p){
 		
 		StockInfo info = null;
 		Map<String, Object> map = null;
-		
+				
 		try {
 			info = stockService.searchSymbol(symbol);
-			map = stockService.history(symbol, frequency, countPerPage, p);
+			map = stockService.history(symbol, period1, period2, frequency, countPerPage, p);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
@@ -121,6 +125,8 @@ public class StockController {
 			model.addAttribute("page", map.get("page"));
 			model.addAttribute("countPerPage", countPerPage);
 			model.addAttribute("frequency", frequency);
+			model.addAttribute("period1", period1);
+			model.addAttribute("period2", period2);
 			return "/quote/history";
 		}
 	}
@@ -128,9 +134,11 @@ public class StockController {
 	@GetMapping(value = "/{symbol}/history/download")
 	private String excelDownload(HttpServletResponse response
 								,@PathVariable String symbol
+								,@DateTimeFormat(pattern = "yyyy-MM-dd") Date period1
+								,@DateTimeFormat(pattern = "yyyy-MM-dd") Date period2
 								,@RequestParam(name="freq", defaultValue = "1D") String freq) throws IOException {
 		
-		stockService.excelDownload(response, symbol, freq);
+		stockService.excelDownload(response, symbol, period1, period2, freq);
 		
 		return "/quote/history";
 	}

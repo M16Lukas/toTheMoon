@@ -19,12 +19,17 @@ function sendSymbol(){
 function historyPaging(p){
 	var countPerPage = document.getElementById("countPerPage").value;
 	var frequency = document.getElementById("frequency").value;
+	var period1 = document.getElementById("period1").value;
+	var period2 = document.getElementById("period2").value;
+
 	
-	location.href = "history?countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
+	location.href = "history?period1=" + period1 + "&period2=" + period2 + "&countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
 }
 
 function historyDownload(){
 	var frequency = document.getElementById("frequency").value;
+	var period1 = document.getElementById("period1").value;
+	var period2 = document.getElementById("period2").value;
 	
-	location.href = "history/download?freq=" + frequency;
+	location.href = "history/download?period1=" + period1 + "&period2=" + period2 + "&freq=" + frequency;
 }

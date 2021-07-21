@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,55 +30,57 @@
 
 </head>
 <body>
-	<!-- bode-header -->
-	<%@ include file="../includes/header.jsp" %>
-    
-	
-	<!-- Begin Page Content -->
-    <div class="container-fluid">
-    	<div class="row">
-			<c:forEach var="stock" items="${stocks }">
-				<div class="col-xl-3 col-md-6 mb-4">
-	            	<div class="card border-left-primary shadow h-100 py-2">
-	                	<div class="card-body">
-	                    	<div class="row no-gutters align-items-center">
-	                        	<div class="col mr-2">
-	                            	<div class="font-weight-bold text-primary text-uppercase mb-1">
-	                                	${stock.value.name}
-	                                </div>
-	                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-	                                	${stock.value.quote.price }
-	                                </div>
-	                                <div>
-	                                	<c:set var="upDown" value="${stock.value.quote.price - stock.value.quote.previousClose}" />
-		                                <c:choose>
-		                                	<c:when test="${upDown gt 0}">
-		                                		+<c:out value="${upDown }" />
-		                                	</c:when>
-		                                	<c:otherwise>
-		                                		<c:out value="${upDown }" />
-		                                	</c:otherwise>
-		                                </c:choose>
-	                                </div>
-	                           	</div>
-	                            <div class="col-auto">
-	                            	 <c:choose>
-		                                <c:when test="${upDown gt 0}">
-		                               		<i class="fas fa-arrow-up fa-2x" style="color: #1cc88a;"></i>
-		                               	</c:when>
-		                               	<c:otherwise>
-		                               		<i class="fas fa-arrow-down fa-2x" style="color: #e74a3b;"></i>
-		                            	</c:otherwise>
-		                        	</c:choose>
-	                        	</div>
-	                    	</div>
-	                	</div>
-	            	</div>
-              	</div>
-			</c:forEach>
-     	</div>
-     </div>
-     <!-- /.container-fluid -->
+	<div class="container">
+		<!-- bode-header -->
+		<%@ include file="../includes/header.jsp" %>
+	    
+		
+		<!-- Begin Page Content -->
+	    <div class="container-fluid">
+	    	<div class="row">
+				<c:forEach var="stock" items="${stocks }">
+					<div class="col-xl-3 col-md-6 mb-4">
+		            	<div class="card border-left-primary shadow h-100 py-2">
+		                	<div class="card-body">
+		                    	<div class="row no-gutters align-items-center">
+		                        	<div class="col mr-2">
+		                            	<div class="font-weight-bold text-primary text-uppercase mb-1">
+		                                	${stock.value.name}
+		                                </div>
+		                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+		                                	${stock.value.quote.price }
+		                                </div>
+		                                <div>
+		                                	<c:set var="upDown" value="${stock.value.quote.price - stock.value.quote.previousClose}" />
+			                                <c:choose>
+			                                	<c:when test="${upDown gt 0}">
+			                                		+<c:out value="${upDown }" />
+			                                	</c:when>
+			                                	<c:otherwise>
+			                                		<c:out value="${upDown }" />
+			                                	</c:otherwise>
+			                                </c:choose>
+		                                </div>
+		                           	</div>
+		                            <div class="col-auto">
+		                            	 <c:choose>
+			                                <c:when test="${upDown gt 0}">
+			                               		<i class="fas fa-arrow-up fa-2x" style="color: #1cc88a;"></i>
+			                               	</c:when>
+			                               	<c:otherwise>
+			                               		<i class="fas fa-arrow-down fa-2x" style="color: #e74a3b;"></i>
+			                            	</c:otherwise>
+			                        	</c:choose>
+		                        	</div>
+		                    	</div>
+		                	</div>
+		            	</div>
+	              	</div>
+				</c:forEach>
+	     	</div>
+	     </div>
+	     <!-- /.container-fluid -->
+	</div>
 	
 	<!-- footer -->
 	<%@ include file="../includes/footer.jsp" %>

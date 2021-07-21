@@ -10,22 +10,23 @@
 </head>
 <body>
 	<!-- Topbar -->
-	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
-		<div>
+	<nav class="row navbar navbar-expand navbar-light bg-white topbar static-top">
+		<div class="nav-item col-lg-2">
 			<a class="navbar-brand" href="/">TTM</a>
 	   	</div>
-	    <div>
+	    <div class="nav-item col-lg-3">
 	    	<a class="navbar-brand" href="/">HOME</a>
 		    <a class="navbar-brand" href="/quote">MARKET</a>
 		    <a class="navbar-brand" href="/help">HELP</a>
 	   	</div>
 	   	<!-- Topbar Search -->
-        <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="nav-item d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         	<div class="input-group">
                 <input class="form-control bg-light border-0 small" id="symbol" type="text" placeholder="Symbol" aria-label="Search" aria-describedby="basic-addon2" onkeyup="sendSymbol();"/>
          	</div>
     	</div>
-		<div>
+    	
+		<div class="nav-item">
 			<c:choose>
 				<c:when test="${empty sessionScope.loginEmail }">
 					<div>
