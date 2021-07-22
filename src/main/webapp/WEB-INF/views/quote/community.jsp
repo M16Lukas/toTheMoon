@@ -63,22 +63,38 @@
 	                            </div>	
 							</c:when>
 							<c:otherwise>
-								<div class="row input-wrapper col-lg-9">
-									<form action="community/register" method="post">
-										<div class="input">
+									<form class="form-inline" action="community/register" method="post">
+										<div class="input-group col-lg-9">
 											<textarea class="form-control bg-light border-0 small" name="content" onkeyup="resize(this)" 
-			                                	maxlength="8000" required="required" style="width: 60%; height: 70px;"></textarea>
-										</div>
-										<div class="btn">
-											<button type="submit" class="btn btn-info">Reigster</button>
+				                                maxlength="8000" required="required" style="height: 70px;"></textarea>
+											<div class="input-group-append">
+												<button class="btn btn-info" type="submit">Register</button>
+											</div>
 										</div>
 									</form>
-	                            </div>
 							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
 				<div class="row">
+					<div class="dropdown" style="display: inline-block;">
+	                	<button class="btn btn-light dropdown-toggle" type="button"
+	                    	id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+	                        aria-expanded="false">
+	                      sort
+	                  	</button>
+	                   	<div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+	                 		Top Reactions
+	                 		<br>
+	                 		Newest Reactions
+	                 		<br>
+	                 		Recently Discussed
+	                 		<br>
+	                 		Most Discussed
+	                 		<br>
+	                 		Oldest Reactions       		           
+	                    </div>
+	             	</div>
 				</div>
 				<div class="row">
 					<c:choose>
@@ -93,16 +109,18 @@
 				                        	<!-- Card Header - Dropdown -->
 				                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 				                            	<h6 class="m-0 font-weight-bold text-primary">${list.firstName }&nbsp;${list.lastName}&nbsp;${list.content_indate }</h6>
-				                                <div class="dropdown no-arrow">
-				                                	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-				                                    	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				                                   		<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-				                                  	</a>
-				                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-				                                        <a class="dropdown-item" href="#">modify</a>
-				                                        <a class="dropdown-item" href="#">remove</a>
-				                                    </div>
-				                               	</div>
+				                                <c:if test="${sessionScope.loginEmail eq list.email }">
+				                                	<div class="dropdown no-arrow">
+					                                	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					                                    	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					                                   		<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+					                                  	</a>
+					                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+					                                        <a class="dropdown-item" href="#">modify</a>
+					                                        <a class="dropdown-item" href="community/remove?nm=${list.content_nm }">remove</a>
+					                                    </div>
+					                               	</div>
+				                                </c:if>
 				                          	</div>
 				                            <!-- Card Body -->
 				                            <div class="card-body">

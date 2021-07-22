@@ -9,4 +9,6 @@ public interface CommunityMapper {
 	public ArrayList<HashMap<String, Object>> printContent(String symbol);
 	
 	public int insertContent(Community community);
+	
+	public int removeContent(Community community);
 }

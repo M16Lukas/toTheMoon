@@ -72,8 +72,8 @@ public class StockService {
 		Calendar from = Calendar.getInstance();
 		Calendar to = Calendar.getInstance();
 		
-		// 검색 기간을 설정한 경우
 		// startdate
+		// 검색 기간을 설정한 경우
 		if (period1 != null) {
 			from.setTime(period1);
 		} else {
@@ -81,6 +81,7 @@ public class StockService {
 		}
 		
 		// EndDate
+		// 검색 기간을 설정한 경우
 		if (period2 != null) {
 			to.setTime(period2);
 		}

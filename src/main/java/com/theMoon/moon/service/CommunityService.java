@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.theMoon.moon.dao.CommunityDAO;
 import com.theMoon.moon.vo.Community;
@@ -27,6 +28,7 @@ public class CommunityService {
 		for(HashMap<String, Object> map : maps) {
 			lists.add(new Community(Integer.parseInt(String.valueOf(map.get("CONTENT_NM")))
 									,(String) map.get("SYMBOL")
+									,(String) map.get("EMAIL")
 									,(String) map.get("FIRSTNAME")
 									,(String) map.get("LASTNAME")
 									,(String) map.get("CONTENT")
@@ -54,5 +56,16 @@ public class CommunityService {
 		}
 		
 		return path;
+	}
+	
+	public String removeContent(String symbol, int nm){		
+		Community content = new Community();
+		content.setSymbol(symbol);
+		content.setContent_nm(nm);
+		content.setEmail((String) session.getAttribute("loginEmail"));
+		
+		dao.removeContent(content);
+		
+		return "redirect:/quote/" + symbol + "/community";
 	}
 }

@@ -43,4 +43,16 @@ where
 and
 	symbol = #{symbol}
 </select>
+
+<!-- 댓글 삭제 -->
+<delete id="removeContent" parameterType="community">
+delete from
+	community
+where
+	content_nm = #{content_nm}
+and
+	symbol = #{symbol}
+and
+	email = #{email}
+</delete>
 </mapper>

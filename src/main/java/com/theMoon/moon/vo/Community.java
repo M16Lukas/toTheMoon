@@ -26,10 +26,11 @@ public class Community {
 
 	
 	// select
-	public Community(int content_nm, String symbol, String firstName, String lastName, String content, int content_up, int content_down,
+	public Community(int content_nm, String symbol, String email, String firstName, String lastName, String content, int content_up, int content_down,
 			String content_indate) {
 		this.content_nm = content_nm;
 		this.symbol = symbol;
+		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.content = content;

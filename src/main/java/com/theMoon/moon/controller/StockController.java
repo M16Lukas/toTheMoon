@@ -2,6 +2,7 @@ package com.theMoon.moon.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -97,6 +98,13 @@ public class StockController {
 		return commuService.insertContent(symbol, content);
 	}
 	
+	@GetMapping(value = "/{symbol}/community/remove")
+	private String removeContent(@PathVariable String symbol, int nm){
+		return commuService.removeContent(symbol, nm);
+	}
+	
+	
+	
 	@GetMapping(value = "/{symbol}/history")
 	private String historySymbol(Model model
 								,@PathVariable String symbol
@@ -108,6 +116,15 @@ public class StockController {
 		
 		StockInfo info = null;
 		Map<String, Object> map = null;
+		
+		Calendar cal = Calendar.getInstance();
+		
+		// 기간 초기 설정
+		if (period1 == null && period2 == null) {
+			period2 = cal.getTime();
+			cal.add(Calendar.YEAR, -1);
+			period1 = cal.getTime();
+		}
 				
 		try {
 			info = stockService.searchSymbol(symbol);
@@ -120,6 +137,7 @@ public class StockController {
 		if (info == null) {
 			return "redirect:/";
 		} else {
+			
 			model.addAttribute("info", info);
 			model.addAttribute("lists", map.get("history"));
 			model.addAttribute("page", map.get("page"));

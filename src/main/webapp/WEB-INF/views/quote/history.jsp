@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -35,27 +36,16 @@
 	<div class="container">
 		<input type="hidden" id="frequency" value="${frequency }">
 		<input type="hidden" id="countPerPage" value="${countPerPage }">
-				           			
-		<c:set var="today" value="<%=new java.util.Date()%>" />
-		<!-- 현재날짜 -->
-		<c:set var="from">
-			<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" />
-		</c:set>
-		<c:set var="to">
-			<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" />
-		</c:set>
 			
 		<!-- 검색 기간 설정 -->
-		<c:if test="${not empty period1 }">
-			<c:set var="from">
-				<fmt:formatDate value="${period1}" pattern="yyyy-MM-dd" />
-			</c:set>
-		</c:if>
-		<c:if test="${not empty period2 }">
-			<c:set var="to">
-				<fmt:formatDate value="${period2}" pattern="yyyy-MM-dd" />
-			</c:set>
-		</c:if>
+		<c:set var="from">
+			<fmt:formatDate value="${period1}" pattern="yyyy-MM-dd" />
+		</c:set>
+
+		<c:set var="to">
+			<fmt:formatDate value="${period2}" pattern="yyyy-MM-dd" />
+		</c:set>
+
 		
 		<!-- bode-header -->
 		<%@ include file="../includes/header.jsp" %>
@@ -89,7 +79,7 @@
 	                                <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
 	                             		<span>Start Date</span>
 	                             		<br>
-	                             		<input type="date" id="period1" name="period1" value="<c:out value="${from }" />">            
+	                             		<input type="date" id="period1" name="period1" value="<c:out value="${from }" />" max="<c:out value="${to }" />">            
 	                             		<div class="dropdown-divider"></div>
 	                             		<span>End Date</span>
 	                             		<br>

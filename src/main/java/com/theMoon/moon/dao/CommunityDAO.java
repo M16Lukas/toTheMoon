@@ -40,4 +40,17 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	public int removeContent(Community community) {
+		int cnt = -1;
+		
+		try {
+			CommunityMapper mapper = session.getMapper(CommunityMapper.class);
+			cnt = mapper.removeContent(community);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
 }
