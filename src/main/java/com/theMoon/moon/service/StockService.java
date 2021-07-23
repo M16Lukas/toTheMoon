@@ -28,6 +28,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
+import com.theMoon.moon.util.RSSFeedParser;
+import com.theMoon.moon.vo.Feed;
+import com.theMoon.moon.vo.FeedMessage;
 import com.theMoon.moon.vo.PageDTO;
 import com.theMoon.moon.vo.StockHistory;
 import com.theMoon.moon.vo.StockInfo;
@@ -189,4 +192,12 @@ public class StockService {
 		fileout.close();
 		wb.close();
 	}
+	
+	public List<FeedMessage> googleNewsRSSParser(String symbol) {
+		RSSFeedParser parser = new RSSFeedParser("https://news.google.com/rss/search?q=" + symbol +"&hl=en-US&gl=US&ceid=US%3Aen");
+		Feed feed = parser.readFeed();
+
+		return feed.getMessages();
+	}
+	
 }

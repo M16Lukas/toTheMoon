@@ -49,7 +49,7 @@
 			<!-- end main navigation-->
 			<div class="row">
 				<!-- summary -->
-				<div class="col-lg-6">
+				<div class="col-lg-7">
 					<div class="card shadow mb-4">
 	                	<div class="card-header py-3">
 	                   	</div>
@@ -103,16 +103,13 @@
 	                   	</div>
 	               	</div>
 				</div>
+				<!-- end summary -->
+				
 				<!-- chart -->
-				<div class="col-lg-6">
+				<div class="col-lg-5">
 					<div class="card shadow mb-4">
 	                	<div class="card-header py-3">
-	                    	<a>3D</a>
-	                    	<a>5D</a>
-	                    	<a>1M</a>
-	                    	<a>3M</a>
-	                    	<a>1Y</a>
-	                    	<a>5Y</a>
+	                    	Chart
 	                   	</div>
 	                    <div class="card-body">
 	                    	<div class="chart-area">
@@ -122,10 +119,43 @@
 	                   	</div>
 	               	</div>
 				</div>
+				<!-- end chart -->
 			</div>
+			
+			<!-- news -->
+			<div class="row">
+				<div class="card shadow mb-4">
+	                <div class="card-header py-3">
+	                	News (Copyright © Goole News 2021)
+	               	</div>
+	                <div class="card-body">
+	                	<ul>
+	                		<c:forEach var="list" items="${lists}">
+	                			<div class="mb-2">
+					            	<div class="card h-100 py-2">
+					                	<div class="card-body">
+					                    	<div class="row no-gutters align-items-center">
+					                        	<div class="col mr-2">
+					                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+					                                	<a href="${list.link }" target="_blank">${list.title }</a>
+					                                </div>
+					                                ${list.pubDate }
+					                           	</div>
+					                    	</div>
+					                	</div>
+					            	</div>
+				              	</div>
+	                		</c:forEach>
+	                	</ul>
+	                </div>
+	        	</div>
+			</div>
+			<!-- end news -->
+			
 		</div>
 		<!-- end container-fluid -->
 	</div>
+	<!-- end container -->
 	
 
 	<!-- footer -->

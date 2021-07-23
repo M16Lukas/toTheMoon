@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.theMoon.moon.service.CommunityService;
 import com.theMoon.moon.service.StockService;
 import com.theMoon.moon.vo.Community;
+import com.theMoon.moon.vo.FeedMessage;
 import com.theMoon.moon.vo.StockInfo;
 
 
@@ -52,6 +54,7 @@ public class StockController {
 	@GetMapping(value = "/{symbol}")
 	private String searchSymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;
+		List<FeedMessage> lists = null;
 		
 		try {
 			info = stockService.searchSymbol(symbol);
@@ -63,7 +66,9 @@ public class StockController {
 		if (info == null) {
 			return "redirect:/";
 		} else {
+			lists = stockService.googleNewsRSSParser(symbol);
 			model.addAttribute("info", info);
+			model.addAttribute("lists", lists);
 			return "/quote/info";
 		}
 	}	
