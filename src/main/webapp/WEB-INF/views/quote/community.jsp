@@ -34,8 +34,9 @@
 </head>
 <body>
 	<div class="container">
-		<!-- bode-header -->
-		<%@ include file="../includes/header.jsp" %>
+		<!-- body-header -->
+		<%@ include file="../includes/header-topbar.jsp" %>
+		<%@ include file="../includes/header-qoute.jsp" %>
 		
 		<!-- start main navigation-->
 		<nav class="navbar navbar-light bg-white static-top ">

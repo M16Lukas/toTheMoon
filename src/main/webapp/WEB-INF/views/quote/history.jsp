@@ -36,6 +36,12 @@
 </head>
 <body>
 	<div class="container">
+		
+		<!-- body-header -->
+		<%@ include file="../includes/header-topbar.jsp" %>
+		<%@ include file="../includes/header-qoute.jsp" %>
+	
+		<!-- hidden type -->
 		<input type="hidden" id="frequency" value="${frequency }">
 		<input type="hidden" id="countPerPage" value="${countPerPage }">
 			
@@ -47,10 +53,6 @@
 		<c:set var="to">
 			<fmt:formatDate value="${period2}" pattern="yyyy-MM-dd" />
 		</c:set>
-
-		
-		<!-- bode-header -->
-		<%@ include file="../includes/header.jsp" %>
 		
 		<!-- start main navigation-->
 		<nav class="navbar navbar-light bg-white static-top ">

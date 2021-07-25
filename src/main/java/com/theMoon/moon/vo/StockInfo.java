@@ -20,7 +20,6 @@ public class StockInfo {
 	private StockStats stats = null;
 	private StockDividend dividend = null;
 	
-	
 	public StockInfo() {}
 	
 	public StockInfo(String symbol, String name, String exchange, StockQuote quote, StockStats stats,

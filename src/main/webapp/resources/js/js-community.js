@@ -6,6 +6,7 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
+// textarea size control
 function resize(obj) {
   obj.style.height = "1px";
   obj.style.height = (12+obj.scrollHeight)+"px";

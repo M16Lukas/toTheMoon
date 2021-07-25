@@ -5,13 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+ 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TTM - To the Moon</title>
-    
+    <title>${info.symbol } - ${info.name}</title>
+
+	<!-- Navigation -->
+
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <!-- Google fonts-->
@@ -27,63 +29,139 @@
 
     <!-- Custom styles for this template-->
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/resources/css/function-style.css" rel="stylesheet">
 
 </head>
 <body>
 	<div class="container">
-		<!-- bode-header -->
-		<%@ include file="../includes/header.jsp" %>
-	    
+		<!-- body-header -->
+		<%@ include file="../includes/header-topbar.jsp" %>
+		<%@ include file="../includes/header-qoute.jsp" %>
 		
-		<!-- Begin Page Content -->
-	    <div class="container-fluid">
-	    	<div class="row">
-				<c:forEach var="stock" items="${stocks }">
-					<div class="col-xl-3 col-md-6 mb-4">
-		            	<div class="card border-left-primary shadow h-100 py-2">
-		                	<div class="card-body">
-		                    	<div class="row no-gutters align-items-center">
-		                        	<div class="col mr-2">
-		                            	<div class="font-weight-bold text-primary text-uppercase mb-1">
-		                                	${stock.value.name}
-		                                </div>
-		                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-		                                	${stock.value.quote.price }
-		                                </div>
-		                                <div>
-		                                	<c:set var="upDown" value="${stock.value.quote.price - stock.value.quote.previousClose}" />
-			                                <c:choose>
-			                                	<c:when test="${upDown gt 0}">
-			                                		+<c:out value="${upDown }" />
-			                                	</c:when>
-			                                	<c:otherwise>
-			                                		<c:out value="${upDown }" />
-			                                	</c:otherwise>
-			                                </c:choose>
-		                                </div>
-		                           	</div>
-		                            <div class="col-auto">
-		                            	 <c:choose>
-			                                <c:when test="${upDown gt 0}">
-			                               		<i class="fas fa-arrow-up fa-2x" style="color: #1cc88a;"></i>
-			                               	</c:when>
-			                               	<c:otherwise>
-			                               		<i class="fas fa-arrow-down fa-2x" style="color: #e74a3b;"></i>
-			                            	</c:otherwise>
-			                        	</c:choose>
-		                        	</div>
-		                    	</div>
-		                	</div>
-		            	</div>
-	              	</div>
-				</c:forEach>
-	     	</div>
-	     </div>
-	     <!-- /.container-fluid -->
+			
+		<!-- start container-fluid -->
+		<div class="container-fluid">		
+			<!-- start main navigation-->
+			<nav class="navbar navbar-light bg-white static-top ">
+		    	<div>
+		        	<a class="navbar-brand border-bottom-primary" href="">Summary</a>
+			        <a class="navbar-brand" href="/quote/${info.symbol }/community">Conversations</a>
+			        <a class="navbar-brand" href="/quote/${info.symbol }/history">Historical Data</a>
+		        </div>
+		    </nav>	
+			<!-- end main navigation-->
+			<div class="row">
+				<!-- summary -->
+				<div class="col-lg-7">
+					<div class="card shadow mb-4">
+	                	<div class="card-header py-3">
+	                   	</div>
+	                    <div class="card-body">
+	                    	<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
+	                    		<tbody>
+									<tr>
+										<td>Open</td>
+										<td>${info.quote.open}</td>
+										<td>Previous Close</td>
+										<td>${info.quote.previousClose}</td>
+									</tr>
+									<tr>
+										<td>High</td>
+										<td>${info.quote.dayHigh}</td>
+										<td>Low</td>
+										<td>${info.quote.dayLow}</td>
+									</tr>
+									<tr>
+										<td>Ask</td>
+										<td>${info.quote.ask}</td>
+										<td>Bid</td>
+										<td>${info.quote.bid}</td>
+									</tr>
+									<tr>
+										<td>PE Ratio(P/E)</td>
+										<td>${info.stats.pe}</td>
+										<td>EPS</td>
+										<td>${info.stats.eps}</td>
+									</tr>
+									<tr>
+										<td>Market Cap</td>
+										<td>${info.stats.marketCap}</td>
+										<td>dividend</td>
+										<td>${info.dividend.annualYield}</td>
+									</tr>
+									<tr>
+										<td>52 Week High</td>
+										<td>${info.quote.yearHigh}</td>
+										<td>52 Week Low</td>
+										<td>${info.quote.yearLow}</td>
+									</tr>
+									<tr>
+										<td>Volume</td>
+										<td>${info.quote.volume}</td>
+										<td>Avg. Volume</td>
+										<td>${info.quote.avgVolume}</td>
+									</tr>
+								</tbody>
+							</table>
+	                   	</div>
+	               	</div>
+				</div>
+				<!-- end summary -->
+				
+				<!-- chart -->
+				<div class="col-lg-5">
+					<div class="card shadow mb-4">
+	                	<div class="card-header py-3">
+	                    	Chart
+	                   	</div>
+	                    <div class="card-body">
+	                    	<div class="chart-area">
+	                    		
+	                        	<canvas id="myAreaChart"></canvas>
+	                        </div>
+	                   	</div>
+	               	</div>
+				</div>
+				<!-- end chart -->
+			</div>
+			
+			<!-- news -->
+			<div class="row">
+				<div class="card shadow mb-4">
+	                <div class="card-header py-3">
+	                	News (Copyright © Goole News 2021)
+	               	</div>
+	                <div class="card-body">
+	                	<ul>
+	                		<c:forEach var="list" items="${lists}">
+	                			<div class="mb-2">
+					            	<div class="card h-100 py-2">
+					                	<div class="card-body">
+					                    	<div class="row no-gutters align-items-center">
+					                        	<div class="col mr-2">
+					                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+					                                	<a href="${list.link }" target="_blank">${list.title }</a>
+					                                </div>
+					                                ${list.pubDate }
+					                           	</div>
+					                    	</div>
+					                	</div>
+					            	</div>
+				              	</div>
+	                		</c:forEach>
+	                	</ul>
+	                </div>
+	        	</div>
+			</div>
+			<!-- end news -->
+			
+		</div>
+		<!-- end container-fluid -->
 	</div>
+	<!-- end container -->
 	
+
 	<!-- footer -->
 	<%@ include file="../includes/footer.jsp" %>
-
 </body>
 </html>

@@ -16,7 +16,7 @@
 	   	</div>
 	    <div class="nav-item col-lg-3">
 	    	<a class="navbar-brand" href="/">HOME</a>
-		    <a class="navbar-brand" href="/quote">MARKET</a>
+		    <a class="navbar-brand" href="/quote/market">MARKET</a>
 		    <a class="navbar-brand" href="/help">HELP</a>
 	   	</div>
 	   	<!-- Topbar Search -->
@@ -71,31 +71,6 @@
 		</div>
 	</nav>
 	<!-- End of Topbar -->
-	
-	<!-- start quote-header-info -->
-	<div class="row font-weight-bold text-gray-100 bg-gradient-primary" id="quote-header-info">
-		<div class="col">
-			${info.symbol }
-			<br>
-			${info.name}
-			<br>
-			${info.exchange}
-			<br>
-			<div>
-				<h2>${info.quote.price} </h2> 
-				<c:set var="upDown" value="${info.quote.price - info.quote.previousClose}" />
-			    <c:choose>
-			    	<c:when test="${upDown gt 0}">
-			        	+<c:out value="${upDown }"/>
-			      	</c:when>
-			        <c:otherwise>
-			        	<c:out value="${upDown }" />
-			       	</c:otherwise>
-			 	</c:choose>
-			</div>	
-		</div>
-	</div>
-	<!-- end quote-header-info -->
 	
 	<!-- start scroll to page top -->
 	<button id="go-top" class="btn-circle">

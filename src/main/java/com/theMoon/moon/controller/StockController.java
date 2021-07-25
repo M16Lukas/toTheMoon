@@ -27,7 +27,7 @@ import com.theMoon.moon.vo.StockInfo;
 
 
 @Controller
-@RequestMapping(value = "/quote/*")
+@RequestMapping(value = "/quote")
 public class StockController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class StockController {
 	@Autowired
 	private CommunityService commuService;
 	
-	@RequestMapping(value = "")
+	@RequestMapping(value = "/market")
 	private String index(Model model) {
 		Map<String, StockInfo> stocks = null;
 		
@@ -48,7 +48,7 @@ public class StockController {
 		}
 		
 		model.addAttribute("stocks", stocks);
-		return "/quote/index";
+		return "/quote/market";
 	}
 	
 	@GetMapping(value = "/{symbol}")
@@ -69,7 +69,7 @@ public class StockController {
 			lists = stockService.googleNewsRSSParser(symbol);
 			model.addAttribute("info", info);
 			model.addAttribute("lists", lists);
-			return "/quote/info";
+			return "/quote/index";
 		}
 	}	
 	

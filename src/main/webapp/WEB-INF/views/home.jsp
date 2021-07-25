@@ -36,7 +36,7 @@
 	        </div>
 	       	<div class="nav-item col-lg-8">
 	        	<a class="navbar-brand" href="/">HOME</a>
-		        <a class="navbar-brand" href="/quote">MARKET</a>
+		        <a class="navbar-brand" href="/quote/market">MARKET</a>
 		        <a class="navbar-brand" href="/help">HELP</a>
 	      	</div>
 			<div class="nav-item">
