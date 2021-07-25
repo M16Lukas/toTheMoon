@@ -29,6 +29,8 @@
 
     <!-- Custom styles for this template-->
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/resources/css/function-style.css" rel="stylesheet">
+
 </head>
 <body>
 	<div class="container">

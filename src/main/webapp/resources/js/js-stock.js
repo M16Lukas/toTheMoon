@@ -17,7 +17,6 @@ function sendSymbol(){
 }
 
 
-
 function historyPaging(p){
 	var countPerPage = document.getElementById("countPerPage").value;
 	var frequency = document.getElementById("frequency").value;
@@ -28,6 +27,7 @@ function historyPaging(p){
 	location.href = "history?period1=" + period1 + "&period2=" + period2 + "&countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
 }
 
+// historical Quote download (format : Excel)
 function historyDownload(){
 	var frequency = document.getElementById("frequency").value;
 	var period1 = document.getElementById("period1").value;

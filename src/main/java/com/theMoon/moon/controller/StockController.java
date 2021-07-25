@@ -27,7 +27,7 @@ import com.theMoon.moon.vo.StockInfo;
 
 
 @Controller
-@RequestMapping(value = "/quote")
+@RequestMapping(value = "/quote/*")
 public class StockController {
 
 	@Autowired

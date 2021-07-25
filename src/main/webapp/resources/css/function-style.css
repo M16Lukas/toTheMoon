@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+<!-- -->
+#go-top{
+	display: none;
+	position: fixed;
+	right: 30px;
+	bottom: 30px;
+	outline: 0;
+	background: transparent;
+	cursor: pointer;
+	z-index: 9999;
+}

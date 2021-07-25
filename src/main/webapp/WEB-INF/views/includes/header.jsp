@@ -96,6 +96,12 @@
 		</div>
 	</div>
 	<!-- end quote-header-info -->
+	
+	<!-- start scroll to page top -->
+	<button id="go-top" class="btn-circle">
+		<i class="fas fa-chevron-up"></i>
+	</button>
+	<!-- end scroll to page top -->
 		
 </body>
 </html>
