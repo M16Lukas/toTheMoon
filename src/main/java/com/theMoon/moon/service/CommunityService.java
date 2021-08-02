@@ -67,4 +67,43 @@ public class CommunityService {
 		
 		return "redirect:/quote/" + symbol + "/community";
 	}
+	
+	
+	public int contentUp(String symbol, int content_nm, int upCnt) {
+		String loginEmail = (String) session.getAttribute("loginEmail");
+		
+		
+		if (loginEmail == null) {
+			return upCnt;
+		}
+		
+		Community content = new Community();
+		content.setSymbol(symbol);
+		content.setContent_nm(content_nm);
+		
+		if (dao.contentUp(content) > 0) {
+			return upCnt + 1;
+		} else {
+			return upCnt;
+		}
+	}
+	
+	public int contentDown(String symbol, int content_nm, int downCnt) {
+		String loginEmail = (String) session.getAttribute("loginEmail");
+		
+		
+		if (loginEmail == null) {
+			return downCnt;
+		}
+		
+		Community content = new Community();
+		content.setSymbol(symbol);
+		content.setContent_nm(content_nm);
+		
+		if (dao.contentDown(content) > 0) {
+			return downCnt + 1;
+		} else {
+			return downCnt;
+		}
+	}
 }

@@ -55,4 +55,28 @@ and
 and
 	email = #{email}
 </delete>
+
+<!-- 댓글 추천 -->
+<update id="contentUp" parameterType="community">
+update
+	community
+set
+	content_up = content_up + 1
+where
+	symbol = #{symbol}
+and
+	content_nm = #{content_nm}
+</update>
+
+<!-- 댓글 비추천 -->
+<update id="contentDown" parameterType="community">
+update
+	community
+set
+	content_down = content_down + 1
+where
+	symbol = #{symbol}
+and
+	content_nm = #{content_nm}
+</update>
 </mapper>

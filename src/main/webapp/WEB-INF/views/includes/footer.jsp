@@ -8,6 +8,7 @@
 </head>
 <body>
 	<!-- JS-->
+    <script src="/resources/js/jquery-3.6.0.js"></script>
     <script src="/resources/js/js-member.js"></script>
     <script src="/resources/js/js-stock.js"></script>
     <script src="/resources/js/js-community.js"></script>

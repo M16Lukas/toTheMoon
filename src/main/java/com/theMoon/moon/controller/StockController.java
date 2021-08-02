@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theMoon.moon.service.CommunityService;
 import com.theMoon.moon.service.StockService;
@@ -106,6 +107,18 @@ public class StockController {
 	@GetMapping(value = "/{symbol}/community/remove")
 	private String removeContent(@PathVariable String symbol, int nm){
 		return commuService.removeContent(symbol, nm);
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/{symbol}/community/up")
+	private String contentUp(@PathVariable String symbol, int content_nm, int upCnt){
+		return Integer.toString(commuService.contentUp(symbol, content_nm, upCnt));
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/{symbol}/community/down")
+	private String contentDown(@PathVariable String symbol, int content_nm, int downCnt){
+		return Integer.toString(commuService.contentDown(symbol, content_nm, downCnt));
 	}
 	
 	

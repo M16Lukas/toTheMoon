@@ -105,7 +105,7 @@
 							<p>Nothing</p>
 						</c:when>
 						<c:otherwise>
-							<ul>
+							<ul class="contents">
 								<c:forEach var="list" items="#{lists }" >
 									<li style="list-style: none;">
 				                        <div class="card col-lg-9 mb-4">
@@ -119,7 +119,7 @@
 					                                   		<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 					                                  	</a>
 					                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-					                                        <a class="dropdown-item" href="#">modify</a>
+					                                        <a class="dropdown-item" href="">modify</a>
 					                                        <a class="dropdown-item" href="community/remove?nm=${list.content_nm }">remove</a>
 					                                    </div>
 					                               	</div>
@@ -132,22 +132,22 @@
 				                            	</div>
 				                            	<div class="row">
 				                            		<div class="col">
-				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            			<a class="text-gray-900" style="text-decoration: none;">
 				                            				<i class="far fa-comment-dots"></i>
 				                            				<span>reply</span>
 				                            			</a>
-				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            			<a class="text-gray-900" style="text-decoration: none;">
 				                            				<span>Replies()</span>
 				                            			</a>
 				                            		</div>
 				                            		<div class="col">
-				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            			<a href="javascript:contentUp(${list.content_nm });" id="contentUp" class="text-gray-900" style="text-decoration: none;">
 				                            				<i class="far fa-thumbs-up"></i>
-				                            				<span>${list.content_up }</span>
+				                            				<span id="${list.content_nm }upCnt">${list.content_up }</span>
 				                            			</a>
-				                            			<a href="" class="text-gray-900" style="text-decoration: none;">
+				                            			<a href="javascript:contentDown(${list.content_nm });" id="contentDown" class="text-gray-900" style="text-decoration: none;">
 				                            				<i class="far fa-thumbs-down"></i>
-				                            				<span>${list.content_down }</span>
+				                            				<span id="${list.content_nm }downCnt">${list.content_down }</span>
 				                            			</a>
 				                            		</div>
 				                            	</div>

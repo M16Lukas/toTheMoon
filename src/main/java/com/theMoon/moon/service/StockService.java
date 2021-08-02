@@ -61,7 +61,7 @@ public class StockService {
 		String name = stock.getName();
 		String exchange = stock.getStockExchange();
 		
-		StockQuote quote = stock.getQuote(true);
+		StockQuote quote = stock.getQuote();
 		StockStats stats = stock.getStats();
 		StockDividend dividend = stock.getDividend();
 		
