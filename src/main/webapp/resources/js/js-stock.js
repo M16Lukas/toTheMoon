@@ -34,5 +34,7 @@ function historyDownload(){
 	var period1 = document.getElementById("period1").value;
 	var period2 = document.getElementById("period2").value;
 	
+	
+	
 	location.href = "history/download?period1=" + period1 + "&period2=" + period2 + "&freq=" + frequency;
 }

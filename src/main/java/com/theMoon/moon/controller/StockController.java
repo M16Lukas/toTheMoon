@@ -174,6 +174,7 @@ public class StockController {
 								,@DateTimeFormat(pattern = "yyyy-MM-dd") Date period2
 								,@RequestParam(name="freq", defaultValue = "1D") String freq) throws IOException {
 		
+		
 		stockService.excelDownload(response, symbol, period1, period2, freq);
 		
 		return "/quote/history";

@@ -9,7 +9,6 @@ import yahoofinance.quotes.stock.StockQuote;
 import yahoofinance.quotes.stock.StockStats;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -119,6 +118,7 @@ public class StockService {
 		PageDTO page = new PageDTO(countPerPage, currentPage, lists.size());
 		
 		List<StockHistory> history = new ArrayList<StockHistory>();
+		
 		for(int i = page.getStartDataIdxNum(); i <= page.getEndDataIdxNum(); i++) {
 			history.add(new StockHistory(lists.get(i)));
 		}
@@ -134,10 +134,15 @@ public class StockService {
 	
 	
 	public void excelDownload(HttpServletResponse response, String symbol, Date period1, Date period2, String freq) throws IOException {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		ServletOutputStream fileout = response.getOutputStream();
 		
 		List<HistoricalQuote> lists = historicalList(symbol, period1, period2, freq);
+		
+		List<StockHistory> history = new ArrayList<StockHistory>();
+		
+		for(HistoricalQuote list : lists) {
+			history.add(new StockHistory(list));
+		}
 		
 		Workbook wb = new XSSFWorkbook(); // ect : xls
 		
@@ -164,22 +169,22 @@ public class StockService {
 		cell.setCellValue("Volume");
 		
 		// body
-		for(HistoricalQuote list : lists) {
+		for(StockHistory hist : history) {
 			row = sheet.createRow(rowNum++);
 			cell = row.createCell(0);
-			cell.setCellValue(dateFormat.format(list.getDate().getTime()));
+			cell.setCellValue(hist.getDate());
 			cell = row.createCell(1);
-			cell.setCellValue(list.getOpen().doubleValue());
+			cell.setCellValue(hist.getOpen().doubleValue());
 			cell = row.createCell(2);
-			cell.setCellValue(list.getHigh().doubleValue());
+			cell.setCellValue(hist.getHigh().doubleValue());
 			cell = row.createCell(3);
-			cell.setCellValue(list.getLow().doubleValue());
+			cell.setCellValue(hist.getLow().doubleValue());
 			cell = row.createCell(4);
-			cell.setCellValue(list.getClose().doubleValue());
+			cell.setCellValue(hist.getClose().doubleValue());
 			cell = row.createCell(5);
-			cell.setCellValue(list.getAdjClose().doubleValue());
+			cell.setCellValue(hist.getAdjClose().doubleValue());
 			cell = row.createCell(6);
-			cell.setCellValue(list.getVolume().doubleValue());
+			cell.setCellValue(hist.getVolume().doubleValue());
 		}
 		
 		// content type & file name
