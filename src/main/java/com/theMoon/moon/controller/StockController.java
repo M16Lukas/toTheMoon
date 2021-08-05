@@ -138,12 +138,18 @@ public class StockController {
 		Calendar cal = Calendar.getInstance();
 		
 		// 기간 초기 설정
-		if (period1 == null && period2 == null) {
+		// to (today)
+		if (period2 == null) {
 			period2 = cal.getTime();
+		}
+		
+		// from (1 year ago)
+		if (period1 == null) {
 			cal.add(Calendar.YEAR, -1);
 			period1 = cal.getTime();
 		}
-				
+	
+						
 		try {
 			info = stockService.searchSymbol(symbol);
 			map = stockService.history(symbol, period1, period2, frequency, countPerPage, p);
@@ -166,6 +172,7 @@ public class StockController {
 			return "/quote/history";
 		}
 	}
+	
 	
 	@GetMapping(value = "/{symbol}/history/download")
 	private String excelDownload(HttpServletResponse response

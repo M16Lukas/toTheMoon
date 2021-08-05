@@ -10,7 +10,7 @@
 </head>
 <body>
 	<!-- Topbar -->
-	<nav class="row navbar navbar-expand navbar-light bg-white topbar static-top">
+	<nav class="row navbar navbar-expand navbar-light bg-white topbar">
 		<div class="nav-item col-lg-2">
 			<a class="navbar-brand" href="/">TTM</a>
 	   	</div>

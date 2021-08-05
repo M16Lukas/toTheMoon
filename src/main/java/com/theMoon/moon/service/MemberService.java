@@ -46,9 +46,11 @@ public class MemberService {
 	 * @param member
 	 * @return
 	 */
-	public String login(Member member) {
+	public String login(String referer, Member member) {
 		String path = "";
 		Member loginUser = dao.login(member);
+				
+		if (referer == "") { return "redirect:/"; }
 		
 		if (loginUser == null) {
 			path = "redirect:/member/login";
@@ -56,7 +58,7 @@ public class MemberService {
 			session.setAttribute("loginFirstName", loginUser.getFirstName());
 			session.setAttribute("loginLastName", loginUser.getLastName());
 			session.setAttribute("loginEmail", loginUser.getEmail());
-			path = "redirect:/";
+			path = "redirect:" + referer;
 		}
 		
 		return path;
@@ -68,10 +70,10 @@ public class MemberService {
 	 * 
 	 * @return
 	 */
-	public String logout() {
+	public String logout(String referer) {
 		session.removeAttribute("loginFirstName");
 		session.removeAttribute("loginLastName");
 		session.removeAttribute("loginEmail");
-		return "redirect:/";
+		return "redirect:" + referer;
 	}
 }

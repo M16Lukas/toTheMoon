@@ -8,7 +8,7 @@
 
 
 function sendSymbol(){
-	var symbol = document.getElementById("symbol").value;
+	var symbol = $("#symbol").val();
 		
 	if(window.event.keyCode === 13 && symbol !== ""){
 		location.href = "/quote/" + symbol;	
@@ -19,22 +19,20 @@ function sendSymbol(){
 
 
 function historyPaging(p){
-	var countPerPage = document.getElementById("countPerPage").value;
-	var frequency = document.getElementById("frequency").value;
-	var period1 = document.getElementById("period1").value;
-	var period2 = document.getElementById("period2").value;
-
+	var countPerPage = $("#countPerPage").val();
+	var frequency 	 = $("#frequency").val();
+	var period1 	 = $("#fromDate").text();
+	var period2 	 = $("#toDate").text();
+	
 	
 	location.href = "history?period1=" + period1 + "&period2=" + period2 + "&countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
 }
 
 // historical Quote download (format : Excel)
 function historyDownload(){
-	var frequency = document.getElementById("frequency").value;
-	var period1 = document.getElementById("period1").value;
-	var period2 = document.getElementById("period2").value;
-	
-	
+	var frequency = $("#frequency").val();
+	var period1 = $("#fromDate").text();
+	var period2 = $("#toDate").text();
 	
 	location.href = "history/download?period1=" + period1 + "&period2=" + period2 + "&freq=" + frequency;
 }

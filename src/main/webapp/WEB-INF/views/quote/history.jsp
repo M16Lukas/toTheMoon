@@ -33,6 +33,9 @@
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/resources/css/function-style.css" rel="stylesheet">
     
+    <!-- jquery ui -->
+    <link href="/resources/css/jquery-ui.css" rel="stylesheet">    
+    
 </head>
 <body>
 	<div class="container">
@@ -78,16 +81,18 @@
 	                               	<button class="btn btn-light dropdown-toggle" type="button"
 	                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 	                                        aria-expanded="false">
-	                              		<c:out value="${from }" /> ~ <c:out value="${to }" />
+	                                    <span id="fromDate">${from }</span>
+	                                    ~
+	                                    <span id="toDate">${to }</span>
 	                             	</button>
 	                                <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
 	                             		<span>Start Date</span>
 	                             		<br>
-	                             		<input type="date" id="period1" name="period1" value="<c:out value="${from }" />" max="<c:out value="${to }" />">            
+	                             		<input type="text" id="period1" name="period1">            
 	                             		<div class="dropdown-divider"></div>
 	                             		<span>End Date</span>
 	                             		<br>
-	                             		<input type="date" id="period2" name="period2" value="<c:out value="${to }" />" max="<c:out value="${to }" />">            
+	                             		<input type="text" id="period2" name="period2">            
 	                                 </div>
 	                           	</div>
 	             			</div>

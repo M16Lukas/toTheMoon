@@ -1,5 +1,6 @@
 package com.theMoon.moon.controller;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,24 +15,31 @@ import com.theMoon.moon.vo.Member;
 @Controller
 @RequestMapping(value = "/member")
 public class MemberController {
-	
+
+	@Autowired
+	private HttpServletRequest request;
 	
 	@Autowired
 	private MemberService service;
 	
+	private final String origin = "http://localhost:8888";
+	String referer = "";
+	
 	@GetMapping(value = "/login")
 	private String loginForm() {
+		referer = (String)request.getHeader("REFERER").replace(origin,"");		
 		return "member/login";
 	}
 	
-	@PostMapping(value = "/login_check")
+	@PostMapping(value = "/login")
 	private String login(Member member) {
-		return service.login(member);
+		return service.login(referer, member);
 	}
 	
 	@GetMapping(value = "/logout")
 	private String logout() {
-		return service.logout();
+		referer = (String)request.getHeader("REFERER").replace(origin,"");
+		return service.logout(referer);
 	}
 	
 	@GetMapping(value = "/register")

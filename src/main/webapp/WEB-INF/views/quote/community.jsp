@@ -61,7 +61,7 @@
 							<c:when test="${empty sessionScope.loginEmail }">
 								<div class="card mb-4 col-lg-9">
 	                                <div class="card-body">
-	                                    <a target="_blank" href="/member/login">Sign in to post a message</a>
+	                                    <a href="/member/login">Sign in to post a message</a>
 	                                </div>
 	                            </div>	
 							</c:when>

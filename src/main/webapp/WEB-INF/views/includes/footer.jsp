@@ -7,12 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- JS-->
+	<!-- Jquery -->
     <script src="/resources/js/jquery-3.6.0.js"></script>
+    
+    <!-- Jquery plug in -->
+    <script src="/resources/js/jquery-ui.js"></script>
+    
+    <!-- JS -->
+	<script src="/resources/js/js-function.js"></script>
     <script src="/resources/js/js-member.js"></script>
     <script src="/resources/js/js-stock.js"></script>
     <script src="/resources/js/js-community.js"></script>
-    <script src="/resources/js/js-function.js"></script>
+
 
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -21,7 +27,6 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
