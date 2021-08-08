@@ -53,6 +53,19 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	public int modifyContent(Community community) {
+		int cnt = -1;
+		
+		try {
+			CommunityMapper mapper = session.getMapper(CommunityMapper.class);
+			cnt = mapper.modifyContent(community);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
 	public int contentUp(Community community) {
 		int cnt = -1;
 		

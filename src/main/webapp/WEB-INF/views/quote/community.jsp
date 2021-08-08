@@ -66,38 +66,21 @@
 	                            </div>	
 							</c:when>
 							<c:otherwise>
-									<form class="form-inline" action="community/register" method="post">
-										<div class="input-group col-lg-9">
-											<textarea class="form-control bg-light border-0 small" name="content" onkeyup="resize(this)" 
+								<form action="community/register" method="post">
+									<div class="input-group col-lg-9">
+										<textarea class="form-control bg-light border-1 small" name="content" onkeyup="resize(this)" 
 				                                maxlength="8000" required="required" style="height: 70px;"></textarea>
-											<div class="input-group-append">
-												<button class="btn btn-info" type="submit">Register</button>
-											</div>
+										<div class="input-group-append">
+											<button class="btn btn-info" type="submit">Register</button>
 										</div>
-									</form>
+									</div>
+								</form>
 							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
+				
 				<div class="row">
-					<div class="dropdown" style="display: inline-block;">
-	                	<button class="btn btn-light dropdown-toggle" type="button"
-	                    	id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-	                        aria-expanded="false">
-	                      sort
-	                  	</button>
-	                   	<div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-	                 		Top Reactions
-	                 		<br>
-	                 		Newest Reactions
-	                 		<br>
-	                 		Recently Discussed
-	                 		<br>
-	                 		Most Discussed
-	                 		<br>
-	                 		Oldest Reactions       		           
-	                    </div>
-	             	</div>
 				</div>
 				<div class="row">
 					<c:choose>
@@ -107,8 +90,10 @@
 						<c:otherwise>
 							<ul class="contents">
 								<c:forEach var="list" items="#{lists }" >
+									<!-- Start Content -->
 									<li style="list-style: none;">
-				                        <div class="card col-lg-9 mb-4">
+				                        <!-- Start Content Card -->
+				                        <div class="card mb-4 col-lg-9">
 				                        	<!-- Card Header - Dropdown -->
 				                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 				                            	<h6 class="m-0 font-weight-bold text-primary">${list.firstName }&nbsp;${list.lastName}&nbsp;${list.content_indate }</h6>
@@ -119,7 +104,7 @@
 					                                   		<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 					                                  	</a>
 					                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-					                                        <a class="dropdown-item" href="">modify</a>
+					                                        <a class="dropdown-item" href="javascript:contentModefy(${list.content_nm });">modify</a>
 					                                        <a class="dropdown-item" href="community/remove?nm=${list.content_nm }">remove</a>
 					                                    </div>
 					                               	</div>
@@ -127,33 +112,54 @@
 				                          	</div>
 				                            <!-- Card Body -->
 				                            <div class="card-body">
-				                            	<div class="row">
+				                            	<div id="${list.content_nm }content" class="row">
 				                            		${list.content }
 				                            	</div>
 				                            	<div class="row">
 				                            		<div class="col">
-				                            			<a class="text-gray-900" style="text-decoration: none;">
-				                            				<i class="far fa-comment-dots"></i>
-				                            				<span>reply</span>
-				                            			</a>
-				                            			<a class="text-gray-900" style="text-decoration: none;">
-				                            				<span>Replies()</span>
-				                            			</a>
-				                            		</div>
-				                            		<div class="col">
-				                            			<a href="javascript:contentUp(${list.content_nm });" id="contentUp" class="text-gray-900" style="text-decoration: none;">
+				                            			<button id="${list.content_nm }reply" class="btn text-gray-900" type="button" data-bs-toggle="collapse" 
+				                            					data-bs-target="#reply${list.content_nm }" aria-expanded="false" aria-controls="reply${list.content_nm }"
+				                            					onclick="viewReply(${list.content_nm });">
+				                            				<span>reply()</span>
+				                            			</button>
+				                            			<button id="${list.content_nm }contentUp" class="btn text-gray-900" onclick="contentUp(${list.content_nm });">
 				                            				<i class="far fa-thumbs-up"></i>
 				                            				<span id="${list.content_nm }upCnt">${list.content_up }</span>
-				                            			</a>
-				                            			<a href="javascript:contentDown(${list.content_nm });" id="contentDown" class="text-gray-900" style="text-decoration: none;">
+				                            			</button>
+				                            			<button id="${list.content_nm }contentDown" class="btn text-gray-900" onclick="contentDown(${list.content_nm });">
 				                            				<i class="far fa-thumbs-down"></i>
 				                            				<span id="${list.content_nm }downCnt">${list.content_down }</span>
-				                            			</a>
+				                            			</button>
 				                            		</div>
 				                            	</div>
+				                            	<!-- Start Reply -->
+												<div class="row collapse" id="reply${list.content_nm }">
+													<!-- register reply -->
+													<c:if test="${not empty sessionScope.loginEmail }">
+														<div class="dropdown-divider"></div>
+														<form id="insertReply${list.content_nm }" method="post">
+															<div class="input-group">
+																<textarea class="form-control bg-light border-0 small" name="reply" onkeyup="resize(this)" 
+											                           		maxlength="2000" required="required" style="height: 50px;"></textarea>
+																<div class="input-group-append">
+																	<button class="btn btn-info" type="button" onclick="clkInsertReplyBtn(${list.content_nm });">
+																		Register
+																	</button>
+																</div>
+															</div>
+														</form>
+													</c:if>
+													<div class="dropdown-divider"></div>
+													<!-- reply list -->
+													<div class="reply-card"></div>
+												</div>
+												<!-- End Reply -->
 				                           	</div>
+				                           	<!-- end card body -->
 				                      	</div>
+				                      	<!-- End Content Card -->
 									</li>
+									<!-- End Content -->
 								</c:forEach>				
 							</ul>
 						</c:otherwise>

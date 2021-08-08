@@ -7,12 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>	
 	<!-- start quote-header-info -->
-	<div class="row font-weight-bold text-gray-100 bg-gradient-primary" id="quote-header-info">
-		<div class="col">
+	<div class="col font-weight-bold text-gray-100 bg-gradient-primary">
 			<span id="symbol" class="h3">${info.symbol }</span>
 			<br>
 			${info.name}
@@ -33,7 +31,6 @@
 			    	</div>
 			   	</c:otherwise>
 			</c:choose>
-		</div>
 	</div>
 	<!-- end quote-header-info -->
 		

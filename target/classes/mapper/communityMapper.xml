@@ -42,7 +42,23 @@ where
 	c.email = m.email
 and
 	symbol = #{symbol}
+order by
+	c.content_indate desc
 </select>
+
+<!-- 댓글 수정 -->
+<update id="modifyContent" parameterType="community">
+update
+	community
+set
+	content = #{content}
+where
+	symbol = #{symbol}
+and
+	email = #{email}
+and
+	content_nm = #{content_nm}
+</update>
 
 <!-- 댓글 삭제 -->
 <delete id="removeContent" parameterType="community">

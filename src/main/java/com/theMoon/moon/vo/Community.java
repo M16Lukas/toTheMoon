@@ -21,7 +21,16 @@ public class Community {
 	public Community(String symbol, String email, String content) {
 		this.symbol = symbol;
 		this.email = email;
-		this.content = content;
+		this.content = content.trim();
+	}
+	
+	
+	// modify 
+	public Community(String symbol, String email, int content_nm, String content) {
+		this.symbol = symbol;
+		this.email = email;
+		this.content_nm = content_nm;
+		this.content = content.trim();
 	}
 
 	

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.theMoon.moon.dao.ReplyMapper">
+
+<!-- 대댓글 등록 -->
+<insert id="insertReply" parameterType="reply">
+	insert into
+		reply_tb(
+			reply_nm
+			,content_nm
+			,reply
+			,replyer
+	) values (
+		reply_seq.nextval
+		,#{content_nm}
+		,#{reply}
+		,#{replyer}
+	) 
+</insert>
+
+<!-- 대댓글 가져오기 -->
+<select id="getReply" parameterType="int" resultType="hashmap">
+select
+	r.reply_nm 											as reply_nm
+	,m.firstName 										as firstName
+	,m.lastName 										as lastName
+	,r.reply 											as reply
+	,r.replyer 											as replyer
+	,to_char(r.reply_indate, 'YYYY-MM-DD HH24:MI:SS') as reply_indate
+from
+	member m, reply_tb r
+where
+	r.content_nm = #{content_nm}
+and
+	m.email = r.replyer
+order by
+	r.reply_indate desc
+</select>
+
+<!-- 대댓글 수정 -->
+<update id="modifyReply" parameterType="reply">
+update
+	community
+set
+	content = #{content}
+where
+	symbol = #{symbol}
+and
+	email = #{email}
+and
+	content_nm = #{content_nm}
+</update>
+
+<!-- 대댓글 삭제 -->
+<delete id="removeReply" parameterType="reply">
+delete from
+	community
+where
+	content_nm = #{content_nm}
+and
+	symbol = #{symbol}
+and
+	email = #{email}
+</delete>
+
+</mapper>

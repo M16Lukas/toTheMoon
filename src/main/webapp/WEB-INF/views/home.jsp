@@ -30,9 +30,11 @@
     </head>
     <body>
         <!-- Topbar -->
-	    <nav class="row navbar navbar-expand navbar-light bg-white topbar">
+	    <nav class="navbar navbar-expand navbar-light bg-white topbar">
 	        <div class="nav-item col-lg-2">
-				<a class="navbar-brand" href="/">TTM</a>
+				<a class="navbar-brand" href="/">
+					<img alt="" src="/resources/img/company_icon.svg" width="40" height="40">
+				</a>
 	        </div>
 	       	<div class="nav-item col-lg-8">
 	        	<a class="navbar-brand" href="/">HOME</a>
@@ -53,17 +55,13 @@
 				        	<!-- Nav Item - User Information -->
 				          	<li class="nav-item dropdown no-arrow">
 				          		<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				                	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginFisrtName } ${sessionScope.loginLastName }</span>
-				                    <img class="img-profile rounded-circle" src="/resources/pages/img/undraw_profile.svg">
+				                	<span class="mr-2 d-none d-lg-inline text-gray-900">${sessionScope.loginFirstName } ${sessionScope.loginLastName }</span>
 				               	</a>
 				               	<!-- Dropdown - User Information -->
 				               	<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 				                	<a class="dropdown-item" href="#">
 					                 	<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
 					                    Profile
-				                 	</a>
-				                  	<a class="dropdown-item" href="#">
-				                    	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
 				                 	</a>
 				                    <a class="dropdown-item" href="#">
 				                    	<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>

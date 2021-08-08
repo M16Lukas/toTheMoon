@@ -6,9 +6,11 @@
 	<typeAliases>
 		<typeAlias type="com.theMoon.moon.vo.Member" alias="member" />
 		<typeAlias type="com.theMoon.moon.vo.Community" alias="community" />
+		<typeAlias type="com.theMoon.moon.vo.Reply" alias="reply" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/memberMapper.xml" />
 		<mapper resource="mapper/communityMapper.xml" />
+		<mapper resource="mapper/replyMapper.xml" />
 	</mappers>
 </configuration>

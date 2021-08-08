@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theMoon.moon.service.CommunityService;
+import com.theMoon.moon.service.ReplyService;
 import com.theMoon.moon.service.StockService;
 import com.theMoon.moon.vo.Community;
 import com.theMoon.moon.vo.FeedMessage;
+import com.theMoon.moon.vo.Reply;
 import com.theMoon.moon.vo.StockInfo;
 
 
@@ -36,6 +38,9 @@ public class StockController {
 	
 	@Autowired
 	private CommunityService commuService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	@RequestMapping(value = "/market")
 	private String index(Model model) {
@@ -74,6 +79,12 @@ public class StockController {
 		}
 	}	
 	
+	/**
+	 * 
+	 * Community(content : 댓글)
+	 * 
+	 */
+	
 	@GetMapping(value = "/{symbol}/community")
 	private String communitySymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;
@@ -104,6 +115,11 @@ public class StockController {
 		return commuService.insertContent(symbol, content);
 	}
 	
+	@PostMapping(value = "/{symbol}/community/modify")
+	private String modifyContent(@PathVariable String symbol, int nm, String newContent) {
+		return commuService.modifyContent(symbol, nm, newContent);
+	}
+	
 	@GetMapping(value = "/{symbol}/community/remove")
 	private String removeContent(@PathVariable String symbol, int nm){
 		return commuService.removeContent(symbol, nm);
@@ -122,6 +138,28 @@ public class StockController {
 	}
 	
 	
+	/**
+	 * 
+	 * Community(reply : 대댓글)
+	 * 
+	 */
+	@ResponseBody
+	@GetMapping(value = "/{symbol}/community/{content_nm}")
+	private ArrayList<Reply> getReply(@PathVariable String symbol, @PathVariable int content_nm) {
+		return replyService.getReply(content_nm);
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/{symbol}/community/{content_nm}")
+	private boolean insertReply(@PathVariable String symbol, @PathVariable int content_nm, String reply) {
+		return replyService.insertReply(content_nm, reply);
+	}
+	
+	/*
+	 * 
+	 * Historical Data
+	 * 
+	 */
 	
 	@GetMapping(value = "/{symbol}/history")
 	private String historySymbol(Model model

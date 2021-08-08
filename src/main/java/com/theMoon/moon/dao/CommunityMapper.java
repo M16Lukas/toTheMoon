@@ -12,6 +12,8 @@ public interface CommunityMapper {
 	
 	public int removeContent(Community community);
 	
+	public int modifyContent(Community community);
+	
 	public int contentUp(Community community);
 
 	public int contentDown(Community community);

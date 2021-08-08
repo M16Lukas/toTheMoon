@@ -15,9 +15,6 @@ import com.theMoon.moon.vo.Member;
 @Controller
 @RequestMapping(value = "/member")
 public class MemberController {
-
-	@Autowired
-	private HttpServletRequest request;
 	
 	@Autowired
 	private MemberService service;
@@ -26,7 +23,7 @@ public class MemberController {
 	String referer = "";
 	
 	@GetMapping(value = "/login")
-	private String loginForm() {
+	private String loginForm(HttpServletRequest request) {
 		referer = (String)request.getHeader("REFERER").replace(origin,"");		
 		return "member/login";
 	}
@@ -37,7 +34,7 @@ public class MemberController {
 	}
 	
 	@GetMapping(value = "/logout")
-	private String logout() {
+	private String logout(HttpServletRequest request) {
 		referer = (String)request.getHeader("REFERER").replace(origin,"");
 		return service.logout(referer);
 	}

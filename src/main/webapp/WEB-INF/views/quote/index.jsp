@@ -34,13 +34,13 @@
 </head>
 <body>
 	<div class="container">
-		<!-- body-header -->
-		<%@ include file="../includes/header-topbar.jsp" %>
-		<%@ include file="../includes/header-qoute.jsp" %>
-		
 			
 		<!-- start container-fluid -->
 		<div class="container-fluid">		
+			<!-- body-header -->
+			<%@ include file="../includes/header-topbar.jsp" %>
+			<%@ include file="../includes/header-qoute.jsp" %>
+			
 			<!-- start main navigation-->
 			<nav class="navbar navbar-light bg-white static-top ">
 		    	<div>
@@ -132,24 +132,22 @@
 	                	News (Copyright © Goole News 2021)
 	               	</div>
 	                <div class="card-body">
-	                	<ul>
-	                		<c:forEach var="list" items="${lists}">
-	                			<div class="mb-2">
-					            	<div class="card h-100 py-2">
-					                	<div class="card-body">
-					                    	<div class="row no-gutters align-items-center">
-					                        	<div class="col mr-2">
-					                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-					                                	<a href="${list.link }" target="_blank">${list.title }</a>
-					                                </div>
-					                                ${list.pubDate }
-					                           	</div>
-					                    	</div>
-					                	</div>
-					            	</div>
-				              	</div>
-	                		</c:forEach>
-	                	</ul>
+	                	<c:forEach var="list" items="${lists}">
+	                		<div class="mb-2">
+					            <div class="card h-100 py-2">
+					                <div class="card-body">
+					                    <div class="row no-gutters align-items-center">
+					                        <div class="col mr-2">
+					                        	<div class="h5 mb-0 font-weight-bold text-gray-800">
+					                            	<a href="${list.link }" target="_blank">${list.title }</a>
+					                          	</div>
+					                         	${list.pubDate }
+					                      	</div>
+					                   	</div>
+					                </div>
+					            </div>
+				              </div>
+	                	</c:forEach>
 	                </div>
 	        	</div>
 			</div>

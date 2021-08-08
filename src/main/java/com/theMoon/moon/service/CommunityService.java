@@ -20,6 +20,7 @@ public class CommunityService {
 	@Autowired
 	private CommunityDAO dao;
 	
+	// 전체 댓글 출력
 	public ArrayList<Community> printContent(String symbol){
 		ArrayList<HashMap<String, Object>> maps = dao.printContent(symbol);
 		ArrayList<Community> lists = new ArrayList<Community>();
@@ -41,7 +42,7 @@ public class CommunityService {
 		return lists;
 	}
 	
-	
+	// 댓글 추가
 	public String insertContent(String symbol, String content) {
 		String path = "";
 		String loginEmail = (String) session.getAttribute("loginEmail");
@@ -57,6 +58,28 @@ public class CommunityService {
 		return path;
 	}
 	
+	// 댓글 수정
+	public String modifyContent(String symbol, int nm, String newContent) {
+		String path = "";
+		String loginEmail = (String) session.getAttribute("loginEmail");
+		Community community = null;
+		
+		if (loginEmail == null) {
+			return "redirect:/member/login";
+		} else {
+			community = new Community(symbol, loginEmail, nm, newContent);
+		}
+		
+		if (dao.modifyContent(community) > 0) {
+			path = "redirect:/quote/" + symbol + "/community";
+		} else {
+			path = "redirect:/quote/" + symbol;
+		}
+		
+		return path;
+	}
+	
+	// 댓글 삭제
 	public String removeContent(String symbol, int nm){		
 		Community content = new Community();
 		content.setSymbol(symbol);
@@ -68,7 +91,7 @@ public class CommunityService {
 		return "redirect:/quote/" + symbol + "/community";
 	}
 	
-	
+	// 추천
 	public int contentUp(String symbol, int content_nm, int upCnt) {
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		
@@ -88,6 +111,7 @@ public class CommunityService {
 		}
 	}
 	
+	// 비추천
 	public int contentDown(String symbol, int content_nm, int downCnt) {
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		
