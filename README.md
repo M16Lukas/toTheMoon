@@ -1,7 +1,20 @@
-# toTheMoon(開発中)
+# 🌕 toTheMoon(開発中)
  
-## [ Introduction ]
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+toTheMoon은 YahooFinance와 webull 사이트를 참조하여 만든 주식 정보 사이트 입니다.
+이를 통해 Spring에 대한 이해와 개발 스킬을 성장시키고자 합니다.
+
 Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイト開発中です。
+
+
+<!-- USAGE -->
+## Usage
+
+### Summary
+### Conversations
+### Historical Data
 
 ## [ Verson ]
 
