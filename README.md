@@ -13,6 +13,8 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 ## Usage
 
 ### Summary
+https://user-images.githubusercontent.com/46748131/128842804-03956744-e404-4d01-9c86-97c76c351307.mp4
+
 ### Conversations
 ### Historical Data
 
