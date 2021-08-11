@@ -14,7 +14,10 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 * [MyBatis 3.4.6](https://github.com/mybatis/mybatis-3/releases/tag/mybatis-3.4.6)
 * [JAVA 8 (v 1.8)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 * [Oracle 11g](https://edelivery.oracle.com/osdc/faces/SoftwareDelivery)
+
 * [JQuery](https://jquery.com)
+* [JQuery UI](https://jqueryui.com)
+* [canvasJS - jQuery Charts & Graphs with Crosshair](https://canvasjs.com/jquery-charts/chart-cursor-crosshair)
 
 * [Bootstrap themes - SB Admin 2](https://startbootstrap.com/theme/sb-admin-2) 
 * [Bootstrap themes - Landing Page](https://startbootstrap.com/theme/landing-page)
@@ -35,21 +38,23 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 
 ### Summary Page
 
-![Summary Page Example](https://user-images.githubusercontent.com/46748131/128843078-de0ec6d9-2a9a-4e5e-88cc-83d9b728bcec.gif)
+![Summary Page Example](https://user-images.githubusercontent.com/46748131/129054189-ae17a886-46fe-4fe1-9a5b-62f6d81ce2ae.gif)
 
 해당 기업의 기본적인 주식 정보와 차트, 관련 뉴스를 확인하는 페이지입니다.
 
-ℹ️ 차트 기능은 현재 개발중입니다.
+### Chart Page(ℹ️ 開発中)
+
+주식의 기간별 차트를 확인하는 체이지 입니다.
 
 ### Conversations Page
 
-![Conversations Page Example](https://user-images.githubusercontent.com/46748131/128843148-6daa0b92-1992-4c68-ac96-30869aba774c.gif)
+![Conversations Page Example](https://user-images.githubusercontent.com/46748131/129053771-7ce33701-ad00-454a-9e0f-333ad0daa139.gif)
 
-주식에 대한 토론, 토의를 하는 페이지입니다.
+주식에 대한 토론, 토의하는 페이지입니다.
 
 ### Historical Data Page
 
-![Historical Data Page Example](https://user-images.githubusercontent.com/46748131/128844079-fdf2177e-0cd1-4515-b562-a8ceabbf3309.gif)
+![Historical Data Page Example](https://user-images.githubusercontent.com/46748131/129054247-1f1a44e0-cd7b-46a4-a939-d4120c2f8423.gif)
 
 주식의 과거 데이터를 검색, 다운로드할 수 있는 페이지입니다.
 
