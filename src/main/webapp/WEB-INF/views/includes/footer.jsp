@@ -16,7 +16,10 @@
 	<script src="/resources/js/js-function.js"></script>
     <script src="/resources/js/js-member.js"></script>
     <script src="/resources/js/js-stock.js"></script>
-    <script src="/resources/js/js-community.js"></script>
+    
+    <!-- JS Chart -->
+    <script src="/resources/js/canvasjs.min.js"></script>
+    
 
 
 	<!-- Bootstrap core JS-->
@@ -36,11 +39,5 @@
     
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="/resources/pages/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/resources/pages/js/demo/chart-area-demo.js"></script>
 </body>
 </html>

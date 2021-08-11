@@ -28,6 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
 import com.theMoon.moon.util.RSSFeedParser;
+import com.theMoon.moon.vo.Chart;
 import com.theMoon.moon.vo.Feed;
 import com.theMoon.moon.vo.FeedMessage;
 import com.theMoon.moon.vo.PageDTO;
@@ -36,7 +37,8 @@ import com.theMoon.moon.vo.StockInfo;
 
 @Service
 public class StockService {
-	
+
+
 	
 	public HashMap<String, StockInfo> index() throws IOException{
 		String[] symbols = new String[] {"ES=F", "YM=F", "NQ=F", "RTY=F"};
@@ -103,16 +105,57 @@ public class StockService {
 			break;
 		}
 		
-		List<HistoricalQuote> lists = stock.getHistory(from, to, interval);
-		// desc sort
-		Collections.reverse(lists);
-		
-		return lists;
+		return stock.getHistory(from, to, interval);
 	}
 	
-	public Map<String, Object> history(String symbol, Date period1, Date period2, String frequency, int countPerPage, int currentPage) throws IOException{
+	public List<Chart> stockChart(String symbol, String period) throws IOException{
+		Stock stock = YahooFinance.get(symbol);
+		
+		Calendar from = Calendar.getInstance();
+		Calendar to = Calendar.getInstance();	// today
+		
+		List<Chart> history = new ArrayList<>();
+		
+		if(period == null) { period = ""; } 
+		
+		// startDate		
+		switch (period) {
+		case "3D":
+			from.add(Calendar.DATE, -3);
+			break;
+		case "5D":
+			from.add(Calendar.DATE, -5);
+			break;
+		case "1M":
+			from.add(Calendar.MONTH, -1);
+			break;
+		case "3M":
+			from.add(Calendar.MONTH, -3);
+			break;
+		case "1Y":
+			from.add(Calendar.YEAR, -1);
+			break;
+		case "5Y":
+			from.add(Calendar.YEAR, -5);
+			break;
+		default:
+			from.add(Calendar.MONTH, -3);
+			break;
+		}
+		
+		List<HistoricalQuote> lists = stock.getHistory(from, to, Interval.DAILY);
+		for(HistoricalQuote list : lists) {
+			history.add(new Chart(list.getDate(), list.getClose()));
+		}
+		
+		return history;
+	}
+	
+	public Map<String, Object> historicalDataPagingResult(String symbol, Date period1, Date period2, String frequency, int countPerPage, int currentPage) throws IOException{
 		
 		List<HistoricalQuote> lists = historicalList(symbol, period1, period2, frequency);
+		// desc sort
+		Collections.reverse(lists);
 		
 		// paging
 		PageDTO page = new PageDTO(countPerPage, currentPage, lists.size());
@@ -137,6 +180,8 @@ public class StockService {
 		ServletOutputStream fileout = response.getOutputStream();
 		
 		List<HistoricalQuote> lists = historicalList(symbol, period1, period2, freq);
+		// desc sort
+		Collections.reverse(lists);
 		
 		List<StockHistory> history = new ArrayList<StockHistory>();
 		
