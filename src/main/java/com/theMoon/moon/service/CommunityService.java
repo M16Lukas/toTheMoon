@@ -35,6 +35,7 @@ public class CommunityService {
 									,Integer.parseInt(String.valueOf(map.get("CONTENT_UP")))
 									,Integer.parseInt(String.valueOf(map.get("CONTENT_DOWN")))
 									,(String) map.get("CONTENT_INDATE")
+									,Integer.parseInt(String.valueOf(map.get("REPLY_CNT")))
 									)
 					);
 		}

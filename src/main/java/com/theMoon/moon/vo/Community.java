@@ -14,6 +14,7 @@ public class Community {
 	private int content_up;
 	private int content_down;
 	private String content_indate;
+	private int reply_cnt;
 	
 	public Community() {}
 
@@ -36,7 +37,7 @@ public class Community {
 	
 	// select
 	public Community(int content_nm, String symbol, String email, String firstName, String lastName, String content, int content_up, int content_down,
-			String content_indate) {
+			String content_indate, int reply_cnt) {
 		this.content_nm = content_nm;
 		this.symbol = symbol;
 		this.email = email;
@@ -46,5 +47,6 @@ public class Community {
 		this.content_up = content_up;
 		this.content_down = content_down;
 		this.content_indate = content_indate;
+		this.reply_cnt = reply_cnt;
 	}
 }

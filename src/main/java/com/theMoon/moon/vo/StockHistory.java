@@ -3,6 +3,7 @@ package com.theMoon.moon.vo;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import yahoofinance.histquotes.HistoricalQuote;
@@ -23,6 +24,9 @@ public class StockHistory {
     
     private Long volume;
 
+    public StockHistory() {}
+    
+    // Constructor : Historical Data Page
 	public StockHistory(HistoricalQuote historical) {
 		this.open 		= historical.getOpen() 		== null ? BigDecimal.ZERO : historical.getOpen();
 		this.low 		= historical.getLow() 		== null ? BigDecimal.ZERO : historical.getLow();
@@ -31,8 +35,6 @@ public class StockHistory {
 		this.adjClose 	= historical.getAdjClose()	== null ? BigDecimal.ZERO : historical.getAdjClose();
 		this.volume 	= historical.getVolume() 	== null ? 0 : historical.getVolume();
 		
-		date = dateFormat.format(historical.getDate().getTime());
+		this.date = dateFormat.format(historical.getDate().getTime());
 	}
-    
-    
 }

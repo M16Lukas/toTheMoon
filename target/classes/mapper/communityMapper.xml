@@ -36,6 +36,7 @@ select
 	,c.content_up 										as content_up
 	,c.content_down 									as content_down
 	,to_char(c.content_indate, 'YYYY-MM-DD HH24:MI:SS') as content_indate
+	,(select count(reply_nm) from reply_tb where content_nm = c.content_nm) as reply_cnt
 from
 	community c, member m
 where

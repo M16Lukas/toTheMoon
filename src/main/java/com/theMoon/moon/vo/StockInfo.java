@@ -20,7 +20,7 @@ public class StockInfo {
 	
 	
 	private double dailyReturn = 0.0;		// 전일 대비 증감
-	private double fluctuationRate = 0.0; // 전일 대비 증감률
+	private double fluctuationRate = 0.0;   // 전일 대비 증감률
 	
 	public StockInfo() {}
 	
