@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <%@ page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -39,36 +38,27 @@
 </head>
 <body>
 	<div class="container">
-		
-		<!-- body-header -->
-		<%@ include file="../includes/header-topbar.jsp" %>
-		<%@ include file="../includes/header-qoute.jsp" %>
-	
-		<!-- hidden type -->
-		<input type="hidden" id="frequency" value="${frequency }">
-		<input type="hidden" id="countPerPage" value="${countPerPage }">
-			
-		<!-- 검색 기간 설정 -->
-		<c:set var="from">
-			<fmt:formatDate value="${period1}" pattern="yyyy-MM-dd" />
-		</c:set>
-
-		<c:set var="to">
-			<fmt:formatDate value="${period2}" pattern="yyyy-MM-dd" />
-		</c:set>
-		
-		<!-- start main navigation-->
-		<nav class="navbar navbar-light bg-white static-top ">
-	    	<div>
-	        	<a class="navbar-brand" href="/quote/${info.symbol }">Summary</a>
-		        <a class="navbar-brand" href="community">Conversations</a>
-		        <a class="navbar-brand border-bottom-primary" href="">Historical Data</a>
-	        </div>
-	    </nav>	
-		<!-- end main navigation-->
-			
 		<!-- start container-fluid -->
 		<div class="container-fluid">	
+			<!-- body-header -->
+			<%@ include file="../includes/header-topbar.jsp" %>
+			<%@ include file="../includes/header-qoute.jsp" %>
+			<%@ include file="../includes/body-menubar.jsp" %>
+		
+			<!-- hidden type -->
+			<input type="hidden" id="frequency" value="${frequency }">
+			<input type="hidden" id="countPerPage" value="${countPerPage }">
+				
+			<!-- 검색 기간 설정 -->
+			<c:set var="from">
+				<fmt:formatDate value="${period1}" pattern="yyyy-MM-dd" />
+			</c:set>
+	
+			<c:set var="to">
+				<fmt:formatDate value="${period2}" pattern="yyyy-MM-dd" />
+			</c:set>
+			
+			
 			
 			<!-- DataTales -->
 			<div class="card shadow mb-4">
@@ -171,12 +161,12 @@
 				           	</div>
 				           	<div class="row">
 				           		<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-				           			*Close price adjusted for splits.&nbsp;**Adjusted close price adjusted for both dividends and splits.
+				           			<p>*Close price adjusted for splits.&nbsp;**Adjusted close price adjusted for both dividends and splits.</p>
 				           		</div>
 				           	</div>
 				           	<div class="row">
 				           		<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-				           			<ul class="pagination">
+				           			<ul class="pagination justify-content-center">
 				           				<c:if test="${page.prev }">
 				           					<li class="paginate_button page-item previous" id="dataTable_previous">
 					          					<a href="javascript:historyPaging(${page.startPageGroup - page.pagePerGroup });" aria-controls="dataTable" class="page-link">Previous</a>
@@ -206,5 +196,6 @@
 
 	<!-- footer -->
 	<%@ include file="../includes/footer.jsp" %>
+	<script src="/resources/js/js-histroricalData.js"></script>
 </body>
 </html>

@@ -58,6 +58,7 @@ public class MemberService {
 			session.setAttribute("loginFirstName", loginUser.getFirstName());
 			session.setAttribute("loginLastName", loginUser.getLastName());
 			session.setAttribute("loginEmail", loginUser.getEmail());
+			
 			path = "redirect:" + referer;
 		}
 		

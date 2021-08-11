@@ -16,23 +16,3 @@ function sendSymbol(){
 		locatio.herf = "redirect:/" + window.location.pathname;
 	}
 }
-
-
-function historyPaging(p){
-	var countPerPage = $("#countPerPage").val();
-	var frequency 	 = $("#frequency").val();
-	var period1 	 = $("#fromDate").text();
-	var period2 	 = $("#toDate").text();
-	
-	
-	location.href = "history?period1=" + period1 + "&period2=" + period2 + "&countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
-}
-
-// historical Quote download (format : Excel)
-function historyDownload(){
-	var frequency = $("#frequency").val();
-	var period1 = $("#fromDate").text();
-	var period2 = $("#toDate").text();
-	
-	location.href = "history/download?period1=" + period1 + "&period2=" + period2 + "&freq=" + frequency;
-}

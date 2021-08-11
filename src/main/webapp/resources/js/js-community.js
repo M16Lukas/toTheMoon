@@ -65,6 +65,7 @@ function contentDown(num){
 		},
 		dataType : "text",
 		success : function(data){
+			
 			$(id).text(data);
 		},
 		error : function(e){
@@ -86,8 +87,9 @@ function viewReply(num){
 			
 			$.each(data, function(i){
 				context += "<div class='card'>";
-				context += "<div class='card-header'>";
-				context += "<h6 class='m-0 font-weight-bold text-primary'>" + this.firstName + "&nbsp;" + this.lastName + "&nbsp;" + this.reply_indate + "</h6>";
+				context += "<div class='card-header d-flex bd-highlight flex-row align-items-center'>";
+				context += "<span class='h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight'>" + this.firstName + "&nbsp;" + this.lastName + "</span>";
+				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";
 				context += "</div>";
 				context += "<div class='card-body'>"
 				context += "<span>" + this.reply + "</span>";
@@ -96,6 +98,7 @@ function viewReply(num){
 			});
 						
 			$(re).html(context);
+			$("#" + num + "reply span").text("reply(" + Object.keys(data).length + ")");
 		},
 		error : function(e){ console.log(e); }
 	});
@@ -110,6 +113,7 @@ function clkInsertReplyBtn(num){
 		type : "post",
 		data : reply,
 		success : function(data){
+			$("#insertReply" + num + " .input-group textarea").val("");	// textarea reset
 			viewReply(num);
 		},
 		error : function(e){ console.log(e); }

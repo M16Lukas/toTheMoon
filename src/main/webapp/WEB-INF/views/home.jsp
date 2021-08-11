@@ -30,7 +30,7 @@
     </head>
     <body>
         <!-- Topbar -->
-	    <nav class="navbar navbar-expand navbar-light bg-white topbar">
+	    <nav class="navbar navbar-expand navbar-light sticky-top bg-white topbar">
 	        <div class="nav-item col-lg-2">
 				<a class="navbar-brand" href="/">
 					<img alt="" src="/resources/img/company_icon.svg" width="40" height="40">
