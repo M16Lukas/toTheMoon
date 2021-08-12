@@ -44,7 +44,7 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 
 ### Chart Page(ℹ️ 開発中)
 
-주식의 기간별 차트를 확인하는 체이지 입니다.
+주식의 기간별 차트를 확인하는 페이지 입니다.
 
 ### Conversations Page
 
