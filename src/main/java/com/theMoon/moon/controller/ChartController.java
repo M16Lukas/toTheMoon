@@ -2,7 +2,6 @@ package com.theMoon.moon.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,54 +10,67 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.theMoon.moon.service.ChartService;
 import com.theMoon.moon.service.StockService;
-import com.theMoon.moon.vo.FeedMessage;
+import com.theMoon.moon.vo.Chart;
 import com.theMoon.moon.vo.StockInfo;
 
 
 @Controller
-@RequestMapping(value = "/quote")
-public class StockController {
+@RequestMapping(value = "/quote/{symbol}")
+public class ChartController {
 
 	@Autowired
-	private StockService service;
+	private ChartService service;
 	
-	@RequestMapping("/market")
-	private String index(Model model) {
-		Map<String, StockInfo> stocks = null;
-		
+	/**
+	 * 
+	 * Summary Page(index page) - Summary Chart
+	 * 
+	 * @param symbol
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/chartDate")
+	private List<Chart> getsummaryChart(@PathVariable String symbol){
+		List<Chart> chartLists = null;
 		try {
-			stocks = service.index();
+			chartLists= service.stockChart(symbol, null);
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "redirect:/";
 		}
 		
-		model.addAttribute("stocks", stocks);
-		return "/quote/market";
+		return chartLists;
 	}
 	
-	@GetMapping("/{symbol}")
-	private String searchSymbol(@PathVariable String symbol, Model model){
+	
+	/**
+	 * 
+	 * Chart Page
+	 * 
+	 * @param symbol
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/chart")
+	private String getChart(@PathVariable String symbol, Model model) {
 		StockInfo info = null;
-		List<FeedMessage> newsLists = null;
 		
 		try {
-			info = service.searchSymbol(symbol);
+			info = new StockService().searchSymbol(symbol);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:/";
 		}
 		
-
 		if (info == null) {
 			return "redirect:/";
 		} else {
-			newsLists = service.googleNewsRSSParser(symbol);
 			model.addAttribute("info", info);
-			model.addAttribute("newsLists", newsLists);
-			return "/quote/index";
+			return "/quote/chart";
 		}
-	}	
+	}
+
 }

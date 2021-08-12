@@ -38,7 +38,7 @@ public class CommunityController {
 	 */
 	
 	// 댓글 출력
-	@GetMapping(value = "")
+	@GetMapping
 	private String communitySymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;
 		ArrayList<Community> lists = null;
@@ -64,33 +64,33 @@ public class CommunityController {
 	}
 	
 	// 댓글 입력
-	@PostMapping(value = "/register")
+	@PostMapping("/register")
 	private String insertContent(@PathVariable String symbol, String content){
 		return commuService.insertContent(symbol, content);
 	}
 	
 	// 댓글 수정
-	@PostMapping(value = "/modify")
+	@PostMapping("/modify")
 	private String modifyContent(@PathVariable String symbol, int nm, String newContent) {
 		return commuService.modifyContent(symbol, nm, newContent);
 	}
 	
 	// 댓글 삭제
-	@GetMapping(value = "/remove")
+	@GetMapping("/remove")
 	private String removeContent(@PathVariable String symbol, int nm){
 		return commuService.removeContent(symbol, nm);
 	}
 	
 	// 추천
 	@ResponseBody
-	@PostMapping(value = "/up")
+	@PostMapping("/up")
 	private String contentUp(@PathVariable String symbol, int content_nm, int upCnt){
 		return Integer.toString(commuService.contentUp(symbol, content_nm, upCnt));
 	}
 	
 	// 비추천
 	@ResponseBody
-	@PostMapping(value = "/down")
+	@PostMapping("/down")
 	private String contentDown(@PathVariable String symbol, int content_nm, int downCnt){
 		return Integer.toString(commuService.contentDown(symbol, content_nm, downCnt));
 	}
@@ -103,14 +103,14 @@ public class CommunityController {
 	 */
 	// reply 출력
 	@ResponseBody
-	@GetMapping(value = "/{content_nm}")
+	@GetMapping("/{content_nm}")
 	private ArrayList<Reply> getReply(@PathVariable String symbol, @PathVariable int content_nm) {
 		return replyService.getReply(content_nm);
 	}
 	
 	// reply 등록
 	@ResponseBody
-	@PostMapping(value = "/{content_nm}")
+	@PostMapping("/{content_nm}")
 	private boolean insertReply(@PathVariable String symbol, @PathVariable int content_nm, String reply) {
 		return replyService.insertReply(content_nm, reply);
 	}

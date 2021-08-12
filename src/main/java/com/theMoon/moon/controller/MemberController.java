@@ -22,39 +22,39 @@ public class MemberController {
 	private final String origin = "http://localhost:8888";
 	String referer = "";
 	
-	@GetMapping(value = "/login")
+	@GetMapping("/login")
 	private String loginForm(HttpServletRequest request) {
 		referer = (String)request.getHeader("REFERER").replace(origin,"");		
 		return "member/login";
 	}
 	
-	@PostMapping(value = "/login")
+	@PostMapping("/login")
 	private String login(Member member) {
 		return service.login(referer, member);
 	}
 	
-	@GetMapping(value = "/logout")
+	@GetMapping("/logout")
 	private String logout(HttpServletRequest request) {
 		referer = (String)request.getHeader("REFERER").replace(origin,"");
 		return service.logout(referer);
 	}
 	
-	@GetMapping(value = "/register")
+	@GetMapping("/register")
 	private String registerForm() {
 		return "member/register";
 	}
 	
-	@PostMapping(value = "/register")
+	@PostMapping("/register")
 	private String registerMember(Member member) {
 		return service.registerMember(member);
 	}
 	
-	@GetMapping(value = "/forgot-password")
+	@GetMapping("/forgot-password")
 	private String forgotPasswordForm() {
 		return "member/forgot-password";
 	}
 	
-	@PostMapping(value = "/forgot-password")
+	@PostMapping("/forgot-password")
 	private String forgotPassword() {
 		return "redirect:/member/login";
 	}
