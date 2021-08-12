@@ -15,10 +15,9 @@
     <!-- JS -->
 	<script src="/resources/js/js-function.js"></script>
     <script src="/resources/js/js-member.js"></script>
-    <script src="/resources/js/js-stock.js"></script>
     
     <!-- JS Chart -->
-    <script src="/resources/js/canvasjs.min.js"></script>
+    <script src="/resources/js/canvasjs.stock.min.js"></script>
     
 
 

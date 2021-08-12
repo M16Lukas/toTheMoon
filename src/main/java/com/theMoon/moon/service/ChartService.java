@@ -12,21 +12,19 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.theMoon.moon.vo.Chart;
+import com.theMoon.moon.vo.StockHistory;
 
 @Service
 public class ChartService {
 	
-	public List<Chart> stockChart(String symbol, String period) throws IOException{
+	public List<StockHistory> stockChart(String symbol, String period) throws IOException{
 		Stock stock = YahooFinance.get(symbol);
 		
 		Calendar from = Calendar.getInstance();
 		Calendar to = Calendar.getInstance();	// today
 		
-		List<Chart> history = new ArrayList<>();
-		
-		if(period == null) { period = ""; } 
-		
+		List<StockHistory> history = new ArrayList<>();
+
 		// startDate		
 		switch (period) {
 		case "3D":
@@ -47,14 +45,11 @@ public class ChartService {
 		case "5Y":
 			from.add(Calendar.YEAR, -5);
 			break;
-		default:
-			from.add(Calendar.MONTH, -3);
-			break;
 		}
 		
 		List<HistoricalQuote> lists = stock.getHistory(from, to, Interval.DAILY);
 		for(HistoricalQuote list : lists) {
-			history.add(new Chart(list.getDate(), list.getClose()));
+			history.add(new StockHistory(list));
 		}
 		
 		return history;

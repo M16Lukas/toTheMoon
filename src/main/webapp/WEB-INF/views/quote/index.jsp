@@ -51,7 +51,7 @@
 				</div>
 				<div class="card-body">
 					<div class="row chart-area">
-						<div id="chartContainer" style="margin: 0 auto;"></div>
+						<div id="stockChartContainer" style="margin: 0 auto;"></div>
 					</div>
 				</div>
 			</div>

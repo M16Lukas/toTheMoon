@@ -17,7 +17,8 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 
 * [JQuery](https://jquery.com)
 * [JQuery UI](https://jqueryui.com)
-* [canvasJS - jQuery Charts & Graphs with Crosshair](https://canvasjs.com/jquery-charts/chart-cursor-crosshair)
+* [canvasJS - JavaScript StockChart with Area Chart](https://canvasjs.com/javascript-stockcharts/area-stockchart)
+* [canvasJS - JavaScript StockChart with Price & Volume](https://canvasjs.com/javascript-stockcharts/stockchart-price-volume)
 
 * [Bootstrap themes - SB Admin 2](https://startbootstrap.com/theme/sb-admin-2) 
 * [Bootstrap themes - Landing Page](https://startbootstrap.com/theme/landing-page)

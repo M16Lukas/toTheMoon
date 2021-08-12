@@ -10,11 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theMoon.moon.service.ChartService;
 import com.theMoon.moon.service.StockService;
-import com.theMoon.moon.vo.Chart;
+import com.theMoon.moon.vo.StockHistory;
 import com.theMoon.moon.vo.StockInfo;
 
 
@@ -34,10 +35,11 @@ public class ChartController {
 	 */
 	@ResponseBody
 	@GetMapping("/chartDate")
-	private List<Chart> getsummaryChart(@PathVariable String symbol){
-		List<Chart> chartLists = null;
+	private List<StockHistory> getsummaryChart(@PathVariable String symbol
+												,@RequestParam(name = "period" ,defaultValue = "3M") String period){
+		List<StockHistory> chartLists = null;
 		try {
-			chartLists= service.stockChart(symbol, null);
+			chartLists= service.stockChart(symbol, period);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

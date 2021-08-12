@@ -27,6 +27,7 @@
 	
 	    <!-- Custom styles for this template-->
 	    <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
+	    <link href="/resources/css/function-style.css" rel="stylesheet">
     </head>
     <body>
         <!-- Topbar -->
@@ -261,11 +262,18 @@
                 </div>
             </div>
         </footer>
+        
+        <!-- start scroll to page top -->
+		<button id="go-top" class="btn-circle btn-lg">
+			<i class="fas fa-chevron-up"></i>
+		</button>
+		<!-- end scroll to page top -->
+        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <!-- JS-->
 	    <script src="/resources/js/js-member.js"></script>
-	    <script src="/resources/js/js-stock.js"></script>
+	    <script src="/resources/js/js-function.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

@@ -44,13 +44,8 @@
 			<!-- chart -->
 			<input id="chartSymbol" type="hidden" value="${info.symbol }">
 			<div class="card shadow mb-4">
-				<div class="card-header">
-					<button id="3d" class="btn text-gray-900" type="button" onclick="">
-						3D
-					</button>
-				</div>
 				<div class="card-body">
-					<div class="row chart-area">
+					<div class="row chart-area" style="height: 500px;">
 						<div id="chartContainer" style="margin: 0 auto;"></div>
 					</div>
 				</div>
