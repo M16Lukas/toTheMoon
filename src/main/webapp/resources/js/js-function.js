@@ -2,6 +2,14 @@
  * 
  */
 
+var sendSymbol = () => {
+	var symbol = $("#symbol").val();
+		
+	if(window.event.keyCode == 13 && symbol != ""){
+		location.href = "/quote/" + symbol;	
+	}
+}
+
  
 var backToTop = () => {
 	// Scroll & button show / hide
@@ -24,3 +32,4 @@ var backToTop = () => {
 };
 
 backToTop();
+document.addEventListener('keydown', sendSymbol);
