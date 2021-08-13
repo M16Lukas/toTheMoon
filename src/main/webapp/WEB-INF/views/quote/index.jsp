@@ -42,82 +42,91 @@
 			<%@ include file="../includes/header-qoute.jsp" %>
 			<%@ include file="../includes/body-menubar.jsp" %>
 			
-
-			<!-- chart -->
-			<input id="chartSymbol" type="hidden" value="${info.symbol }">
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					Chart (3 Month)
-				</div>
-				<div class="card-body">
-					<div class="row chart-area">
-						<div id="stockChartContainer" style="margin: 0 auto;"></div>
+			<div class="row mb-4">
+				<div class="col-lg-7">
+					<!-- summary -->
+					<div class="card">
+						<div class="card-header py-2">
+							Summary
+						</div>
+						<div class="card-body">
+							<table class="table table-bordered" id="dataTable">
+								<tbody>
+									<tr>
+										<td>Open</td>
+										<td>${info.quote.open}</td>
+										<td>Previous Close</td>
+										<td>${info.quote.previousClose}</td>
+									</tr>
+									<tr>
+										<td>High</td>
+										<td>${info.quote.dayHigh}</td>
+										<td>Low</td>
+										<td>${info.quote.dayLow}</td>
+									</tr>
+									<tr>
+										<td>Ask</td>
+										<td>${info.quote.ask}</td>
+										<td>Bid</td>
+										<td>${info.quote.bid}</td>
+									</tr>
+									<tr>
+										<td>PE Ratio(P/E)</td>
+										<td>${info.stats.pe}</td>
+										<td>EPS</td>
+										<td>${info.stats.eps}</td>
+									</tr>
+									<tr>
+										<td>Market Cap</td>
+										<td>${info.stats.marketCap}</td>
+										<td>dividend</td>
+										<td>${info.dividend.annualYield}</td>
+									</tr>
+									<tr>
+										<td>52 Week High</td>
+										<td>${info.quote.yearHigh}</td>
+										<td>52 Week Low</td>
+										<td>${info.quote.yearLow}</td>
+									</tr>
+									<tr>
+										<td>Volume</td>
+										<td>${info.quote.volume}</td>
+										<td>Avg. Volume</td>
+										<td>${info.quote.avgVolume}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
+					<!-- end summary -->
+				</div>
+				<div class="col-lg-5">
+					<!-- chart -->
+					<input id="chartSymbol" type="hidden" value="${info.symbol }">
+					<div class="card">
+						<div class="card-header py-2">
+							Chart (3 Month)
+						</div>
+						<div class="card-body">
+							<!-- start Spinner -->
+							<div id="indexPageStockChartSpinner" class="d-flex justify-content-center">
+								<div class="spinner-grow text-primary m-5" role="status">
+									 <span class="visually-hidden">Loading...</span>
+								</div>
+							</div>
+							<!-- end spinner -->
+							<div class="row chart-area">
+								<div id="stockChartContainer" style="margin: 0 auto;"></div>
+							</div>
+						</div>
+					</div>
+					<!-- end chart -->
 				</div>
 			</div>
-			<!-- end chart -->
-
-
-			<!-- summary -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					Summary
-				</div>
-				<div class="card-body">
-					<table class="table table-bordered" id="dataTable" style="width: 100%;">
-						<tbody>
-							<tr>
-								<td>Open</td>
-								<td>${info.quote.open}</td>
-								<td>Previous Close</td>
-								<td>${info.quote.previousClose}</td>
-							</tr>
-							<tr>
-								<td>High</td>
-								<td>${info.quote.dayHigh}</td>
-								<td>Low</td>
-								<td>${info.quote.dayLow}</td>
-							</tr>
-							<tr>
-								<td>Ask</td>
-								<td>${info.quote.ask}</td>
-								<td>Bid</td>
-								<td>${info.quote.bid}</td>
-							</tr>
-							<tr>
-								<td>PE Ratio(P/E)</td>
-								<td>${info.stats.pe}</td>
-								<td>EPS</td>
-								<td>${info.stats.eps}</td>
-							</tr>
-							<tr>
-								<td>Market Cap</td>
-								<td>${info.stats.marketCap}</td>
-								<td>dividend</td>
-								<td>${info.dividend.annualYield}</td>
-							</tr>
-							<tr>
-								<td>52 Week High</td>
-								<td>${info.quote.yearHigh}</td>
-								<td>52 Week Low</td>
-								<td>${info.quote.yearLow}</td>
-							</tr>
-							<tr>
-								<td>Volume</td>
-								<td>${info.quote.volume}</td>
-								<td>Avg. Volume</td>
-								<td>${info.quote.avgVolume}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<!-- end summary -->
-
 
 			<!-- news -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
+			<div class="card mb-4">
+				<div class="card-header py-2">
 					News (Sources © Google News 2021)</div>
 				<div class="card-body">
 					<c:forEach var="newsList" items="${newsLists}">
