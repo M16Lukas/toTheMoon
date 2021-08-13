@@ -45,6 +45,14 @@
 			<input id="chartSymbol" type="hidden" value="${info.symbol }">
 			<div class="card shadow mb-4">
 				<div class="card-body">
+					<!-- start Spinner -->
+					<div id="chartPageStockChartSpinner" class="d-flex justify-content-center">
+						<div class="spinner-grow text-primary m-5" role="status">
+							 <span class="visually-hidden">Loading...</span>
+						</div>
+					</div>
+					<!-- end spinner -->
+					<!-- view Stock Chart -->
 					<div class="row chart-area" style="height: 500px;">
 						<div id="chartContainer" style="margin: 0 auto;"></div>
 					</div>

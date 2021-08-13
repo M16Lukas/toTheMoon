@@ -34,6 +34,7 @@ function indexPageChart(symbol) {
 			$.each(data, function() {
 				dataPoints.push({ x: new Date(this.date), y: this.close });
 			});
+			$("#indexPageStockChartSpinner").remove();
 			indexChart.render();
 		},
 		error: function(e) { console.log(e); }
@@ -50,12 +51,8 @@ var indexChart = new CanvasJS.StockChart(sctx, {
           enabled: true
         }
       },
-      axisY: {
-        titleFontSize: 14
-      },
       data: [{
         type: "area",
-        xValueFormatString: "MMM YYYY",
         yValueFormatString: "##0.00",
         dataPoints : dataPoints
       }]
@@ -80,6 +77,7 @@ function chartPageChart() {
 				dataPoints2.push({ x: new Date(this.date), y: this.volume });
 				dataPoints3.push({ x: new Date(this.date), y: this.close });
 			});
+			$("#chartPageStockChartSpinner").remove();
 			stockChart.render();
 		},
 		error: function(e) { console.log(e); }
