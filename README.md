@@ -15,11 +15,14 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 * [JAVA 8 (v 1.8)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 * [Oracle 11g](https://edelivery.oracle.com/osdc/faces/SoftwareDelivery)
 
+<!-- JavaScript, JQuery -->
 * [JQuery](https://jquery.com)
 * [JQuery UI](https://jqueryui.com)
+* [toastr](https://github.com/CodeSeven/toastr)
 * [canvasJS - JavaScript StockChart with Area Chart](https://canvasjs.com/javascript-stockcharts/area-stockchart)
 * [canvasJS - JavaScript StockChart with Price & Volume](https://canvasjs.com/javascript-stockcharts/stockchart-price-volume)
 
+<!-- CSS -->
 * [Bootstrap themes - SB Admin 2](https://startbootstrap.com/theme/sb-admin-2) 
 * [Bootstrap themes - Landing Page](https://startbootstrap.com/theme/landing-page)
 

@@ -5,65 +5,155 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
 function CheckEmail(str){
 	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     return reg_email.test(str);
 }       
 
+function toastWarning(message){
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-bottom-left",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
+    toastr.warning("please input " + message, {timeOut: 5000});
+}
+
+function toastError(){
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-top-full-width",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
+	toastr.error("Sorry, we don't recognize this account.");
+}
+
 function register(){
 	var form = document.getElementById("registerAccount");
 
 	if(form.firstName.value == null || form.firstName.value == "" || form.firstName.value == 'undefined'){
-		alert("This is required.");
 		form.firstName.focus();
+		toastWarning("first Name");
 		return false;
 	}
 	
 	if(form.lastName.value == null || form.lastName.value == "" || form.lastName.value == 'undefined'){
-		alert("This is required.");
 		form.lastName.focus();
+		toastWarning("last Name");
 		return false;
 	}
 	
 	if(form.inputEmail.value == null || form.inputEmail.value == "" || form.inputEmail.value == 'undefined'){
-		alert("This is required.");
 		form.inputEmail.focus();
+		toastWarning("email address");
 		return false;
 	} else if(!CheckEmail(form.inputEmail.value)){
-		alert("This is required.");
 		form.inputEmail.focus();
+		toastWarning("correct email address");
 		return false;			
 	}
 	
 	if(form.inputPassword.value == null || form.inputPassword.value == "" || form.inputPassword.value == 'undefined'){
-		alert("This is required.");
 		form.inputPassword.focus();
+		toastWarning("password");
 		return false;
 	}
 
 	if(form.inputPassword.value != form.repeatPassword.value){
-		alert("This is required.");
 		form.repeatPassword.focus();
+		toastWarning("correct password");
 		return false;
 	}
 
-	form.submit();
+	
+	var formData = $('#registerAccount').serialize();
+	
+	$.ajax({
+		url : "/member/register",
+		type: "post",
+		cache : false,
+		data : formData,
+		success : function(data) {
+			if(data) {
+				window.location.replace("/member/login");
+			} else {
+				$("#registerAccount").each(function(){
+					this.reset();
+				});
+			}
+		},
+		error : function(e){
+			console.log(e);
+		}
+	});
 }
 
 function login(){
-	var inputEmail = document.getElementById("inputEmail");
-	var inputPassword = document.getElementById("inputPassword");
 	
-	if(inputEmail.value == null || inputEmail.value == "" || inputEmail.value == 'undefined'){
+	var form = document.getElementById("loginForm");
+	
+	if(form.inputEmail.value == null || form.inputEmail.value == "" || form.inputEmail.value == 'undefined'){
 		inputEmail.focus();
+		toastWarning("email address");
 		return false;
+	} else if(!CheckEmail(form.inputEmail.value)){
+		form.inputEmail.focus();
+		toastWarning("correct email address");
+		return false;			
 	}
 	
-	if(inputPassword.value == null || inputPassword.value == "" || inputPassword.value == 'undefined'){
+	if(form.inputPassword.value == null || form.inputPassword.value == "" || form.inputPassword.value == 'undefined'){
 		inputPassword.focus();
+		toastWarning("password");
 		return false;
 	}
 	
-	return true;
+	var formData = $('#loginForm').serialize();
+	
+	$.ajax({
+		url : "/member/login",
+		type: "post",
+		cache : false,
+		data : formData,
+		success : function(data) {
+			console.log(document.referrer);
+			if(data) {
+				window.location.replace(document.referrer);
+			} else {
+				$("#loginForm").each(function(){
+					this.reset();
+				});
+				toastError();
+			}
+		},
+		error : function(e){
+			console.log(e);
+		}
+	});
 }
 

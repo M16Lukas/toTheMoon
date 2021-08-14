@@ -23,6 +23,8 @@
     <!-- Custom styles for this template-->
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
 
+	<!-- toastr style -->
+	<link href="/resources/css/toastr.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-primary">
@@ -44,7 +46,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="/member/login" method="post" onsubmit="return login();">
+                                    <form class="user" id="loginForm" id="loginForm" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 name="email" id="inputEmail" aria-describedby="emailHelp"
@@ -61,7 +63,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
+                                        <input type="button" class="btn btn-primary btn-user btn-block" value="Login" onclick="login(); return false">
                                         <hr>
                                         <a href="/" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -89,16 +91,19 @@
 
     </div>
 
-	<!-- Core theme JS-->
-    <script src="/resources/js/js-member.js"></script>
-	
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
+    
+    <!-- JS toast -->
+	<script src="/resources/js/toastr.min.js"></script>
+	
+	<!-- Core theme JS-->
+    <script src="/resources/js/js-member.js"></script>
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+    
     <!-- Custom scripts for all pages-->
     <script src="/resources/pages/js/sb-admin-2.min.js"></script>
 

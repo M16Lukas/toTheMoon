@@ -1,7 +1,6 @@
 package com.theMoon.moon.service;
 
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ public class MemberService {
 	private HttpSession session;
 	
 	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
 	private MemberDAO dao;
 	
 	/**
@@ -28,16 +24,8 @@ public class MemberService {
 	 * @param member
 	 * @return
 	 */
-	public String registerMember(Member member) {
-		String path = "";
-		
-		if (dao.registerMember(member) > 0) {
-			path = "redirect:/member/login";
-		} else {
-			path = "redirect:" + request.getRequestURI();
-		}
-		
-		return path;
+	public boolean registerMember(Member member) {
+		return dao.registerMember(member) > 0 ? true : false;
 	}
 	
 	/**
@@ -46,23 +34,19 @@ public class MemberService {
 	 * @param member
 	 * @return
 	 */
-	public String login(String referer, Member member) {
-		String path = "";
+	public boolean login(Member member) {
+		boolean isValid = false;
 		Member loginUser = dao.login(member);
-				
-		if (referer == "") { return "redirect:/"; }
 		
-		if (loginUser == null) {
-			path = "redirect:/member/login";
-		} else {
+		if (loginUser != null) {
 			session.setAttribute("loginFirstName", loginUser.getFirstName());
 			session.setAttribute("loginLastName", loginUser.getLastName());
 			session.setAttribute("loginEmail", loginUser.getEmail());
 			
-			path = "redirect:" + referer;
+			isValid = true;
 		}
 		
-		return path;
+		return isValid;
 	}
 	
 	

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theMoon.moon.service.MemberService;
 import com.theMoon.moon.vo.Member;
@@ -19,24 +20,36 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	private final String origin = "http://localhost:8888";
-	String referer = "";
+	/**
+	 * 주소입력창에 링크를 입력하여 접근할 경우 main page호 return
+	 * 
+	 * @param request
+	 * @return
+	 */
 	
 	@GetMapping("/login")
 	private String loginForm(HttpServletRequest request) {
-		referer = (String)request.getHeader("REFERER").replace(origin,"");		
-		return "member/login";
+		if (request.getHeader("REFERER") == null) {
+			return "redirect:/";
+		} else {
+			return "member/login";
+		}
 	}
 	
+	@ResponseBody
 	@PostMapping("/login")
-	private String login(Member member) {
-		return service.login(referer, member);
+	private boolean login(Member member) {
+		return service.login(member);
 	}
 	
 	@GetMapping("/logout")
 	private String logout(HttpServletRequest request) {
-		referer = (String)request.getHeader("REFERER").replace(origin,"");
-		return service.logout(referer);
+		String referer = request.getHeader("REFERER");
+		if (referer == null) {
+			return "redirect:/";
+		} else {
+			return service.logout(referer);
+		}		
 	}
 	
 	@GetMapping("/register")
@@ -44,8 +57,9 @@ public class MemberController {
 		return "member/register";
 	}
 	
+	@ResponseBody
 	@PostMapping("/register")
-	private String registerMember(Member member) {
+	private boolean registerMember(Member member) {
 		return service.registerMember(member);
 	}
 	

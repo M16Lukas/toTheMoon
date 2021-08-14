@@ -22,7 +22,9 @@
 
     <!-- Custom styles for this template-->
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
-
+    
+    <!-- toastr style -->
+	<link href="/resources/css/toastr.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-primary">
@@ -39,7 +41,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" id="registerAccount" action="/member/register" method="post">
+                            <form class="user" id="registerAccount" name="registerAccount" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="firstName" name="firstName"
@@ -64,7 +66,9 @@
                                             id="repeatPassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <input type="button" class="btn btn-primary btn-user btn-block" value="Register Account" onclick="register();">
+                                <button type="button" class="btn btn-primary btn-user btn-block" onclick="register(); return false">
+                                	Register Account
+                                </button>
                                 <hr>
                                 <a href="/" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -85,12 +89,14 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- Bootstrap core JavaScript-->
+	<!-- Bootstrap core JavaScript-->
     <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- JS toast -->
+	<script src="/resources/js/toastr.min.js"></script>
 
 	<!-- Core theme JS-->
     <script src="/resources/js/js-member.js"></script>
