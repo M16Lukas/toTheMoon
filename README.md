@@ -64,7 +64,8 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 
 <!-- Project Flow Chart -->
 ### Project Flow Chart
-![image](https://user-images.githubusercontent.com/46748131/129478081-499296ae-c99b-4f1b-b06b-ffb1f21a016e.png)
+![image](https://user-images.githubusercontent.com/46748131/129478116-88dad543-35ad-435e-a679-9a15f43e0aac.jpg)
+
 
 
 <!-- USAGE -->
