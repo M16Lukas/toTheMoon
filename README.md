@@ -1,5 +1,29 @@
 # 🌕 toTheMoon(開発中)
  
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#api">API</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#summary-page">Summary Page</a></li>
+        <li><a href="#chart-page">Chart Page</a></li>
+        <li><a href="#conversations-page">Conversations Page</a></li>
+        <li><a href="#historical-data-page">Historical Data Page</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+ 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -46,7 +70,7 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 
 해당 기업의 기본적인 주식 정보와 차트, 관련 뉴스를 확인하는 페이지입니다.
 
-### Chart Page(ℹ️ 開発中)
+### Chart Page
 
 주식의 기간별 차트를 확인하는 페이지 입니다.
 
