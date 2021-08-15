@@ -9,6 +9,7 @@
       <ul>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#api">API</a></li>
+        <li><a href="#project-flow-chart">Project Flow Chart</a></li>
       </ul>
     </li>
     <li>
@@ -60,6 +61,11 @@ Yahoo Finance APIを活用したアメリカ株検索＆コミュニティサイ
 **Site**
 - [GitHub](https://github.com/sstrickx/yahoofinance-api)
 - [Website](https://financequotes-api.com/)
+
+<!-- Project Flow Chart -->
+### Project Flow Chart
+![image](https://user-images.githubusercontent.com/46748131/129478081-499296ae-c99b-4f1b-b06b-ffb1f21a016e.png)
+
 
 <!-- USAGE -->
 ## Usage
