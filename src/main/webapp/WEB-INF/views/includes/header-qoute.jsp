@@ -7,30 +7,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="/resources/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+$(function(){
+	var dailyReturn = $("#dailyReturn").val();
+	if (dailyReturn > 0) {
+		$("#stockPrice").append("<span>+${info.dailyReturn } (+${info.fluctuationRate }%)</span>")
+						.css("color", "#66CC00");
+	} else {
+		$("#stockPrice").append("<span>${info.dailyReturn } (${info.fluctuationRate }%)</span>")
+						.css("color", "#E85050");		
+	}
+});
+</script>
 </head>
 <body>	
 	<!-- start quote-header-info -->
+	<input type="hidden" id="dailyReturn" value="${info.dailyReturn }">
 	<div class="col font-weight-bold text-gray-100 bg-gradient-primary">
-			<span id="symbol" class="h3">${info.symbol }</span>
-			<br>
-			${info.name}
-			<br>
-			${info.exchange}
-			<br>
-			<c:choose>
-				<c:when test="${info.dailyReturn gt 0}">
-			    	<div class="text-lg" style="color: #66CC00;">
-			    		<span class="h1 font-weight-bold">${info.quote.price}</span>
-			    		<span>+${info.dailyReturn } (+${info.fluctuationRate }%)</span>
-			    	</div>
-			 	</c:when>
-			    <c:otherwise>
-			    	<div class="text-lg" style="color: #E85050;">
-			    		<span class="h1 font-weight-bold">${info.quote.price}</span>
-			    		<span>${info.dailyReturn } (${info.fluctuationRate }%)</span>
-			    	</div>
-			   	</c:otherwise>
-			</c:choose>
+		<span id="symbol" class="h3">${info.symbol }</span>
+		<br>
+		${info.name}
+		<br>
+		${info.exchange}
+		<br>
+		<div class="text-lg" id="stockPrice">
+	  		<span class="h1 font-weight-bold">${info.quote.price}</span>
+		</div>
 	</div>
 	<!-- end quote-header-info -->
 		

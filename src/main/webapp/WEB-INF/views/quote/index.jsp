@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -78,7 +79,7 @@
 									</tr>
 									<tr>
 										<td>Market Cap</td>
-										<td>${info.stats.marketCap}</td>
+										<td><fmt:formatNumber value="${info.stats.marketCap}" pattern="#,###,###"/></td>
 										<td>dividend</td>
 										<td>${info.dividend.annualYield}</td>
 									</tr>
@@ -90,9 +91,9 @@
 									</tr>
 									<tr>
 										<td>Volume</td>
-										<td>${info.quote.volume}</td>
+										<td><fmt:formatNumber value="${info.quote.volume}" pattern="#,###,###"/></td>
 										<td>Avg. Volume</td>
-										<td>${info.quote.avgVolume}</td>
+										<td><fmt:formatNumber value="${info.quote.avgVolume}" pattern="#,###,###"/></td>
 									</tr>
 								</tbody>
 							</table>

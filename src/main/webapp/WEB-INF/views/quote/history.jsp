@@ -152,7 +152,7 @@
 				                     				<td>${list.low }</td>
 				                     				<td>${list.close }</td>
 				                     				<td>${list.adjClose }</td>
-				                     				<td>${list.volume }</td>
+				                     				<td><fmt:formatNumber value="${list.volume }" pattern="#,###,###"/></td>
 				                     			</tr>
 				                     		</c:forEach>
 				                     	</tbody>
