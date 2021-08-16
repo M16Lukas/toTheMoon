@@ -48,7 +48,7 @@ function contentUp(num){
 			$(id).text(data);
 		},
 		error : function(e){
-			alert("please sign up");
+			console.log(e);
 		}
 	});
 }
@@ -69,7 +69,7 @@ function contentDown(num){
 			$(id).text(data);
 		},
 		error : function(e){
-			alert("please sign up");
+			console.log(e);
 		}
 	});
 }
@@ -82,14 +82,12 @@ function viewReply(num){
 		type : "get",
 		dataType : "json",
 		success : function(data){
-
 			var context = "";
-			
-			$.each(data, function(i){
+			$.each(data, function(){
 				context += "<div class='card'>";
 				context += "<div class='card-header d-flex bd-highlight flex-row align-items-center'>";
 				context += "<span class='h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight'>" + this.firstName + "&nbsp;" + this.lastName + "</span>";
-				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";
+				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";				
 				context += "</div>";
 				context += "<div class='card-body'>"
 				context += "<span>" + this.reply + "</span>";
@@ -105,6 +103,9 @@ function viewReply(num){
 	
 }
 
+/*
+ * reply 등록
+ */
 function clkInsertReplyBtn(num){
 	var reply = $("#insertReply" + num).serialize();
 		
@@ -113,7 +114,7 @@ function clkInsertReplyBtn(num){
 		type : "post",
 		data : reply,
 		success : function(data){
-			$("#insertReply" + num + " .input-group textarea").val("");	// textarea reset
+			$("#insertReply" + num)[0].reset();	// textarea reset
 			viewReply(num);
 		},
 		error : function(e){ console.log(e); }
