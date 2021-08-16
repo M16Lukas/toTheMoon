@@ -32,7 +32,7 @@ function toastWarning(message){
     toastr.warning("please input " + message, {timeOut: 5000});
 }
 
-function toastError(){
+function toastError(message){
 	toastr.options = {
 		"closeButton": false,
 		"debug": false,
@@ -50,7 +50,7 @@ function toastError(){
 		"showMethod": "fadeIn",
 		"hideMethod": "fadeOut"
 	}
-	toastr.error("Sorry, we don't recognize this account.");
+	toastr.error(message);
 }
 
 function register(){
@@ -105,6 +105,7 @@ function register(){
 				$("#registerAccount").each(function(){
 					this.reset();
 				});
+				toastError("Email is Already Registered");
 			}
 		},
 		error : function(e){
@@ -148,7 +149,7 @@ function login(){
 				$("#loginForm").each(function(){
 					this.reset();
 				});
-				toastError();
+				toastError("Sorry, we don't recognize this account.");
 			}
 		},
 		error : function(e){
