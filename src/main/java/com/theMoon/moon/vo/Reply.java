@@ -17,14 +17,14 @@ public class Reply {
 	
 	public Reply() {}
 	
-	// 생성자 : 대댓글 입력하기
+	// 생성자 : reply 입력하기
 	public Reply(int content_nm, String reply, String replyer) {
 		this.content_nm = content_nm;
 		this.reply = reply;
 		this.replyer = replyer;
 	}
 	
-	// 생성자 : 대댓글 불러오기
+	// 생성자 : reply 불러오기
 	public Reply(int reply_nm, String firstName, String lastName, String reply, String replyer, String reply_indate) {
 		this.reply_nm = reply_nm;
 		this.firstName = firstName;
@@ -34,4 +34,9 @@ public class Reply {
 		this.reply_indate = reply_indate;
 	}
 	
+	// 생성자 : reply 삭제
+	public Reply(int reply_nm, String replyer) {
+		this.reply_nm = reply_nm;
+		this.replyer = replyer;
+	}
 }

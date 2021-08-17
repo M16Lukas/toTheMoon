@@ -43,27 +43,23 @@ order by
 <!-- 대댓글 수정 -->
 <update id="modifyReply" parameterType="reply">
 update
-	community
+	reply_tb
 set
-	content = #{content}
+	reply = #{reply}
 where
-	symbol = #{symbol}
+	reply_nm = #{reply_nm}
 and
-	email = #{email}
-and
-	content_nm = #{content_nm}
+	replyer = #{replyer}
 </update>
 
 <!-- 대댓글 삭제 -->
 <delete id="removeReply" parameterType="reply">
 delete from
-	community
+	reply_tb
 where
-	content_nm = #{content_nm}
+	reply_nm = #{reply_nm}
 and
-	symbol = #{symbol}
-and
-	email = #{email}
+	replyer = #{replyer}
 </delete>
 
 </mapper>

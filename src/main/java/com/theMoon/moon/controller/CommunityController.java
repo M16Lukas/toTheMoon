@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theMoon.moon.service.CommunityService;
-import com.theMoon.moon.service.ReplyService;
 import com.theMoon.moon.service.StockService;
 import com.theMoon.moon.vo.Community;
-import com.theMoon.moon.vo.Reply;
 import com.theMoon.moon.vo.StockInfo;
 
 @Controller
@@ -27,9 +25,6 @@ public class CommunityController {
 	
 	@Autowired
 	private CommunityService commuService;
-	
-	@Autowired
-	private ReplyService replyService;
 	
 	/**
 	 * 
@@ -93,26 +88,6 @@ public class CommunityController {
 	@PostMapping("/down")
 	private String contentDown(@PathVariable String symbol, int content_nm, int downCnt){
 		return Integer.toString(commuService.contentDown(symbol, content_nm, downCnt));
-	}
-	
-	
-	/**
-	 * 
-	 * Community(reply : 대댓글)
-	 * 
-	 */
-	// reply 출력
-	@ResponseBody
-	@GetMapping("/{content_nm}")
-	private ArrayList<Reply> getReply(@PathVariable String symbol, @PathVariable int content_nm) {
-		return replyService.getReply(content_nm);
-	}
-	
-	// reply 등록
-	@ResponseBody
-	@PostMapping("/{content_nm}")
-	private boolean insertReply(@PathVariable String symbol, @PathVariable int content_nm, String reply) {
-		return replyService.insertReply(content_nm, reply);
 	}
 	
 }

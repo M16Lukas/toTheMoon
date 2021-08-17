@@ -8,25 +8,42 @@
 
 // textarea size control
 
+/*
+ * textarea sizing
+ */
 function resize(obj) {
   obj.style.height = "1px";
   obj.style.height = (12+obj.scrollHeight)+"px";
 }
 
-function contentModefy(num){
+
+/*
+ *
+ * 댓글 관련 method
+ *
+ */
+
+function modifyForm(id){
+	var form = '';
+		form += '<div class="input-group">';
+		form += '<textarea class="form-control bg-light border-0 small" name="newContent" onkeyup="resize(this)" maxlength="8000" style="height: 70px;">';
+		form += $.trim($(id).text()) ;
+		form += '</textarea>';
+		form += '<div class="input-group-append">';
+		form += '<button class="btn btn-info" type="submit">Modify</button>';
+		form += '</div>';
+		form += '</div>';
+		
+	return form;
+}
+
+function contentModefyForm(num){
 	
 	var id = "#" + num + "content";
 	
 	var content = "";
 		content += '<form action="community/modify?nm=' + num +'" method="post">';
-		content += '<div class="input-group">';
-		content += '<textarea class="form-control bg-light border-0 small" name="newContent" onkeyup="resize(this)" maxlength="8000" style="height: 70px;">'
-					+ $.trim($(id).text()) 
-					+ '</textarea>';
-		content += '<div class="input-group-append">';
-		content += '<button class="btn btn-info" type="submit">Modify</button>';
-		content += '</div>';
-		content += '</div>';
+		content += modifyForm(id);
 		content += '</form>';
 
 	$(id).html(content);
@@ -74,22 +91,41 @@ function contentDown(num){
 	});
 }
 
+
+/*
+ *
+ * 대댓글 관련 method
+ *
+ */
 function viewReply(num){
 	var re = "#reply" + num + " .reply-card";
-
+	var email = $("#loginEmail").val();
+	
 	$.ajax({
-		url : "community/"+ num,
+		url : "reply/"+ num,
 		type : "get",
-		dataType : "json",
 		success : function(data){
 			var context = "";
+			
 			$.each(data, function(){
 				context += "<div class='card'>";
 				context += "<div class='card-header d-flex bd-highlight flex-row align-items-center'>";
 				context += "<span class='h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight'>" + this.firstName + "&nbsp;" + this.lastName + "</span>";
-				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";				
+				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";
+				
+				if(email == this.replyer){
+					context += '<div class="dropdown no-arrow bd-highlight">';
+					context += '<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+					context += '<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a>';
+					context += '<ul class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">';
+					context += '<li><a class="dropdown-item" href="javascript:replymodifyForm(' + num + ',' + this.reply_nm + ');">modify</a></li>';
+					context += '<li><a class="dropdown-item" href="javascript:replyDelete(' + num + ',' + this.reply_nm + ');">remove</a></li>';
+					context += '</ul>';
+					context += '</div>';
+				}
+								
 				context += "</div>";
-				context += "<div class='card-body'>"
+				context += "<div id='" + this.reply_nm + "reply' class='card-body'>"
 				context += "<span>" + this.reply + "</span>";
 				context += "</div>";
 				context += "</div>";
@@ -106,11 +142,12 @@ function viewReply(num){
 /*
  * reply 등록
  */
+
 function clkInsertReplyBtn(num){
 	var reply = $("#insertReply" + num).serialize();
 		
 	$.ajax({
-		url : "community/"+ num,
+		url : "reply/"+ num,
 		type : "post",
 		data : reply,
 		success : function(data){
@@ -118,5 +155,47 @@ function clkInsertReplyBtn(num){
 			viewReply(num);
 		},
 		error : function(e){ console.log(e); }
+	});
+}
+
+// reply 수정
+function replymodifyForm(num, reply_nm){
+	var id = "#" + reply_nm + "reply";
+	
+	var content = "";
+		content += '<form id="replyModifyForm" method="post">';
+		content += modifyForm(id);
+		content += '</form>';
+
+	$(id).html(content);
+	
+	$("#replyModifyForm").on("submit", function(e){
+		e.preventDefault();
+		
+		var formData = $(this).serialize();
+				
+		$.ajax({
+			url: "reply/"+ reply_nm,
+			type: "patch",
+			data: $(this).serialize(),
+			success: function(data){
+				viewReply(num);
+			},
+			error: function(e) { consoel.log(e); }
+		});
+		
+	});
+}
+
+
+// reply 삭제
+function replyDelete(num, reply_nm){
+	$.ajax({
+		url: "reply/"+ reply_nm,
+		type: "delete",
+		success: function(data){
+			viewReply(num);
+		},
+		error: function(e){ consoel.log(e); }
 	});
 }

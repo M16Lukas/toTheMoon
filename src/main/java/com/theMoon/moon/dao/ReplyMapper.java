@@ -12,4 +12,7 @@ public interface ReplyMapper {
 	
 	public ArrayList<HashMap<String, Object>> getReply(int content_nm);
 	
+	public int modifyReply(Reply reply);
+
+	public int removeReply(Reply reply);
 }

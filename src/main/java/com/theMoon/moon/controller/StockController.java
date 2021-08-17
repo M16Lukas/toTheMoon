@@ -2,7 +2,6 @@ package com.theMoon.moon.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +22,6 @@ public class StockController {
 
 	@Autowired
 	private StockService service;
-	
-	@RequestMapping("/market")
-	private String index(Model model) {
-		Map<String, StockInfo> stocks = null;
-		
-		try {
-			stocks = service.index();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "redirect:/";
-		}
-		
-		model.addAttribute("stocks", stocks);
-		return "/quote/market";
-	}
 	
 	@GetMapping("/{symbol}")
 	private String searchSymbol(@PathVariable String symbol, Model model){

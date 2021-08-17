@@ -45,12 +45,27 @@ public class ReplyService {
 									(String)map.get("FIRSTNAME"), 
 									(String)map.get("LASTNAME"),
 									(String)map.get("REPLY"), 
-									(String)map.get("REPLYER"), 
+									(String)map.get("REPLYER"),
 									(String)map.get("REPLY_INDATE"))
 				);
 			}
 			
 			return lists;
 		}
+	}
+	
+	public int modifyReply(int reply_nm, String reply) {
+		String replyer = (String) session.getAttribute("loginEmail");
+		Reply modify = new Reply(reply_nm, replyer);
+		modify.setReply(reply);
+		
+		return dao.modifyReply(modify);
+	}
+	
+	public int deleteReply(int reply_nm) {
+		String replyer = (String) session.getAttribute("loginEmail");
+		Reply reply = new Reply(reply_nm, replyer);
+		
+		return dao.removeReply(reply);
 	}
 }

@@ -21,7 +21,7 @@ $(function(){
 });
 </script>
 </head>
-<body>	
+<body>
 	<!-- start quote-header-info -->
 	<input type="hidden" id="dailyReturn" value="${info.dailyReturn }">
 	<div class="col font-weight-bold text-gray-100 bg-gradient-primary">

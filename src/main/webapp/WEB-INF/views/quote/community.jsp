@@ -79,7 +79,7 @@
 						<div class="card mb-2">
 							<!-- Card Header - Dropdown -->
 							<div class="card-header d-flex bd-highlight flex-row align-items-center">
-								<span class="h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight">${list.firstName }&nbsp;${list.lastName}&nbsp;</span>
+								<span class="h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight">${list.firstName }&nbsp;${list.lastName}</span>
 								<span class="bd-highlight">${list.content_indate }</span>
 
 								<c:if test="${sessionScope.loginEmail eq list.email }">
@@ -89,7 +89,7 @@
 										</a>
 										<ul class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 											<li>
-												<a class="dropdown-item" href="javascript:contentModefy(${list.content_nm });">modify</a>
+												<a class="dropdown-item" href="javascript:contentModefyForm(${list.content_nm });">modify</a>
 											</li>
 											<li>
 												<a class="dropdown-item" href="community/remove?nm=${list.content_nm }">remove</a>
@@ -105,16 +105,16 @@
 								</div>
 								<div class="row">
 									<div class="col">
-										<button id="${list.content_nm }reply" class="btn text-gray-900" type="button"
+										<button class="btn text-gray-900" type="button"
 											data-bs-toggle="collapse" data-bs-target="#reply${list.content_nm }" aria-expanded="false" aria-controls="reply${list.content_nm }"
 											onclick="viewReply(${list.content_nm });">
 											<span>reply(${list.reply_cnt })</span>
 										</button>
-										<button id="${list.content_nm }contentUp" class="btn text-gray-900" onclick="contentUp(${list.content_nm });">
+										<button class="btn text-gray-900" onclick="contentUp(${list.content_nm });">
 											<i class="far fa-thumbs-up"></i> 
 											<span id="${list.content_nm }upCnt">${list.content_up }</span>
 										</button>
-										<button id="${list.content_nm }contentDown" class="btn text-gray-900" onclick="contentDown(${list.content_nm });">
+										<button class="btn text-gray-900" onclick="contentDown(${list.content_nm });">
 											<i class="far fa-thumbs-down"></i> 
 											<span id="${list.content_nm }downCnt">${list.content_down }</span>
 										</button>
@@ -133,9 +133,8 @@
 										<c:otherwise>
 											<form id="insertReply${list.content_nm }" method="post">
 												<div class="input-group">
-													<textarea class="form-control bg-light border-0 small"
-														name="reply" onkeyup="resize(this)" maxlength="2000"
-														required="required" style="height: 50px;"></textarea>
+													<textarea class="form-control bg-light border-0 small" name="reply" onkeyup="resize(this)" maxlength="2000"
+															  required="required" style="height: 50px;"></textarea>
 													<div class="input-group-append">
 														<button class="btn btn-info" type="button" onclick="clkInsertReplyBtn(${list.content_nm });">
 															Register
@@ -148,6 +147,7 @@
 									</c:choose>
 									<!-- end register reply -->
 									<!-- start reply list -->
+									<input type="hidden" id="loginEmail" value="${sessionScope.loginEmail }">
 									<div class="reply-card"></div>
 									<!-- end reply list -->
 								</div>

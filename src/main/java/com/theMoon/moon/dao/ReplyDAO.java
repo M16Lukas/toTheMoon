@@ -40,5 +40,31 @@ public class ReplyDAO {
 		
 		return lists;
 	}
+	
+	public int modifyReply(Reply reply) {
+		int cnt = -1;
+		
+		try {
+			ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+			cnt = mapper.modifyReply(reply);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
+	public int removeReply(Reply reply) {
+		int cnt = -1;
+		
+		try {
+			ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+			cnt = mapper.removeReply(reply);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
 
 }
