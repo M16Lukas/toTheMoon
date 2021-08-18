@@ -173,9 +173,7 @@ function replymodifyForm(num, reply_nm){
 		e.preventDefault();
 		
 		var newReply = $(this).serialize();
-		console.log(newReply);
 		newReply = newReply.substring(newReply.indexOf("=") + 1);
-		console.log(newReply);
 			
 		$.ajax({
 			url: "reply/"+ reply_nm,
