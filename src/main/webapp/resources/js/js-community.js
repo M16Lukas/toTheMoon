@@ -172,12 +172,15 @@ function replymodifyForm(num, reply_nm){
 	$("#replyModifyForm").on("submit", function(e){
 		e.preventDefault();
 		
-		var formData = $(this).serialize();
-				
+		var newReply = $(this).serialize();
+		console.log(newReply);
+		newReply = newReply.substring(newReply.indexOf("=") + 1);
+		console.log(newReply);
+			
 		$.ajax({
 			url: "reply/"+ reply_nm,
 			type: "patch",
-			data: $(this).serialize(),
+			data: newReply,
 			success: function(data){
 				viewReply(num);
 			},
