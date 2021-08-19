@@ -50,14 +50,10 @@ tothemoon is a stock information site created by referring to yahoo finance and 
 
 
 ### API
-**Status:** Required
+Status | Name | Site 
+---- | ---- | ---- 
+Required | Yahoo Finance API - Finance Quotes API for Yahoo Finance (Java) | [GitHub](https://github.com/sstrickx/yahoofinance-api) /  [Website](https://financequotes-api.com/)
 
-**Name**
-- Yahoo Finance API - Finance Quotes API for Yahoo Finance (Java)
-
-**Site**
-- [GitHub](https://github.com/sstrickx/yahoofinance-api)
-- [Website](https://financequotes-api.com/)
 
 <!-- Project Flow Chart -->
 ### Project Flow Chart
