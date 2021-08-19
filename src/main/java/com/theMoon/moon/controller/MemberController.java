@@ -1,5 +1,8 @@
 package com.theMoon.moon.controller;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,4 +76,11 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
+	
+	@ResponseBody
+	@PostMapping("/google/auth")
+	private boolean googleTokenSignIn(String idtoken) throws GeneralSecurityException, IOException{
+		return service.googleTokenSignIn(idtoken);
+	}
+
 }

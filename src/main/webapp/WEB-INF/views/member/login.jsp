@@ -25,9 +25,12 @@
 
 	<!-- toastr style -->
 	<link href="/resources/css/toastr.min.css" rel="stylesheet">
+	
+	<!-- google OAuth2.0 -->
+	<meta name ="google-signin-client_id" content="891963316360-vkp34ieqktbbhba0le9i4unkggkv50nn.apps.googleusercontent.com">
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
     <div class="container">
 
@@ -65,12 +68,9 @@
                                         </div>
                                         <input type="button" class="btn btn-primary btn-user btn-block" value="Login" onclick="login(); return false">
                                         <hr>
-                                        <a href="/" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="/" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        <!-- Sign in with Google -->
+                                        <div id="googleSignInBtn" class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
+                                        <a href="#" onclick="logout();">Sign out</a>
                                   	</form>
                                     <hr>
                                     <div class="text-center">
@@ -96,6 +96,9 @@
     
     <!-- JS toast -->
 	<script src="/resources/js/toastr.min.js"></script>
+	
+	<!-- Google Login -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	
 	<!-- Core theme JS-->
     <script src="/resources/js/js-member.js"></script>

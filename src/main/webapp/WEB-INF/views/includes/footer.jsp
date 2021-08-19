@@ -12,6 +12,9 @@
     <!-- Jquery plug in -->
     <script src="/resources/js/jquery-ui.js"></script>
     
+    <!-- Google Login -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+    
     <!-- JS -->
 	<script src="/resources/js/js-function.js"></script>
     <script src="/resources/js/js-member.js"></script>

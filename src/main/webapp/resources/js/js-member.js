@@ -142,7 +142,6 @@ function login(){
 		cache : false,
 		data : formData,
 		success : function(data) {
-			console.log(document.referrer);
 			if(data) {
 				window.location.replace(document.referrer);
 			} else {
@@ -158,3 +157,39 @@ function login(){
 	});
 }
 
+function logout(){
+				
+	if (gapi.auth2 != undefined) {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function () {
+            auth2.disconnect();
+		});
+	}
+	location.href = "/member/logout";
+}
+
+/*
+ *
+ * Sign in with Google 
+ * 
+ */
+ 
+function onSignIn(googleUser){
+	var id_token = googleUser.getAuthResponse().id_token;
+		
+	$.ajax({
+		url: '/member/google/auth',
+		type: 'POST',
+		data: 'idtoken=' + id_token,
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		},
+		success: function(data) {
+			if (data) {
+				window.location.replace(document.referrer);
+			}//end if
+		},
+		error: function(e) { console.log(e); }
+	});//ajax
+
+}

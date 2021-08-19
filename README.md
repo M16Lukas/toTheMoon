@@ -46,6 +46,7 @@ tothemoon is a stock information clone website created by referring to yahoo fin
 Status | Name | Site 
 ---- | ---- | ---- 
 Required | Yahoo Finance API - Finance Quotes API for Yahoo Finance (Java) | [GitHub](https://github.com/sstrickx/yahoofinance-api) /  [Website](https://financequotes-api.com/)
+Required | Google API Client Library for Java | [Website](https://developers.google.com/api-client-library/java)
 
 
 <!-- Project Flow Chart -->
@@ -85,6 +86,7 @@ Project Link : [https://github.com/M16Lukas/toTheMoon](https://github.com/M16Luk
 
 <!-- Acknowledgements -->
 ## Acknowledgements
+* [Google Sign-In for Websites](https://developers.google.com/identity/sign-in/web/sign-in)
 * [JQuery UI](https://jqueryui.com)
 * [toastr](https://github.com/CodeSeven/toastr)
 * [canvasJS - JavaScript StockChart with Area Chart](https://canvasjs.com/javascript-stockcharts/area-stockchart)

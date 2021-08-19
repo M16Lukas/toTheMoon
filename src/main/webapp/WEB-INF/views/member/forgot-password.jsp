@@ -25,7 +25,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
     <div class="container">
 

@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 </head>
 <body>
 	<!-- Topbar -->
@@ -41,7 +42,7 @@
 			        	</a>
 			       		<!-- Dropdown - User Information -->
 				        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="/member/logout">
+							<a class="dropdown-item " href="#" onclick="logout();">
 				                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 				               	Logout
 				            </a>
