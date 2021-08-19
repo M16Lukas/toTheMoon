@@ -7,7 +7,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#build-with">Build With</a></li>
         <li><a href="#api">API</a></li>
         <li><a href="#project-flow-chart">Project Flow Chart</a></li>
       </ul>
@@ -28,7 +28,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-tothemoon is a stock information site created by referring to yahoo finance and webull sites to improve spring MVC skills.
+tothemoon is a stock information clone website created by referring to yahoo finance and webull sites to improve spring MVC skills.
 
 ### Build With
 
