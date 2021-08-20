@@ -157,14 +157,16 @@ function login(){
 	});
 }
 
-function logout(){
-				
-	if (gapi.auth2 != undefined) {
+function logOut(){
+	
+	if(gapi.auth2 != undefined){
 		var auth2 = gapi.auth2.getAuthInstance();
 		auth2.signOut().then(function () {
-            auth2.disconnect();
+            console.log('User signed out.');
 		});
+		auth2.disconnect();
 	}
+	
 	location.href = "/member/logout";
 }
 
@@ -173,7 +175,13 @@ function logout(){
  * Sign in with Google 
  * 
  */
- 
+
+function onLoad() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+	});
+}
+
 function onSignIn(googleUser){
 	var id_token = googleUser.getAuthResponse().id_token;
 		

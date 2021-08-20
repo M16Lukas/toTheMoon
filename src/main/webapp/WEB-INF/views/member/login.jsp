@@ -69,8 +69,7 @@
                                         <input type="button" class="btn btn-primary btn-user btn-block" value="Login" onclick="login(); return false">
                                         <hr>
                                         <!-- Sign in with Google -->
-                                        <div id="googleSignInBtn" class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
-                                        <a href="#" onclick="logout();">Sign out</a>
+                                        <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
                                   	</form>
                                     <hr>
                                     <div class="text-center">

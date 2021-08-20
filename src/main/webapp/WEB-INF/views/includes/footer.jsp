@@ -1,11 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+
 	<!-- Jquery -->
     <script src="/resources/js/jquery-3.6.0.js"></script>
     
@@ -13,7 +6,7 @@
     <script src="/resources/js/jquery-ui.js"></script>
     
     <!-- Google Login -->
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     
     <!-- JS -->
 	<script src="/resources/js/js-function.js"></script>
@@ -40,5 +33,3 @@
     
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-</body>
-</html>
