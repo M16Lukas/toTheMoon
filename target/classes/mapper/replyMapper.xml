@@ -24,20 +24,16 @@
 <!-- 대댓글 가져오기 -->
 <select id="getReply" parameterType="int" resultType="hashmap">
 select
-	r.reply_nm 											as reply_nm
-	,m.firstName 										as firstName
-	,m.lastName 										as lastName
-	,r.reply 											as reply
-	,r.replyer 											as replyer
-	,to_char(r.reply_indate, 'YYYY-MM-DD HH24:MI:SS') as reply_indate
+	reply_nm 											as reply_nm
+	,reply 												as reply
+	,replyer 											as replyer
+	,to_char(reply_indate, 'YYYY-MM-DD HH24:MI:SS') as reply_indate
 from
-	member m, reply_tb r
+	reply_tb
 where
-	r.content_nm = #{content_nm}
-and
-	m.email = r.replyer
+	content_nm = #{content_nm}
 order by
-	r.reply_indate desc
+	reply_indate desc
 </select>
 
 <!-- 대댓글 수정 -->

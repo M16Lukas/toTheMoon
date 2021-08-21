@@ -54,7 +54,7 @@
 						<div class="card mb-2">
 							<!-- Card Header - Dropdown -->
 							<div class="card-header d-flex bd-highlight flex-row align-items-center">
-								<span class="h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight">${list.firstName }&nbsp;${list.lastName}</span>
+								<span class="h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight">${list.email}</span>
 								<span class="bd-highlight">${list.content_indate }</span>
 
 								<c:if test="${sessionScope.loginEmail eq list.email }">

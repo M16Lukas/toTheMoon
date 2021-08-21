@@ -110,7 +110,7 @@ function viewReply(num){
 			$.each(data, function(){
 				context += "<div class='card'>";
 				context += "<div class='card-header d-flex bd-highlight flex-row align-items-center'>";
-				context += "<span class='h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight'>" + this.firstName + "&nbsp;" + this.lastName + "</span>";
+				context += "<span class='h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight'>" + this.replyer + "</span>";
 				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";
 				
 				if(email == this.replyer){

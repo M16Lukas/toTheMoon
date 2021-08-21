@@ -102,9 +102,9 @@ public class MemberService {
 			String givenName = (String) payload.get("given_name");
 			
 			// store profile information in Session
+			session.setAttribute("loginEmail", email);
 			session.setAttribute("loginFirstName", givenName);
 			session.setAttribute("loginLastName", familyName);
-			session.setAttribute("loginEmail", email);
 						
 			// set isValid : true
 			isValid = true;

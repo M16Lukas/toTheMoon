@@ -29,8 +29,6 @@ public class CommunityService {
 			lists.add(new Community(Integer.parseInt(String.valueOf(map.get("CONTENT_NM")))
 									,(String) map.get("SYMBOL")
 									,(String) map.get("EMAIL")
-									,(String) map.get("FIRSTNAME")
-									,(String) map.get("LASTNAME")
 									,(String) map.get("CONTENT")
 									,Integer.parseInt(String.valueOf(map.get("CONTENT_UP")))
 									,Integer.parseInt(String.valueOf(map.get("CONTENT_DOWN")))
@@ -49,7 +47,7 @@ public class CommunityService {
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		
 		Community community = new Community(symbol, loginEmail, content);
-		
+				
 		if (dao.insertContent(community) > 0) {
 			path = "redirect:/quote/" + symbol + "/community";
 		} else {

@@ -32,4 +32,7 @@ where
 and
 	pw = #{pw}
 </select>
+
+<!-- forgot Password -->
+
 </mapper>
