@@ -9,7 +9,7 @@
       <ul>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#api">API</a></li>
-        <li><a href="#project-flow-chart">Project Flow Chart</a></li>
+        <li><a href="#project-structure">Project Structure</a></li>
       </ul>
     </li>
     <li>
@@ -49,8 +49,8 @@ Required | Yahoo Finance API - Finance Quotes API for Yahoo Finance (Java) | [Gi
 Required | Google API Client Library for Java | [Website](https://developers.google.com/api-client-library/java)
 
 
-<!-- Project Flow Chart -->
-### Project Flow Chart
+<!-- Project Structure -->
+### Project Structure
 ![image](https://user-images.githubusercontent.com/46748131/130345759-74995b67-5afd-499d-a53d-71e2404c452b.jpg)
 
 <!-- USAGE -->
