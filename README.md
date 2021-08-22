@@ -51,7 +51,7 @@ Required | Google API Client Library for Java | [Website](https://developers.goo
 
 <!-- Project Flow Chart -->
 ### Project Flow Chart
-![image](https://user-images.githubusercontent.com/46748131/129478116-88dad543-35ad-435e-a679-9a15f43e0aac.jpg)
+![image](https://user-images.githubusercontent.com/46748131/130345759-74995b67-5afd-499d-a53d-71e2404c452b.jpg)
 
 <!-- USAGE -->
 ## Usage
