@@ -66,7 +66,7 @@ public class CommunityController {
 	
 	// 댓글 수정
 	@PostMapping("/modify")
-	private String modifyContent(@PathVariable String symbol, int nm, String newContent) {
+	private String modifyContent(@PathVariable String symbol, int nm, String newContent){
 		return commuService.modifyContent(symbol, nm, newContent);
 	}
 	

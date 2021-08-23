@@ -45,9 +45,7 @@
 						</c:choose>
 					</div>
 				</div>
-				
-				<div class="row">
-				</div>
+			
 				<div>
 					<c:forEach var="list" items="#{lists }">
 						<!-- Start Content Card -->

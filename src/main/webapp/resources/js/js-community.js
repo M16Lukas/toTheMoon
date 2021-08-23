@@ -24,8 +24,7 @@ function resize(obj) {
  */
 
 function modifyForm(id){
-	var form = '';
-		form += '<div class="input-group">';
+	var form = '<div class="input-group">';
 		form += '<textarea class="form-control bg-light border-0 small" name="newContent" onkeyup="resize(this)" maxlength="8000" style="height: 70px;">';
 		form += $.trim($(id).text()) ;
 		form += '</textarea>';
@@ -173,12 +172,13 @@ function replymodifyForm(num, reply_nm){
 		e.preventDefault();
 		
 		var newReply = $(this).serialize();
+		
 		newReply = newReply.substring(newReply.indexOf("=") + 1);
 			
 		$.ajax({
 			url: "reply/"+ reply_nm,
 			type: "patch",
-			data: newReply,
+			data: decodeURI(newReply),
 			success: function(data){
 				viewReply(num);
 			},
