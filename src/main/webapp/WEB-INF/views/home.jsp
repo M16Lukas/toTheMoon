@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +47,9 @@
 			<c:when test="${empty sessionScope.loginEmail }">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="btn" href="/member/register">SIGN UP</a></li>
-			    <li class="nav-item"><a class="btn btn-primary" href="/member/login">LOG IN</a></li>
+				<sec:authorize access="isAnonymous()">
+					<li class="nav-item"><a class="btn btn-primary" href="<c:url value='/member/login' />">LOG IN</a></li>
+				</sec:authorize>
 			</ul>
 			</c:when>
 			<c:otherwise>
@@ -59,7 +62,7 @@
 			        	</a>
 			       		<!-- Dropdown - User Information -->
 				        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#" onclick="logout();">
+							<a class="dropdown-item " href="#" onclick="logOut();">
 				                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 				               	Logout
 				            </a>
@@ -165,7 +168,7 @@
 	    <script src="/resources/js/jquery-3.6.0.js"></script>
 	    
         <!-- Google Login -->
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	
         <!-- JS-->
 	    <script src="/resources/js/js-member.js"></script>

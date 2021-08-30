@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,9 @@
 			<c:when test="${empty sessionScope.loginEmail }">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="btn" href="/member/register">SIGN UP</a></li>
-			    <li class="nav-item"><a class="btn btn-primary" href="/member/login">LOG IN</a></li>
+				<sec:authorize access="isAnonymous()">
+					<li class="nav-item"><a class="btn btn-primary" href="<c:url value='/member/login' />">LOG IN</a></li>
+				</sec:authorize>
 			</ul>
 			</c:when>
 			<c:otherwise>

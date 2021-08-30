@@ -40,7 +40,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/login")
+	@PostMapping("/loginProcess")
 	private boolean login(Member member) {
 		return service.login(member);
 	}

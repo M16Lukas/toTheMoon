@@ -137,7 +137,7 @@ function login(){
 	var formData = $('#loginForm').serialize();
 	
 	$.ajax({
-		url : "/member/login",
+		url : "/member/loginProcess",
 		type: "post",
 		cache : false,
 		data : formData,
@@ -195,7 +195,9 @@ function onSignIn(googleUser){
 		success: function(data) {
 			if (data) {
 				window.location.replace(document.referrer);
-			}//end if
+			} else {
+				toastError("Sorry, we don't recognize this account.");
+			}
 		},
 		error: function(e) { console.log(e); }
 	});//ajax

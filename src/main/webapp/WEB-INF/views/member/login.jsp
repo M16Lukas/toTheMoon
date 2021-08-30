@@ -7,7 +7,7 @@
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -61,9 +61,8 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <input type="checkbox" class="custom-control-input" id="remember-me" name="theMoon-remember-me">
+                                                <label class="custom-control-label" for="remember-me">Remember Me</label>
                                             </div>
                                         </div>
                                         <input type="button" class="btn btn-primary btn-user btn-block" value="Login" onclick="login(); return false">
