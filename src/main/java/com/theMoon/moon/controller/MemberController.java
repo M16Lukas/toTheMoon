@@ -71,9 +71,10 @@ public class MemberController {
 		return "member/forgot-password";
 	}
 	
+	@ResponseBody
 	@PostMapping("/forgot-password")
-	private String forgotPassword() {
-		return "redirect:/member/login";
+	private boolean forgotPassword(String inputEmail) {
+		return service.forgotPassword(inputEmail);
 	}
 	
 	

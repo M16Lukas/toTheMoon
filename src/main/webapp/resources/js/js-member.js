@@ -6,6 +6,9 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
+const emailDuplicationErrorMsg = "Email is Already Registered";
+const emailInvalidErrorMsg = "Sorry, we don't recognize this account.";
+
 function CheckEmail(str){
 	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     return reg_email.test(str);
@@ -105,7 +108,7 @@ function register(){
 				$("#registerAccount").each(function(){
 					this.reset();
 				});
-				toastError("Email is Already Registered");
+				toastError(emailDuplicationErrorMsg);
 			}
 		},
 		error : function(e){
@@ -148,7 +151,7 @@ function login(){
 				$("#loginForm").each(function(){
 					this.reset();
 				});
-				toastError("Sorry, we don't recognize this account.");
+				toastError(emailInvalidErrorMsg);
 			}
 		},
 		error : function(e){
@@ -168,6 +171,29 @@ function logOut(){
 	}
 	
 	location.href = "/member/logout";
+}
+
+function forgotPassword(){
+	
+	var inputEmail = $("#findPwForm").serialize();
+
+	$.ajax({
+		url:"/member/forgot-password",
+		type: "post",
+		data: inputEmail,
+		success: function(data){
+			if(data){
+				window.location.replace("/member/login"); 
+			} else {
+				$("#findPwForm").each(function(){
+					this.reset();
+				});
+				toastError(emailInvalidErrorMsg);
+			}
+		},
+		error: function(e){ console.log(e); }
+	});
+	
 }
 
 /*

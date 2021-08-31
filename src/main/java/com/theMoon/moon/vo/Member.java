@@ -1,8 +1,9 @@
 package com.theMoon.moon.vo;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter @Setter
 public class Member {
 	private int member_num;
 	private String firstName;

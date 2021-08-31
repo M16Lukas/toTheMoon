@@ -34,5 +34,22 @@ and
 </select>
 
 <!-- forgot Password -->
+<select id="findUserByEmail" parameterType="String" resultType="integer">
+select
+	count(email)
+from
+	member
+where
+	email = #{email}
+</select>
 
+<!-- password Update -->
+<update id="updatePassword" parameterType="member">
+update
+	member
+set
+	pw = #{pw}
+where
+	email = #{email}
+</update>
 </mapper>

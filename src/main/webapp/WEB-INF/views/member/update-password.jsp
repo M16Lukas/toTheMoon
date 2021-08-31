@@ -23,8 +23,6 @@
     <!-- Custom styles for this template-->
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
 
-	<!-- toastr style -->
-	<link href="/resources/css/toastr.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-light">
@@ -48,14 +46,14 @@
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form id="findPwForm" class="user" method="post">
+                                    <form id="updatePwForm" class="user" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="inputEmail" name="inputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                id="previousPassword" name="previousPassword"
+                                                placeholder="Previous Password">
                                         </div>
-                                        <a href="#" onclick="forgotPassword();return false;" class="btn btn-primary btn-user btn-block">
-                                            Reset Password
+                                        <a href="javascript:UpdatePassword();" class="btn btn-primary btn-user btn-block">
+                                            Update Password
                                         </a>
                                     </form>
                                     <hr>
@@ -70,27 +68,24 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
-       
+
     </div>
-    
 
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
-    
-    <!-- JS toast -->
-	<script src="/resources/js/toastr.min.js"></script>
-	
-	<!-- Core theme JS-->
-    <script src="/resources/js/js-member.js"></script>
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-    
+
     <!-- Custom scripts for all pages-->
     <script src="/resources/pages/js/sb-admin-2.min.js"></script>
+    
+    <script src="/resources/js/js-member.js"></script>
 
 </body>
 

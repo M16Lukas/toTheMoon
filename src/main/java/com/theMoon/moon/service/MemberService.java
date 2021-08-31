@@ -3,6 +3,7 @@ package com.theMoon.moon.service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.security.SecureRandom;
 import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,8 @@ import com.google.api.client.googleapis.util.Utils;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.theMoon.moon.dao.MemberDAO;
+import com.theMoon.moon.util.EmailServiceImpl;
+import com.theMoon.moon.vo.EmailDTO;
 import com.theMoon.moon.vo.Member;
 
 @Service
@@ -27,6 +30,9 @@ public class MemberService {
 	
 	@Autowired
 	private MemberDAO dao;
+	
+	@Autowired
+	private EmailServiceImpl emailService;
 	
 	
 	/**
@@ -72,6 +78,54 @@ public class MemberService {
 		session.removeAttribute("loginEmail");
 		return "redirect:" + referer;
 	}
+	
+	
+	/**
+	 * forgot-Password
+	 */
+	public boolean forgotPassword(String inputEmail) {
+		boolean isVaild = false;
+		
+		// 입력한 이메일로 등록된 계정이 있는지 확인
+		int isRegisteredEmail = dao.findUserByEmail(inputEmail);
+		
+		// 등록된 계정이 있는 경우
+		if (isRegisteredEmail == 1) {
+			// 임의 비밀번호 생성 
+			String randomPassword = generatePassword(10);
+			
+			// 임의 비밀번호 DB에 저장
+			Member member = new Member();
+			member.setEmail(inputEmail);
+			member.setPw(randomPassword);
+			int cnt = dao.updatePassword(member);
+			
+			if(cnt > 0) {
+				emailService.sendMail(new EmailDTO(inputEmail, randomPassword));
+				isVaild = true;
+			}
+		} 
+		
+		return isVaild;
+	}
+	
+	/**
+	 * 비밀번호 랜덤 생성기
+	 * 
+	 * @param length
+	 * @return
+	 */
+	private String generatePassword(int length) {
+		final SecureRandom RANDOM = new SecureRandom();
+	    final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	    
+        StringBuilder returnValue = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
+        }
+        
+        return new String(returnValue);
+    }
 	
 	
 	/**

@@ -38,4 +38,32 @@ public class MemberDAO {
 		
 		return user;
 	}
+	
+	// find User By Email
+	public Integer findUserByEmail(String email) {
+		Integer cnt = -1;
+		
+		try {
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			cnt = mapper.findUserByEmail(email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
+	// update password
+	public int updatePassword(Member member) {
+		int cnt = -1;
+		
+		try {
+			MemberMapper mapper = session.getMapper(MemberMapper.class);
+			cnt = mapper.updatePassword(member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
 }

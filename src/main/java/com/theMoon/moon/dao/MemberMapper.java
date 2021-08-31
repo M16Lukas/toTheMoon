@@ -8,4 +8,10 @@ public interface MemberMapper {
 	
 	// login
 	public Member login(Member member);
+	
+	// find User By Email
+	public Integer findUserByEmail(String email);
+	
+	// update password
+	public int updatePassword(Member member);
 }
