@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,13 +24,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
-	
-	/**
-	 * 주소입력창에 링크를 입력하여 접근할 경우 main page호 return
-	 * 
-	 * @param request
-	 * @return
-	 */
 	
 	@GetMapping("/login")
 	private String loginForm(HttpServletRequest request) {
@@ -77,6 +72,16 @@ public class MemberController {
 		return service.forgotPassword(inputEmail);
 	}
 	
+	@GetMapping("/update-password")
+	private String updatePasswordForm() {
+		return "member/update-password";
+	}
+	
+	@ResponseBody
+	@PatchMapping("/update-password")
+	private boolean updatePassword(@RequestBody String updatePassword) {
+		return service.updatePassword(updatePassword);
+	}
 	
 	@ResponseBody
 	@PostMapping("/google/auth")

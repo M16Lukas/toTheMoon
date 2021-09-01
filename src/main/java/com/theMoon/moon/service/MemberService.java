@@ -36,6 +36,15 @@ public class MemberService {
 	
 	
 	/**
+	 * 세션에 저장된 모든 정보 삭제
+	 */
+	private void removeSessionAttr() {
+		session.removeAttribute("loginFirstName");
+		session.removeAttribute("loginLastName");
+		session.removeAttribute("loginEmail");
+	}
+	
+	/**
 	 * Register Member
 	 * 
 	 * @param member
@@ -73,9 +82,7 @@ public class MemberService {
 	 * @return
 	 */
 	public String logout(String referer) {
-		session.removeAttribute("loginFirstName");
-		session.removeAttribute("loginLastName");
-		session.removeAttribute("loginEmail");
+		removeSessionAttr();
 		return "redirect:" + referer;
 	}
 	
@@ -126,6 +133,30 @@ public class MemberService {
         
         return new String(returnValue);
     }
+	
+	
+	/**
+	 * 
+	 * 비밀번호 수정
+	 * 
+	 * @param updatePassword
+	 * @return
+	 */
+	public boolean updatePassword(String updatePassword) {
+		boolean isUpdated = false;
+		String loginedEmail = (String)session.getAttribute("loginEmail"); 
+		
+		Member member = new Member();
+		member.setEmail(loginedEmail);
+		member.setPw(updatePassword);
+		
+		if (dao.updatePassword(member) > 0) {
+			removeSessionAttr();
+			isUpdated = true;
+		}
+		
+		return isUpdated;
+	}
 	
 	
 	/**

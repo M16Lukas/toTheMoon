@@ -8,6 +8,7 @@
 
 const emailDuplicationErrorMsg = "Email is Already Registered";
 const emailInvalidErrorMsg = "Sorry, we don't recognize this account.";
+const passwordUpadteErrorMsg = "Failed to update password";
 
 function CheckEmail(str){
 	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
@@ -194,6 +195,48 @@ function forgotPassword(){
 		error: function(e){ console.log(e); }
 	});
 	
+}
+
+function updatePassword(){
+	
+	var formData = $("#updatePwForm").serializeArray();
+	var dataObj = {};
+	
+	$(formData).each(function(i, field){
+		dataObj[field.name] = field.value;
+	});
+	
+	if(dataObj['newPassword'] == null || dataObj['newPassword'] == "" || dataObj['newPassword'] == 'undefined'){
+		$("#updatePwForm input[name='newPassword']").focus();
+		toastWarning("password");
+		return;
+	}
+
+	if(dataObj['newPassword'] != dataObj['repeatPassword']){
+		$("#updatePwForm input[name='repeatPassword']").focus();
+		toastWarning("correct password");
+		return;
+	}
+	
+
+	$.ajax({
+		url:"/member/update-password",
+		type: "patch",
+		data: dataObj['newPassword'],
+		success: function(data){
+			if(data){
+				window.location.replace(document.referrer);
+			} else {
+				$("#updatePwForm").each(function(){
+					this.reset();
+				});
+				toastError(passwordUpadteErrorMsg);
+			}
+		}, 
+		error: function(e){
+			console.log(e);
+		}
+	});
 }
 
 /*

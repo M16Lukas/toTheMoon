@@ -22,6 +22,9 @@
 
     <!-- Custom styles for this template-->
     <link href="/resources/pages/css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <!-- toastr style -->
+	<link href="/resources/css/toastr.min.css" rel="stylesheet">
 
 </head>
 
@@ -42,17 +45,20 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                                        <p class="mb-4">We get it, stuff happens. Just enter your email address below
-                                            and we'll send you a link to reset your password!</p>
+                                        <h1 class="h4 text-gray-900 mb-2">Update Your Password</h1>
                                     </div>
                                     <form id="updatePwForm" class="user" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="previousPassword" name="previousPassword"
-                                                placeholder="Previous Password">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="newPassword" name="newPassword"
+                                                placeholder="New Password">
                                         </div>
-                                        <a href="javascript:UpdatePassword();" class="btn btn-primary btn-user btn-block">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="repeatPassword" name="repeatPassword"
+                                                placeholder="Repeat Password">
+                                        </div>
+                                        <a href="javascript:updatePassword();" class="btn btn-primary btn-user btn-block">
                                             Update Password
                                         </a>
                                     </form>
@@ -77,15 +83,19 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/pages/vendor/jquery/jquery.min.js"></script>
+    
+    <!-- JS toast -->
+	<script src="/resources/js/toastr.min.js"></script>
+	
+	<!-- Core theme JS-->
+    <script src="/resources/js/js-member.js"></script>
     <script src="/resources/pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    
     <!-- Core plugin JavaScript-->
     <script src="/resources/pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+    
     <!-- Custom scripts for all pages-->
     <script src="/resources/pages/js/sb-admin-2.min.js"></script>
-    
-    <script src="/resources/js/js-member.js"></script>
 
 </body>
 
