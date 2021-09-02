@@ -7,7 +7,7 @@ public interface MemberMapper {
 	public int registerMember(Member member);
 	
 	// login
-	public Member login(Member member);
+	public Member login(String email);
 	
 	// find User By Email
 	public Integer findUserByEmail(String email);

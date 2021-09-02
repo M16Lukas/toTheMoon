@@ -27,11 +27,11 @@ public class MemberDAO {
 	}
 	
 	// Login
-	public Member login(Member member) {
+	public Member login(String email) {
 		Member user = null;
 		try {
 			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			user = mapper.login(member);
+			user = mapper.login(email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

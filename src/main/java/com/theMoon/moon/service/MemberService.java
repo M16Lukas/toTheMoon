@@ -9,6 +9,7 @@ import java.util.Collections;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -34,6 +35,8 @@ public class MemberService {
 	@Autowired
 	private EmailServiceImpl emailService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	/**
 	 * 세션에 저장된 모든 정보 삭제
@@ -51,6 +54,8 @@ public class MemberService {
 	 * @return
 	 */
 	public boolean registerMember(Member member) {
+		String encodedPassword = passwordEncoder.encode(member.getPw());
+		member.setPw(encodedPassword);
 		return dao.registerMember(member) > 0 ? true : false;
 	}
 	
@@ -62,9 +67,16 @@ public class MemberService {
 	 */
 	public boolean login(Member member) {
 		boolean isValid = false;
-		Member loginUser = dao.login(member);
 		
+		Member loginUser = dao.login(member.getEmail());
+
 		if (loginUser != null) {
+			// 비밀번호 일치 여부 확인
+			boolean isRegisterd = passwordEncoder.matches(member.getPw(), loginUser.getPw());
+			
+			// 일치 하지 않을 경우
+			if(!isRegisterd) { return isValid; }
+			
 			session.setAttribute("loginFirstName", loginUser.getFirstName());
 			session.setAttribute("loginLastName", loginUser.getLastName());
 			session.setAttribute("loginEmail", loginUser.getEmail());
@@ -101,10 +113,13 @@ public class MemberService {
 			// 임의 비밀번호 생성 
 			String randomPassword = generatePassword(10);
 			
+			// 임의 비밀번호 암호화
+			String encodedRandomPassword = passwordEncoder.encode(randomPassword);
+			
 			// 임의 비밀번호 DB에 저장
 			Member member = new Member();
 			member.setEmail(inputEmail);
-			member.setPw(randomPassword);
+			member.setPw(encodedRandomPassword);
 			int cnt = dao.updatePassword(member);
 			
 			if(cnt > 0) {
@@ -145,10 +160,11 @@ public class MemberService {
 	public boolean updatePassword(String updatePassword) {
 		boolean isUpdated = false;
 		String loginedEmail = (String)session.getAttribute("loginEmail"); 
+		String encodedUpdatePassword = passwordEncoder.encode(updatePassword);
 		
 		Member member = new Member();
 		member.setEmail(loginedEmail);
-		member.setPw(updatePassword);
+		member.setPw(encodedUpdatePassword);
 		
 		if (dao.updatePassword(member) > 0) {
 			removeSessionAttr();

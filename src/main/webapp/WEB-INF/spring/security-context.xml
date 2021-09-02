@@ -22,7 +22,7 @@
 		invalidate-session="true"
 		delete-cookies="JSESSIONID"
 	/>
-	
+
 	
 	<!-- 중복 로그인 방지 -->
 	<security:session-management invalid-session-url="/member/login">
@@ -31,6 +31,7 @@
 	
 	<!-- csrf 미사용 -->
 	<security:csrf disabled="true"/>
+	
 </security:http>
 
 <!-- provider --> 
@@ -38,12 +39,17 @@
 
 </security:authentication-manager>
 
+<!-- 로그인 성공 시 처리 -->
 <bean id="CustomAuthenticationSuccessHandler" class="com.theMoon.moon.security.CustomAuthenticationSuccessHandler">
 	<property name="defaultUrl" value="/"/>
 </bean>
 
+<!-- 로그아웃 성공 시 referer 페이지로 이동 -->
 <bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
     <property name="useReferer" value="true"/>
 </bean>
+
+<!-- 비밀번호 암호화 -->
+<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans>

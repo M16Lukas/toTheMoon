@@ -104,7 +104,7 @@ function register(){
 		data : formData,
 		success : function(data) {
 			if(data) {
-				window.location.replace("/member/login");
+				window.location.replace("/");
 			} else {
 				$("#registerAccount").each(function(){
 					this.reset();
@@ -184,11 +184,12 @@ function forgotPassword(){
 		data: inputEmail,
 		success: function(data){
 			if(data){
-				window.location.replace("/member/login"); 
+				window.location.replace("/"); 
 			} else {
 				$("#findPwForm").each(function(){
 					this.reset();
 				});
+				$("#findPwForm input[name='inputEmail']").focus();
 				toastError(emailInvalidErrorMsg);
 			}
 		},

@@ -64,16 +64,10 @@
                                             id="repeatPassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
+                                <hr>
                                 <button type="button" class="btn btn-primary btn-user btn-block" onclick="register(); return false">
                                 	Register Account
                                 </button>
-                                <hr>
-                                <a href="/" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="/" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
                             </form>
                             <hr>
                             <div class="text-center">

@@ -20,17 +20,16 @@ values
 
 
 <!-- Login -->
-<select id="login" parameterType="member" resultType="member">
+<select id="login" parameterType="string" resultType="member">
 select
 	firstName
 	,lastName
 	,email
+	,pw
 from
 	member
 where
 	email = #{email}
-and
-	pw = #{pw}
 </select>
 
 <!-- forgot Password -->

@@ -48,16 +48,16 @@
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form id="findPwForm" class="user" method="post">
+                                    <form id="findPwForm" class="user" method="post" onsubmit="return false;">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="inputEmail" name="inputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
-                                        <a href="#" onclick="forgotPassword();return false;" class="btn btn-primary btn-user btn-block">
+                                        <a href="javascript:forgotPassword();" class="btn btn-primary btn-user btn-block">
                                             Reset Password
                                         </a>
-                                    </form>
+									</form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="register">Create an Account!</a>
