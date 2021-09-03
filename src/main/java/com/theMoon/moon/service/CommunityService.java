@@ -91,42 +91,70 @@ public class CommunityService {
 	}
 	
 	// 추천
-	public int contentUp(String symbol, int content_nm, int upCnt) {
+	public boolean contentUp(String symbol, int content_nm) {
+		boolean isValid = false;
+		Community content = new Community();
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		
-		
-		if (loginEmail == null) {
-			return upCnt;
+		// 로그인을 한 경우
+		if (loginEmail != null) {
+			content.setContent_nm(content_nm);
+			content.setEmail(loginEmail);
+			content.setSymbol(symbol);
+			
+			HashMap<String, String> map = dao.checkContentLikeHistory(content);
+			// 로그인한 계정으로 추천 이력이 없는 경우
+			if(map == null) {
+				// 추천 기능 수행 & 추천 이력 추가
+				if (dao.contentUp(content) > 0 && dao.insertContentLikeHistory(content) > 0) {
+					isValid = true;
+				}
+			} 
+			// 로그인한 계정으로 추천 이력이 있는 경우
+			else {
+				if(map.get("CHECK_LIKE").equals("N")) {
+					// 추천 기능 수행 & 추천 이력 추가
+					if (dao.contentUp(content) > 0 && dao.updateContentLikeHistory(content) > 0) {
+						isValid = true;
+					}
+				}
+			}
 		}
 		
-		Community content = new Community();
-		content.setSymbol(symbol);
-		content.setContent_nm(content_nm);
-		
-		if (dao.contentUp(content) > 0) {
-			return upCnt + 1;
-		} else {
-			return upCnt;
-		}
+		return isValid;
 	}
 	
 	// 비추천
-	public int contentDown(String symbol, int content_nm, int downCnt) {
+	public boolean contentDown(String symbol, int content_nm) {
+		boolean isValid = false;
+		Community content = new Community();
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		
-		
-		if (loginEmail == null) {
-			return downCnt;
+		// 로그인을 한 경우
+		if (loginEmail != null) {
+			content.setContent_nm(content_nm);
+			content.setEmail(loginEmail);
+			content.setSymbol(symbol);
+			
+			HashMap<String, String> map = dao.checkContentLikeHistory(content);
+			// 로그인한 계정으로 추천 이력이 없는 경우
+			if(map == null) {
+				// 추천 기능 수행 & 추천 이력 추가
+				if (dao.contentDown(content) > 0 && dao.insertContentDisLikeHistory(content) > 0) {
+					isValid = true;
+				}
+			} 
+			// 로그인한 계정으로 추천 이력이 있는 경우
+			else {
+				if(map.get("CHECK_DISLIKE").equals("N")) {
+					// 추천 기능 수행 & 추천 이력 추가
+					if (dao.contentDown(content) > 0 && dao.updateContentDisLikeHistory(content) > 0) {
+						isValid = true;
+					}
+				}
+			}
 		}
 		
-		Community content = new Community();
-		content.setSymbol(symbol);
-		content.setContent_nm(content_nm);
-		
-		if (dao.contentDown(content) > 0) {
-			return downCnt + 1;
-		} else {
-			return downCnt;
-		}
+		return isValid;
 	}
 }

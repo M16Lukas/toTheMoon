@@ -76,18 +76,20 @@ public class CommunityController {
 		return commuService.removeContent(symbol, nm);
 	}
 	
+	// 
+	
 	// 추천
 	@ResponseBody
-	@PostMapping("/up")
-	private String contentUp(@PathVariable String symbol, int content_nm, int upCnt){
-		return Integer.toString(commuService.contentUp(symbol, content_nm, upCnt));
+	@GetMapping("/up")
+	private boolean contentUp(@PathVariable String symbol, int content_nm) {
+		return commuService.contentUp(symbol, content_nm);
 	}
 	
 	// 비추천
 	@ResponseBody
-	@PostMapping("/down")
-	private String contentDown(@PathVariable String symbol, int content_nm, int downCnt){
-		return Integer.toString(commuService.contentDown(symbol, content_nm, downCnt));
+	@GetMapping("/down")
+	private boolean contentDown(@PathVariable String symbol, int content_nm){
+		return commuService.contentDown(symbol, content_nm);
 	}
 	
 }

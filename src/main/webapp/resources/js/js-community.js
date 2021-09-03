@@ -48,20 +48,16 @@ function contentModefyForm(num){
 	$(id).html(content);
 }
 
-
 function contentUp(num){
-	
 	var id = "#" + num + "upCnt";
+	var upCnt = Number($(id).text());
 	
 	$.ajax({
 		url : "community/up",
-		type : "post",
-		data : { content_nm : num,
-				upCnt : $(id).text()
-		},
-		dataType : "text",
+		type : "get",
+		data : { content_nm : num},
 		success : function(data){
-			$(id).text(data);
+			if(data){ $(id).text(upCnt + 1); }
 		},
 		error : function(e){
 			console.log(e);
@@ -70,19 +66,15 @@ function contentUp(num){
 }
 
 function contentDown(num){
-	
 	var id = "#" + num + "downCnt";
+	var downCnt = Number($(id).text());
 	
 	$.ajax({
 		url : "community/down",
-		type : "post",
-		data : { content_nm : num,
-				downCnt : $(id).text()
-		},
-		dataType : "text",
+		type : "get",
+		data : { content_nm : num },
 		success : function(data){
-			
-			$(id).text(data);
+			if(data){ $(id).text(downCnt + 1); }
 		},
 		error : function(e){
 			console.log(e);

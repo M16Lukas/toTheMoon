@@ -69,6 +69,39 @@ and
 	email = #{email}
 </delete>
 
+<!-- 댓글 추천 여부 확인 -->
+<select id="checkContentLikeHistory" resultType="hashmap" parameterType="community">
+select
+	check_like
+	,check_dislike
+from
+	community_like_history_tb
+where
+	content_nm = #{content_nm}
+and
+	email = #{email}
+</select>
+
+<!-- 댓글 추천 이력 추가 -->
+<insert id="insertContentLikeHistory" parameterType="community">
+insert into community_like_history_tb
+	(content_nm, email, check_like)
+values
+	(#{content_nm}, #{email}, 'Y')
+</insert>
+
+<!-- 댓글 추천 이력 수정 -->
+<update id="updateContentLikeHistory" parameterType="community">
+update
+	community_like_history_tb
+set
+	check_like = 'Y'
+where
+	content_nm = #{content_nm}
+and
+	email = #{email}
+</update>
+
 <!-- 댓글 추천 -->
 <update id="contentUp" parameterType="community">
 update
@@ -79,6 +112,26 @@ where
 	symbol = #{symbol}
 and
 	content_nm = #{content_nm}
+</update>
+
+<!-- 댓글 비추천 이력 추가 -->
+<insert id="insertContentDisLikeHistory" parameterType="community">
+insert into community_like_history_tb
+	(content_nm, email, check_dislike)
+values
+	(#{content_nm}, #{email}, 'Y')
+</insert>
+
+<!-- 댓글 비추천 이력 수정 -->
+<update id="updateContentDisLikeHistory" parameterType="community">
+update
+	community_like_history_tb
+set
+	check_dislike = 'Y'
+where
+	content_nm = #{content_nm}
+and
+	email = #{email}
 </update>
 
 <!-- 댓글 비추천 -->
