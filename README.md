@@ -13,6 +13,12 @@
       </ul>
     </li>
     <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li>
       <a href="#usage">Usage</a>
       <ul>
         <li><a href="#summary-page">Summary Page</a></li>
@@ -52,6 +58,14 @@ Required | Google API Client Library for Java | [Website](https://developers.goo
 <!-- Project Structure -->
 ### Project Structure
 ![image](https://user-images.githubusercontent.com/46748131/130345759-74995b67-5afd-499d-a53d-71e2404c452b.jpg)
+
+
+<!-- Getting Started -->
+## Getting Started
+
+### Installation
+
+[Download WAR file](https://github.com/M16Lukas/toTheMoon/releases)
 
 <!-- USAGE -->
 ## Usage
