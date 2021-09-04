@@ -19,14 +19,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	private RequestCache requestCache = new HttpSessionRequestCache();
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	
-	
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-	
+
 		// redirect url 작업을 위한 메서드 호출
 		resultRedirectStrategy(request, response, authentication);
-		
 	}
 
 
@@ -52,6 +51,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 			Authentication authentication) throws IOException, ServletException{
 		
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
+		
+		
 		
 		// 세션에 이동할 url 정보 있을 경우
 		if (savedRequest != null) {

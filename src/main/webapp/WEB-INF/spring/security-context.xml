@@ -2,10 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-<security:http auto-config="true">
+<security:http auto-config="true" use-expressions="true">
+	<security:access-denied-handler error-page="/"/>
+
 	<!-- login -->
 	<security:form-login 
 		login-page="/member/login"
@@ -20,7 +24,7 @@
 		logout-url="/member/logout"
 		success-handler-ref="logoutSuccessHandler"
 		invalidate-session="true"
-		delete-cookies="JSESSIONID"
+		delete-cookies="JSESSIONID,remember-me"
 	/>
 
 	
@@ -29,15 +33,16 @@
 		<security:concurrency-control max-sessions="1" expired-url="/member/login"/>
 	</security:session-management>
 	
-	<!-- csrf 미사용 -->
-	<security:csrf disabled="true"/>
 	
+	<security:csrf disabled="true"/>
 </security:http>
 
 <!-- provider --> 
 <security:authentication-manager>
 
 </security:authentication-manager>
+
+
 
 <!-- 로그인 성공 시 처리 -->
 <bean id="CustomAuthenticationSuccessHandler" class="com.theMoon.moon.security.CustomAuthenticationSuccessHandler">

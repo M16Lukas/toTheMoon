@@ -123,7 +123,7 @@ function viewReply(num){
 			});
 						
 			$(re).html(context);
-			$("#" + num + "reply span").text("reply(" + Object.keys(data).length + ")");
+			
 		},
 		error : function(e){ console.log(e); }
 	});
@@ -134,15 +134,26 @@ function viewReply(num){
  * reply 등록
  */
 
+// 현재 댓글의 reply 갯수 추출
+function getReplyCount(num){
+	var cnt_str = $("#" + num + "reply_cnt").text();
+	var cnt = cnt_str.substring(cnt_str.indexOf("(") + 1, cnt_str.indexOf(")"));
+	
+	return Number(cnt);
+}
+
+// reply 등록
 function clkInsertReplyBtn(num){
 	var reply = $("#insertReply" + num).serialize();
-		
+	var cnt = getReplyCount(num);
+	
 	$.ajax({
 		url : "reply/"+ num,
 		type : "post",
 		data : reply,
 		success : function(data){
 			$("#insertReply" + num)[0].reset();	// textarea reset
+			$("#" + num + "reply_cnt").text("reply(" + (cnt + 1)  + ")");
 			viewReply(num);
 		},
 		error : function(e){ console.log(e); }
@@ -183,10 +194,13 @@ function replymodifyForm(num, reply_nm){
 
 // reply 삭제
 function replyDelete(num, reply_nm){
+	var cnt = getReplyCount(num);
+	
 	$.ajax({
 		url: "reply/"+ reply_nm,
 		type: "delete",
 		success: function(data){
+			$("#" + num + "reply_cnt").text("reply(" + (cnt - 1)  + ")");
 			viewReply(num);
 		},
 		error: function(e){ consoel.log(e); }

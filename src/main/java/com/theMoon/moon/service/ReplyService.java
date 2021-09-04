@@ -20,6 +20,13 @@ public class ReplyService {
 	@Autowired
 	private ReplyDAO dao;
 	
+	/**
+	 * 대댓글 등록
+	 * 
+	 * @param content_nm
+	 * @param reply
+	 * @return
+	 */
 	public boolean insertReply(int content_nm, String reply) {
 		boolean chk = false;
 		String loginEmail = (String) session.getAttribute("loginEmail");
@@ -31,6 +38,12 @@ public class ReplyService {
 		return chk;
 	}
 	
+	/**
+	 * 대댓글 목록 출력
+	 * 
+	 * @param content_nm
+	 * @return
+	 */
 	public ArrayList<Reply> getReply(int content_nm){
 		ArrayList<HashMap<String, Object>> maps = dao.getReply(content_nm);
 
@@ -54,6 +67,13 @@ public class ReplyService {
 		}
 	}
 	
+	/**
+	 * 대댓글 수정
+	 * 
+	 * @param reply_nm
+	 * @param reply
+	 * @return
+	 */
 	public int modifyReply(int reply_nm, String reply) {
 		String replyer = (String) session.getAttribute("loginEmail");
 		Reply modify = new Reply(reply_nm, replyer);
@@ -62,6 +82,13 @@ public class ReplyService {
 		return dao.modifyReply(modify);
 	}
 	
+	
+	/**
+	 * 대댓글 수정
+	 * 
+	 * @param reply_nm
+	 * @return
+	 */
 	public int deleteReply(int reply_nm) {
 		String replyer = (String) session.getAttribute("loginEmail");
 		Reply reply = new Reply(reply_nm, replyer);

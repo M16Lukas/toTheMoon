@@ -81,7 +81,7 @@
 										<button class="btn text-gray-900" type="button"
 											data-bs-toggle="collapse" data-bs-target="#reply${list.content_nm }" aria-expanded="false" aria-controls="reply${list.content_nm }"
 											onclick="viewReply(${list.content_nm });">
-											<span>reply(${list.reply_cnt })</span>
+											<span id="${list.content_nm }reply_cnt">reply(${list.reply_cnt })</span>
 										</button>
 										<button class="btn text-gray-900" onclick="contentUp(${list.content_nm });">
 											<i class="far fa-thumbs-up"></i> 

@@ -59,13 +59,7 @@
                                             <input type="password" class="form-control form-control-user"
                                                 name="pw" id="inputPassword" placeholder="Password">
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="remember-me" name="theMoon-remember-me">
-                                                <label class="custom-control-label" for="remember-me">Remember Me</label>
-                                            </div>
-                                        </div>
-                                        <input type="button" class="btn btn-primary btn-user btn-block" value="Login" onclick="login(); return false">
+										<input type="button" class="btn btn-primary btn-user btn-block" value="Login" onclick="login(); return false">
                                         <hr>
                                         <!-- Sign in with Google -->
                                         <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
