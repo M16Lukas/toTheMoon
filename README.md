@@ -54,7 +54,6 @@ Status | Name | Site
 Required | Yahoo Finance API - Finance Quotes API for Yahoo Finance (Java) | [GitHub](https://github.com/sstrickx/yahoofinance-api) /  [Website](https://financequotes-api.com/)
 Required | Google API Client Library for Java | [Website](https://developers.google.com/api-client-library/java)
 
-
 <!-- Project Structure -->
 ### Project Structure
 ![image](https://user-images.githubusercontent.com/46748131/130345759-74995b67-5afd-499d-a53d-71e2404c452b.jpg)
@@ -65,7 +64,38 @@ Required | Google API Client Library for Java | [Website](https://developers.goo
 
 ### Installation
 
-[Download WAR file](https://github.com/M16Lukas/toTheMoon/releases)
+#### How to deploy to Apache Servers in a Windows Environment
+
+1. Download [WAR file & sql file](https://github.com/M16Lukas/toTheMoon/releases)
+
+2. Copy and paste the sql file code into Oracle
+
+3.  Move the WAR file into the  **[tomcat installation path] \ webapps**
+
+4.  Modify  **[tomcat installation path] \ conf \ server.xml**
+
++ port (8080 -> 8888) : Because, port 8080 in use by ORACLE 11g
+
+```
+ <Connector port="8888" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+```
+
++ localhost path (add ```<Context />```)
+
+```
+<Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+            <Context path="/" docBase="toTheMoon" reloadable="true" />
+```
+5.  Run CMD as Administrator
+
+6.  Go to the __[tomcat installation path] \ bin__ 
+
+7.  Run ```startup.bat```
+
+8.  Enter into ```localhost:8888``` browser
 
 <!-- USAGE -->
 ## Usage

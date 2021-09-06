@@ -45,6 +45,7 @@ public class MemberService {
 		session.removeAttribute("loginFirstName");
 		session.removeAttribute("loginLastName");
 		session.removeAttribute("loginEmail");
+		session.removeAttribute("loginByLocalAccount");
 	}
 	
 	/**
@@ -80,6 +81,7 @@ public class MemberService {
 			session.setAttribute("loginFirstName", loginUser.getFirstName());
 			session.setAttribute("loginLastName", loginUser.getLastName());
 			session.setAttribute("loginEmail", loginUser.getEmail());
+			session.setAttribute("loginByLocalAccount", true);
 			
 			isValid = true;
 		}
@@ -206,7 +208,8 @@ public class MemberService {
 			session.setAttribute("loginEmail", email);
 			session.setAttribute("loginFirstName", givenName);
 			session.setAttribute("loginLastName", familyName);
-						
+			session.setAttribute("loginByLocalAccount", false);
+			
 			// set isValid : true
 			isValid = true;
 		} 

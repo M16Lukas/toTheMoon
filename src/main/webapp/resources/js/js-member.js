@@ -64,11 +64,19 @@ function register(){
 		form.firstName.focus();
 		toastWarning("first Name");
 		return false;
+	} else if(form.firstName.value.length > 10){
+		alert("Maximum firstName Size is 10 words");
+		form.inputEmail.focus();
+		return false;
 	}
 	
 	if(form.lastName.value == null || form.lastName.value == "" || form.lastName.value == 'undefined'){
 		form.lastName.focus();
 		toastWarning("last Name");
+		return false;
+	} else if(form.lastName.value.length > 10){
+		alert("Maximum lastName Size is 10 words");
+		form.inputEmail.focus();
 		return false;
 	}
 	
@@ -82,9 +90,19 @@ function register(){
 		return false;			
 	}
 	
+	if(form.inputEmail.value.length > 30){
+		alert("Maximum Email Size is 30 words");
+		form.inputEmail.focus();
+		return false;
+	}
+	
 	if(form.inputPassword.value == null || form.inputPassword.value == "" || form.inputPassword.value == 'undefined'){
 		form.inputPassword.focus();
 		toastWarning("password");
+		return false;
+	} else if(form.inputPassword.value.length < 10 || form.inputPassword.value.length > 30){
+		alert("The Password length must be between 10 to 30 words.");
+		form.inputPassword.focus();
 		return false;
 	}
 
@@ -210,6 +228,10 @@ function updatePassword(){
 	if(dataObj['newPassword'] == null || dataObj['newPassword'] == "" || dataObj['newPassword'] == 'undefined'){
 		$("#updatePwForm input[name='newPassword']").focus();
 		toastWarning("password");
+		return;
+	} else if(dataObj['newPassword'].length < 10 || dataObj['newPassword'].length > 30){
+		alert("The Password length must be between 10 to 30 words.");
+		$("#updatePwForm input[name='newPassword']").focus();
 		return;
 	}
 
