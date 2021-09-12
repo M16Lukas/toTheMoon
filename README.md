@@ -21,10 +21,10 @@
     <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#summary-page">Summary Page</a></li>
-        <li><a href="#chart-page">Chart Page</a></li>
-        <li><a href="#conversations-page">Conversations Page</a></li>
-        <li><a href="#historical-data-page">Historical Data Page</a></li>
+        <li><a href="#summary-page(詳細情報)">Summary Page(詳細情報)</a></li>
+        <li><a href="#chart-page(チャート)">Chart Page(チャート)</a></li>
+        <li><a href="#conversations-page(掲示板)">Conversations Page(掲示板)</a></li>
+        <li><a href="#historical-data-page(時系列)">Historical Data Page(時系列)</a></li>
       </ul>
     </li>
     <li><a href="#contact">Contact</a></li>
@@ -35,17 +35,23 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-tothemoon is a stock information clone website created by referring to yahoo finance and webull sites to improve spring MVC skills.   
+コロナ禍、住宅価格の急上昇などの影響でビットコインや株式投資に関する人々の関心が高まっています。
 
-> tothemoonは今まで学んだSpringの知識で、「知りたい株情報を一目でわかるようにシンプルな形で提供したい」という考えから始まったミニプロゼェクトです。
+その中でもアメリカ株に投資をする投資家が増えていることは注目すべきの現象だと考えています。
+
+しかし、株取引初心者たちは複雑な株式用語や厄介な情報収集などなど壁にぶつかって株式投資入門に苦労しています。
+
+<b>toTheMoon</b>は知りたいアメリカ株式を検索すると株式の基本情報やニュース、チャート、他人のコメント、時系列を一目でわかるように提供して株取引をサポートするサービスです。
 
 ### Built With
 
 * [Spring Tools 4 for Eclipse (4.3.6.RELEASE)](https://spring.io/tools)
 * [MyBatis 3.4.6](https://github.com/mybatis/mybatis-3/releases/tag/mybatis-3.4.6)
-* [JAVA 8 (1.8)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+* [JAVA 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 * [Oracle 11g](https://edelivery.oracle.com/osdc/faces/SoftwareDelivery)
 * [JQuery](https://jquery.com)
+* JavaScript
+* HTML5/CSS3
 
 
 ### API
@@ -100,22 +106,22 @@ Required | Google API Client Library for Java | [Website](https://developers.goo
 <!-- USAGE -->
 ## Usage
 
-### Summary Page
+### Summary Page(詳細情報)
 
-![Summary Page Example](https://user-images.githubusercontent.com/46748131/129910550-2f6ba23f-d050-4002-b9a0-db3c26211129.gif)
+![Summary Page](https://user-images.githubusercontent.com/46748131/129910550-2f6ba23f-d050-4002-b9a0-db3c26211129.gif)
 検索した株式の詳細情報、チャート(３ヶ月)、ニュースを提供するページです。
 
-### Chart Page
+### Chart Page(チャート)
 
 ![Chart page](https://user-images.githubusercontent.com/46748131/129910608-f9e7e46a-570a-4e55-8929-3e9e908c58bc.gif)
 一定期間の株価をチャートで見やすく確認できるページです。
 
-### Conversations Page
+### Conversations Page(掲示板)
 
 ![Conversations Page Example](https://user-images.githubusercontent.com/46748131/129910684-c62a06ba-efa1-402b-9445-9224f93f4050.gif)
 株式に関して意見交換する掲示板ページです。
 
-### Historical Data Page
+### Historical Data Page(時系列)
 
 ![Historical Data Page Example](https://user-images.githubusercontent.com/46748131/129910754-09e79be4-eb6a-4149-b453-a7d43eada18c.gif)
 株式の過去データを時系列で検索、ダウンロードできるページです。
