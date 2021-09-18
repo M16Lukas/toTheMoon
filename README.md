@@ -21,10 +21,10 @@
     <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#summary-page(詳細情報)">Summary Page(詳細情報)</a></li>
-        <li><a href="#chart-page(チャート)">Chart Page(チャート)</a></li>
-        <li><a href="#conversations-page(掲示板)">Conversations Page(掲示板)</a></li>
-        <li><a href="#historical-data-page(時系列)">Historical Data Page(時系列)</a></li>
+        <li><a href="#summary-page">Summary Page(詳細情報)</a></li>
+        <li><a href="#chart-page">Chart Page(チャート)</a></li>
+        <li><a href="#conversations-page">Conversations Page(掲示板)</a></li>
+        <li><a href="#historical-data-page">Historical Data Page(時系列)</a></li>
       </ul>
     </li>
     <li><a href="#contact">Contact</a></li>
@@ -106,22 +106,22 @@ Required | Google API Client Library for Java | [Website](https://developers.goo
 <!-- USAGE -->
 ## Usage
 
-### Summary Page(詳細情報)
+### Summary Page
 
 ![Summary Page](https://user-images.githubusercontent.com/46748131/129910550-2f6ba23f-d050-4002-b9a0-db3c26211129.gif)
 検索した株式の詳細情報、チャート(３ヶ月)、ニュースを提供するページです。
 
-### Chart Page(チャート)
+### Chart Page
 
 ![Chart page](https://user-images.githubusercontent.com/46748131/129910608-f9e7e46a-570a-4e55-8929-3e9e908c58bc.gif)
 一定期間の株価をチャートで見やすく確認できるページです。
 
-### Conversations Page(掲示板)
+### Conversations Page
 
 ![Conversations Page Example](https://user-images.githubusercontent.com/46748131/129910684-c62a06ba-efa1-402b-9445-9224f93f4050.gif)
 株式に関して意見交換する掲示板ページです。
 
-### Historical Data Page(時系列)
+### Historical Data Page
 
 ![Historical Data Page Example](https://user-images.githubusercontent.com/46748131/129910754-09e79be4-eb6a-4149-b453-a7d43eada18c.gif)
 株式の過去データを時系列で検索、ダウンロードできるページです。
