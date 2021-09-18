@@ -1,5 +1,5 @@
 /**
- * 
+ * Set datepicker
  */
  $(function(){
 	
@@ -43,7 +43,9 @@
     }
 });
 
-
+/*
+ * Request Prev/Next Page
+ */
  function historyPaging(p){
 	var countPerPage = $("#countPerPage").val();
 	var frequency 	 = $("#frequency").val();
@@ -54,7 +56,9 @@
 	location.href = "history?period1=" + period1 + "&period2=" + period2 + "&countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
 }
 
-// historical Quote download (format : Excel)
+/*
+ * historical Quote download (format : Excel)
+ */
 function historyDownload(){
 	var frequency = $("#frequency").val();
 	var period1 = $("#fromDate").text();

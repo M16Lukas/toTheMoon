@@ -22,7 +22,13 @@ public class StockController {
 
 	@Autowired
 	private StockService service;
-	
+	/**
+	 * 주식 검색 (search stock info by Symbol)
+	 * 
+	 * @param symbol
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/{symbol}")
 	private String searchSymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;

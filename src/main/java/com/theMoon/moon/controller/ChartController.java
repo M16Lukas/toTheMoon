@@ -50,7 +50,7 @@ public class ChartController {
 	
 	/**
 	 * 
-	 * Chart Page
+	 * Chart Page - Chart
 	 * 
 	 * @param symbol
 	 * @param model

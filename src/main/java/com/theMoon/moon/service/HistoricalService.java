@@ -30,6 +30,16 @@ import com.theMoon.moon.vo.StockHistory;
 @Service
 public class HistoricalService {
 	
+	/**
+	 * List of Historical Data
+	 * 
+	 * @param symbol
+	 * @param period1 - from
+	 * @param period2 - to
+	 * @param frequency
+	 * @return
+	 * @throws IOException
+	 */
 	public List<HistoricalQuote> historicalList(String symbol, Date period1, Date period2, String frequency) throws IOException{
 		Stock stock = YahooFinance.get(symbol);
 		Interval interval = null;
@@ -37,7 +47,7 @@ public class HistoricalService {
 		Calendar from = Calendar.getInstance();
 		Calendar to = Calendar.getInstance();
 		
-		// startdate
+		// start date
 		// 검색 기간을 설정한 경우
 		if (period1 != null) {
 			from.setTime(period1);
@@ -45,7 +55,7 @@ public class HistoricalService {
 			from.add(Calendar.YEAR, -1);
 		}
 		
-		// EndDate
+		// end date
 		// 검색 기간을 설정한 경우
 		if (period2 != null) {
 			to.setTime(period2);
@@ -69,13 +79,23 @@ public class HistoricalService {
 		return stock.getHistory(from, to, interval);
 	}
 
-	
+	/**
+	 * Paging results about List of Historical Data
+	 *  
+	 * @param symbol
+	 * @param period1 - from
+	 * @param period2 - to
+	 * @param frequency
+	 * @param countPerPage
+	 * @param currentPage
+	 * @return
+	 * @throws IOException
+	 */
 	public Map<String, Object> historicalDataPagingResult(String symbol, Date period1, Date period2, String frequency, int countPerPage, int currentPage) throws IOException{
-		
+		// get list of Historical Data
 		List<HistoricalQuote> lists = historicalList(symbol, period1, period2, frequency);
-		// desc sort
+		// sort : desc
 		Collections.reverse(lists);
-		
 		// paging
 		PageDTO page = new PageDTO(countPerPage, currentPage, lists.size());
 		
@@ -85,7 +105,6 @@ public class HistoricalService {
 			history.add(new StockHistory(lists.get(i)));
 		}
 		
-		
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("history", history);
@@ -94,14 +113,23 @@ public class HistoricalService {
 		return map;
 	}
 	
-	
+	/**
+	 * Historical Data Download (to Excel)
+	 * 
+	 * @param response
+	 * @param symbol
+	 * @param period1 - from
+	 * @param period2 - to
+	 * @param freq
+	 * @throws IOException
+	 */
 	public void excelDownload(HttpServletResponse response, String symbol, Date period1, Date period2, String freq) throws IOException {
 		ServletOutputStream fileout = response.getOutputStream();
-		
+		// get list of Historical Data
 		List<HistoricalQuote> lists = historicalList(symbol, period1, period2, freq);
-		// desc sort
+		// sort : desc
 		Collections.reverse(lists);
-		
+		// paging
 		List<StockHistory> history = new ArrayList<StockHistory>();
 		
 		for(HistoricalQuote list : lists) {
@@ -110,6 +138,7 @@ public class HistoricalService {
 		
 		Workbook wb = new XSSFWorkbook(); // ect : xls
 		
+		// Create Sheet
 		Sheet sheet = wb.createSheet(symbol);
 		Row row = null;
 		Cell cell = null;
@@ -151,7 +180,7 @@ public class HistoricalService {
 			cell.setCellValue(hist.getVolume().doubleValue());
 		}
 		
-		// content type & file name
+		// set content type & file name
 		response.setContentType("ms-vnd/excel");
 		response.setHeader("Content-Disposition", "attachment;filename=" + symbol + ".xlsx");
 		

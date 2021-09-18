@@ -51,9 +51,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 			Authentication authentication) throws IOException, ServletException{
 		
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
-		
-		
-		
+
 		// 세션에 이동할 url 정보 있을 경우
 		if (savedRequest != null) {
 			String targetUrl = savedRequest.getRedirectUrl();

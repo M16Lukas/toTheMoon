@@ -26,7 +26,11 @@ public class StockHistory {
 
     public StockHistory() {}
     
-    // Constructor : Historical Data Page
+    /**
+     * Constructor : Historical Data Page
+     * 
+     * @param historical
+     */
 	public StockHistory(HistoricalQuote historical) {
 		this.open 		= historical.getOpen() 		== null ? BigDecimal.ZERO : historical.getOpen();
 		this.low 		= historical.getLow() 		== null ? BigDecimal.ZERO : historical.getLow();

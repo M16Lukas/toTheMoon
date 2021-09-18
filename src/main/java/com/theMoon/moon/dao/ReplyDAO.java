@@ -16,6 +16,12 @@ public class ReplyDAO {
 	@Autowired
 	private SqlSession session;
 	
+	/**
+	 * reply 입력
+	 * 
+	 * @param reply
+	 * @return
+	 */
 	public int insertReply(Reply reply) {
 		int cnt = -1;
 		
@@ -29,6 +35,12 @@ public class ReplyDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 해당 댓글의 reply 목록 출력
+	 * 
+	 * @param content_nm
+	 * @return
+	 */
 	public ArrayList<HashMap<String, Object>> getReply(int content_nm){
 		ArrayList<HashMap<String, Object>> lists = null;
 		try {
@@ -41,6 +53,12 @@ public class ReplyDAO {
 		return lists;
 	}
 	
+	/**
+	 * reply 수정
+	 * 
+	 * @param reply
+	 * @return
+	 */
 	public int modifyReply(Reply reply) {
 		int cnt = -1;
 		
@@ -54,6 +72,12 @@ public class ReplyDAO {
 		return cnt;
 	}
 	
+	/**
+	 * reply 삭제
+	 * 
+	 * @param reply
+	 * @return
+	 */
 	public int removeReply(Reply reply) {
 		int cnt = -1;
 		

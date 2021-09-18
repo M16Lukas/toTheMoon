@@ -1,13 +1,3 @@
-/*!
-* Start Bootstrap - Landing Page v6.0.2 (https://startbootstrap.com/theme/landing-page)
-* Copyright 2013-2021 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-landing-page/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
-
-// textarea size control
-
 /*
  * textarea sizing
  */
@@ -18,11 +8,8 @@ function resize(obj) {
 
 
 /*
- *
- * 댓글 관련 method
- *
+ * modify textarea form
  */
-
 function modifyForm(id){
 	var form = '<div class="input-group">';
 		form += '<textarea class="form-control bg-light border-0 small" name="newContent" onkeyup="resize(this)" maxlength="8000" style="height: 70px;">';
@@ -36,6 +23,9 @@ function modifyForm(id){
 	return form;
 }
 
+/*
+ * 댓글(Comments) 수정 폼
+ */
 function contentModefyForm(num){
 	
 	var id = "#" + num + "content";
@@ -48,6 +38,9 @@ function contentModefyForm(num){
 	$(id).html(content);
 }
 
+/*
+ * 추천 기능
+ */
 function contentUp(num){
 	var id = "#" + num + "upCnt";
 	var upCnt = Number($(id).text());
@@ -65,6 +58,9 @@ function contentUp(num){
 	});
 }
 
+/*
+ * 비추천 기능
+ */
 function contentDown(num){
 	var id = "#" + num + "downCnt";
 	var downCnt = Number($(id).text());
@@ -84,9 +80,7 @@ function contentDown(num){
 
 
 /*
- *
- * 대댓글 관련 method
- *
+ * 댓글(Comment)의 대댓글(reply) list
  */
 function viewReply(num){
 	var re = "#reply" + num + " .reply-card";
@@ -104,6 +98,7 @@ function viewReply(num){
 				context += "<span class='h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight'>" + this.replyer + "</span>";
 				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";
 				
+				// reply 작성자와 로그인 정보가 일치하는 경우
 				if(email == this.replyer){
 					context += '<div class="dropdown no-arrow bd-highlight">';
 					context += '<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';

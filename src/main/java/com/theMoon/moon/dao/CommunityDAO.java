@@ -15,6 +15,12 @@ public class CommunityDAO {
 	@Autowired
 	private SqlSession session;
 	
+	/**
+	 * 해당 주식의 댓글 가져오기
+	 * 
+	 * @param symbol
+	 * @return
+	 */
 	public ArrayList<HashMap<String, Object>> printContent(String symbol){
 		ArrayList<HashMap<String, Object>> lists = null;
 		try {
@@ -27,6 +33,12 @@ public class CommunityDAO {
 		return lists;
 	}
 	
+	/**
+	 * 댓글 등록
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int insertContent(Community community) {
 		int cnt = -1;
 		
@@ -40,6 +52,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 댓글 삭제
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int removeContent(Community community) {
 		int cnt = -1;
 		
@@ -53,6 +71,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 *  댓글 수정
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int modifyContent(Community community) {
 		int cnt = -1;
 		
@@ -66,6 +90,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 댓글 추천 여부 확인
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public HashMap<String, String> checkContentLikeHistory(Community community){
 		HashMap<String, String> map = null;
 		try {
@@ -78,6 +108,12 @@ public class CommunityDAO {
 		return map;
 	}
 	
+	/**
+	 * 댓글 추천 이력 추가
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int insertContentLikeHistory(Community community) {
 		int cnt = -1;
 		
@@ -91,6 +127,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 댓글 추천 이력 수정
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int updateContentLikeHistory(Community community) {
 		int cnt = -1;
 		
@@ -104,6 +146,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 댓글 추천
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int contentUp(Community community) {
 		int cnt = -1;
 		
@@ -117,6 +165,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 댓글 비추천 이력 추가
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int insertContentDisLikeHistory(Community community) {
 		int cnt = -1;
 		
@@ -130,6 +184,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 댓글 비추천 이력 수정
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int updateContentDisLikeHistory(Community community) {
 		int cnt = -1;
 		
@@ -143,6 +203,12 @@ public class CommunityDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 댓글 비추천
+	 * 
+	 * @param community
+	 * @return
+	 */
 	public int contentDown(Community community) {
 		int cnt = -1;
 		

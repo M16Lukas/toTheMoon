@@ -23,7 +23,7 @@ $(function(){
 });
 
 /*
- * Index Page 
+ * CASE1 : Index Page 
  */
 function indexPageChart(symbol) {
 	$.ajax({
@@ -61,10 +61,10 @@ var indexChart = new CanvasJS.StockChart(sctx, {
     navigator: { enabled: false }
   });
 	
-/*
- * Chart Page
- */
 	
+/*
+ * CASE2 : Chart Page
+ */	
 function chartPageChart() {
 	$.ajax({
 		url: "chartDate",
@@ -136,7 +136,9 @@ var stockChart = new CanvasJS.StockChart(ctx, {
     }
 });
 
-  
+ /*
+  * 단워 설정
+  */
 function addSymbols(e){
     var suffixes = ["", "K", "M", "B"];
     var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);

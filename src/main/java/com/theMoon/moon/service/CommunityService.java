@@ -20,7 +20,12 @@ public class CommunityService {
 	@Autowired
 	private CommunityDAO dao;
 	
-	// 전체 댓글 출력
+	/**
+	 * list of comments
+	 * 
+	 * @param symbol
+	 * @return
+	 */
 	public ArrayList<Community> printContent(String symbol){
 		ArrayList<HashMap<String, Object>> maps = dao.printContent(symbol);
 		ArrayList<Community> lists = new ArrayList<Community>();
@@ -41,7 +46,13 @@ public class CommunityService {
 		return lists;
 	}
 	
-	// 댓글 추가
+	/**
+	 * Enter the comments
+	 * 
+	 * @param symbol
+	 * @param content
+	 * @return
+	 */
 	public String insertContent(String symbol, String content) {
 		String path = "";
 		String loginEmail = (String) session.getAttribute("loginEmail");
@@ -57,7 +68,14 @@ public class CommunityService {
 		return path;
 	}
 	
-	// 댓글 수정
+	/**
+	 * Modify the comments
+	 * 
+	 * @param symbol
+	 * @param nm
+	 * @param newContent
+	 * @return
+	 */
 	public String modifyContent(String symbol, int nm, String newContent) {
 		String path = "";
 		String loginEmail = (String) session.getAttribute("loginEmail");
@@ -78,7 +96,13 @@ public class CommunityService {
 		return path;
 	}
 	
-	// 댓글 삭제
+	/**
+	 * Delete the comments
+	 * 
+	 * @param symbol
+	 * @param nm
+	 * @return
+	 */
 	public String removeContent(String symbol, int nm){		
 		Community content = new Community();
 		content.setSymbol(symbol);
@@ -90,7 +114,13 @@ public class CommunityService {
 		return "redirect:/quote/" + symbol + "/community";
 	}
 	
-	// 추천
+	/**
+	 * Recommendation
+	 * 
+	 * @param symbol
+	 * @param content_nm
+	 * @return
+	 */
 	public boolean contentUp(String symbol, int content_nm) {
 		boolean isValid = false;
 		Community content = new Community();
@@ -110,7 +140,7 @@ public class CommunityService {
 					isValid = true;
 				}
 			} 
-			// 로그인한 계정으로 추천 이력이 있는 경우
+			// 로그인한 계정으로 추천 이력 중 해당 comment에 추천한 이력이 없는 경우
 			else {
 				if(map.get("CHECK_LIKE").equals("N")) {
 					// 추천 기능 수행 & 추천 이력 추가
@@ -124,7 +154,13 @@ public class CommunityService {
 		return isValid;
 	}
 	
-	// 비추천
+	/**
+	 * Not recommendation
+	 * 
+	 * @param symbol
+	 * @param content_nm
+	 * @return
+	 */
 	public boolean contentDown(String symbol, int content_nm) {
 		boolean isValid = false;
 		Community content = new Community();
@@ -144,7 +180,7 @@ public class CommunityService {
 					isValid = true;
 				}
 			} 
-			// 로그인한 계정으로 추천 이력이 있는 경우
+			// 로그인한 계정으로 추천 이력 중 해당 comment에 비추천한 이력이 없는 경우
 			else {
 				if(map.get("CHECK_DISLIKE").equals("N")) {
 					// 추천 기능 수행 & 추천 이력 추가

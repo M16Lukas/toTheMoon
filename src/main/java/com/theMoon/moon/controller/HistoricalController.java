@@ -56,7 +56,7 @@ public class HistoricalController {
 		
 		Calendar cal = Calendar.getInstance();
 		
-		// 기간 초기 설정
+		// 기간 초기 설정(default)
 		// to (today)
 		if (period2 == null) {
 			period2 = cal.getTime();

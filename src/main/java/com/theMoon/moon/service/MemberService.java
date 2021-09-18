@@ -125,6 +125,7 @@ public class MemberService {
 			int cnt = dao.updatePassword(member);
 			
 			if(cnt > 0) {
+				// send reset Password by Email
 				emailService.sendMail(new EmailDTO(inputEmail, randomPassword));
 				isVaild = true;
 			}

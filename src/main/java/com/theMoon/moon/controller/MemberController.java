@@ -25,6 +25,12 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	/**
+	 * Move to Login Page
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@GetMapping("/login")
 	private String loginForm(HttpServletRequest request) {
 		if (request.getHeader("REFERER") == null) {
@@ -34,12 +40,24 @@ public class MemberController {
 		}
 	}
 	
+	/**
+	 * process of login
+	 * 
+	 * @param member
+	 * @return
+	 */
 	@ResponseBody
 	@PostMapping("/loginProcess")
 	private boolean login(Member member) {
 		return service.login(member);
 	}
 	
+	/**
+	 * process of logout
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@GetMapping("/logout")
 	private String logout(HttpServletRequest request) {
 		String referer = request.getHeader("REFERER");
@@ -50,39 +68,80 @@ public class MemberController {
 		}		
 	}
 	
+	/**
+	 * Move to account register Page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/register")
 	private String registerForm() {
 		return "member/register";
 	}
 	
+	/**
+	 * process of account register
+	 * 
+	 * @param member
+	 * @return
+	 */
 	@ResponseBody
 	@PostMapping("/register")
 	private boolean registerMember(Member member) {
 		return service.registerMember(member);
 	}
 	
+	/**
+	 * Move to forgot-password page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/forgot-password")
 	private String forgotPasswordForm() {
 		return "member/forgot-password";
 	}
 	
+	/**
+	 * process of reset password
+	 * 
+	 * @param inputEmail
+	 * @return
+	 */
 	@ResponseBody
 	@PostMapping("/forgot-password")
 	private boolean forgotPassword(String inputEmail) {
 		return service.forgotPassword(inputEmail);
 	}
 	
+	/**
+	 * Move to update-password page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/update-password")
 	private String updatePasswordForm() {
 		return "member/update-password";
 	}
 	
+	/**
+	 * process of update Password
+	 * 
+	 * @param updatePassword
+	 * @return
+	 */
 	@ResponseBody
 	@PatchMapping("/update-password")
 	private boolean updatePassword(@RequestBody String updatePassword) {
 		return service.updatePassword(updatePassword);
 	}
 	
+	/**
+	 * google login Authorization
+	 * 
+	 * @param idtoken
+	 * @return
+	 * @throws GeneralSecurityException
+	 * @throws IOException
+	 */
 	@ResponseBody
 	@PostMapping("/google/auth")
 	private boolean googleTokenSignIn(String idtoken) throws GeneralSecurityException, IOException{

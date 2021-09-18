@@ -27,12 +27,12 @@ public class CommunityController {
 	private CommunityService commuService;
 	
 	/**
+	 * list of comments
 	 * 
-	 * Community(content : 댓글)
-	 * 
+	 * @param symbol
+	 * @param model
+	 * @return
 	 */
-	
-	// 댓글 출력
 	@GetMapping
 	private String communitySymbol(@PathVariable String symbol, Model model){
 		StockInfo info = null;
@@ -58,34 +58,64 @@ public class CommunityController {
 		}
 	}
 	
-	// 댓글 입력
+	/**
+	 * Enter the comments
+	 * 
+	 * @param symbol
+	 * @param content
+	 * @return
+	 */
 	@PostMapping("/register")
 	private String insertContent(@PathVariable String symbol, String content){
 		return commuService.insertContent(symbol, content);
 	}
 	
-	// 댓글 수정
+	/**
+	 * Modify the comments
+	 * 
+	 * @param symbol
+	 * @param nm
+	 * @param newContent
+	 * @return
+	 */
 	@PostMapping("/modify")
 	private String modifyContent(@PathVariable String symbol, int nm, String newContent){
 		return commuService.modifyContent(symbol, nm, newContent);
 	}
 	
-	// 댓글 삭제
+	/**
+	 * Delete the comments
+	 * 
+	 * @param symbol
+	 * @param nm
+	 * @return
+	 */
 	@GetMapping("/remove")
 	private String removeContent(@PathVariable String symbol, int nm){
 		return commuService.removeContent(symbol, nm);
 	}
 	
-	// 
 	
-	// 추천
+	/**
+	 * Recommendation
+	 * 
+	 * @param symbol
+	 * @param content_nm
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/up")
 	private boolean contentUp(@PathVariable String symbol, int content_nm) {
 		return commuService.contentUp(symbol, content_nm);
 	}
 	
-	// 비추천
+	/**
+	 * Not recommendation
+	 * 
+	 * @param symbol
+	 * @param content_nm
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/down")
 	private boolean contentDown(@PathVariable String symbol, int content_nm){

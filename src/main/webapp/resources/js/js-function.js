@@ -1,7 +1,6 @@
 /**
- * 
+ * 주식 정보 검색
  */
-
 var sendSymbol = () => {
 	var symbol = $("#symbol").val();
 		
@@ -10,6 +9,9 @@ var sendSymbol = () => {
 	}
 };
  
+/*
+ * 맨 위로 자동 스크롤
+ */
 var backToTop = () => {
 	// Scroll & button show / hide
 	window.addEventListener('scroll', () => {
