@@ -53,7 +53,12 @@
 	var period2 	 = $("#toDate").text();
 	
 	
-	location.href = "history?period1=" + period1 + "&period2=" + period2 + "&countPerPage=" + countPerPage + "&frequency=" + frequency + "&p=" + p;
+	location.href = "history" 
+					+ "?period1=" + period1 
+					+ "&period2=" + period2 
+					+ "&countPerPage=" + countPerPage 
+					+ "&frequency=" + frequency 
+					+ "&p=" + p;
 }
 
 /*

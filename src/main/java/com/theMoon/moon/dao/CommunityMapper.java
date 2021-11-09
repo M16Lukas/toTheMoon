@@ -8,7 +8,7 @@ import com.theMoon.moon.vo.Community;
 public interface CommunityMapper {
 	
 	/**
-	 * 해당 주식의 댓글 가져오기 
+	 * 検索した株式のコメント出力
 	 * 
 	 * @param symbol
 	 * @return
@@ -16,7 +16,7 @@ public interface CommunityMapper {
 	public ArrayList<HashMap<String, Object>> printContent(String symbol);
 	
 	/**
-	 * 댓글 등록
+	 * コメント登録
 	 * 
 	 * @param community
 	 * @return
@@ -24,7 +24,7 @@ public interface CommunityMapper {
 	public int insertContent(Community community);
 	
 	/**
-	 * 댓글 삭제
+	 * コメント削除
 	 * 
 	 * @param community
 	 * @return
@@ -32,7 +32,7 @@ public interface CommunityMapper {
 	public int removeContent(Community community);
 	
 	/**
-	 *  댓글 수정
+	 *  コメント修正
 	 * 
 	 * @param community
 	 * @return
@@ -40,7 +40,7 @@ public interface CommunityMapper {
 	public int modifyContent(Community community);
 	
 	/**
-	 * 댓글 추천 여부 확인
+	 * コメントの推薦ヒストリー確認
 	 * 
 	 * @param community
 	 * @return
@@ -48,7 +48,7 @@ public interface CommunityMapper {
 	public HashMap<String, String> checkContentLikeHistory(Community community);
 	
 	/**
-	 * 댓글 추천 이력 추가
+	 * ヒストリーに推薦履歴追加
 	 * 
 	 * @param community
 	 * @return
@@ -56,7 +56,7 @@ public interface CommunityMapper {
 	public int insertContentLikeHistory(Community community);
 	
 	/**
-	 * 댓글 추천 이력 수정
+	 * 推薦ヒストリーアップデート
 	 * 
 	 * @param community
 	 * @return
@@ -64,7 +64,7 @@ public interface CommunityMapper {
 	public int updateContentLikeHistory(Community community);
 	
 	/**
-	 * 댓글 추천
+	 * [そう思う]ボタン
 	 * 
 	 * @param community
 	 * @return
@@ -72,7 +72,7 @@ public interface CommunityMapper {
 	public int contentUp(Community community);
 	
 	/**
-	 * 댓글 비추천 이력 추가
+	 * ヒストリーに非推薦履歴追加
 	 * 
 	 * @param community
 	 * @return
@@ -80,7 +80,7 @@ public interface CommunityMapper {
 	public int insertContentDisLikeHistory(Community community);
 	
 	/**
-	 * 댓글 비추천 이력 수정
+	 * 非推薦ヒストリーアップデート
 	 * 
 	 * @param community
 	 * @return
@@ -88,7 +88,7 @@ public interface CommunityMapper {
 	public int updateContentDisLikeHistory(Community community);
 
 	/**
-	 * 댓글 비추천
+	 * [そう思わない]ボタン
 	 * 
 	 * @param community
 	 * @return

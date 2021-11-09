@@ -3,17 +3,24 @@ package com.theMoon.moon.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * コメント　VO
+ * 
+ * @author ipark
+ *
+ */
+
 @Getter @Setter
 public class Community {
 	// seq : community_nm_seq
 	private int content_nm;
 	private String symbol;
 	private String email;
-	private String content; // type : clob
-	private int content_up;
-	private int content_down;
+	private String content; 	// DB type : clob
+	private int content_up;		//　[そう思う]
+	private int content_down;	//　[そう思わない]
 	private String content_indate;
-	private int reply_cnt;
+	private int reply_cnt;		//　リプライ数
 	
 	/**
 	 * Constructor

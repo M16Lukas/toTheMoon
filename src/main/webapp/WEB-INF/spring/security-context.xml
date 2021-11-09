@@ -28,7 +28,7 @@
 	/>
 
 	
-	<!-- 중복 로그인 방지 -->
+	<!-- 二重ログイン防止 -->
 	<security:session-management invalid-session-url="/member/login">
 		<security:concurrency-control max-sessions="1" expired-url="/member/login"/>
 	</security:session-management>
@@ -44,17 +44,17 @@
 
 
 
-<!-- 로그인 성공 시 처리 -->
+<!-- ログイン成功の場合 -->
 <bean id="CustomAuthenticationSuccessHandler" class="com.theMoon.moon.security.CustomAuthenticationSuccessHandler">
 	<property name="defaultUrl" value="/"/>
 </bean>
 
-<!-- 로그아웃 성공 시 referer 페이지로 이동 -->
+<!-- ログイン成功し、refererページに移動 -->
 <bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
     <property name="useReferer" value="true"/>
 </bean>
 
-<!-- 비밀번호 암호화 -->
+<!-- パスワード暗号化 -->
 <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans>

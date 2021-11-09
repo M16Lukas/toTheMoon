@@ -1,5 +1,5 @@
 /**
- * 주식 정보 검색
+ * 株式検索
  */
 var sendSymbol = () => {
 	var symbol = $("#symbol").val();
@@ -10,7 +10,7 @@ var sendSymbol = () => {
 };
  
 /*
- * 맨 위로 자동 스크롤
+ * 自動スクロール
  */
 var backToTop = () => {
 	// Scroll & button show / hide

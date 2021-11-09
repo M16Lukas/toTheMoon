@@ -59,7 +59,7 @@ public class CommunityController {
 	}
 	
 	/**
-	 * Enter the comments
+	 * Enter the comments（コメント投稿）
 	 * 
 	 * @param symbol
 	 * @param content
@@ -71,7 +71,7 @@ public class CommunityController {
 	}
 	
 	/**
-	 * Modify the comments
+	 * Modify the comments（コメント修正）
 	 * 
 	 * @param symbol
 	 * @param nm
@@ -84,7 +84,7 @@ public class CommunityController {
 	}
 	
 	/**
-	 * Delete the comments
+	 * Delete the comments（コメント削除）
 	 * 
 	 * @param symbol
 	 * @param nm
@@ -97,7 +97,7 @@ public class CommunityController {
 	
 	
 	/**
-	 * Recommendation
+	 * Recommendation（[そう思う]ボタン）
 	 * 
 	 * @param symbol
 	 * @param content_nm
@@ -110,7 +110,7 @@ public class CommunityController {
 	}
 	
 	/**
-	 * Not recommendation
+	 * Not recommendation（[そう思わない]ボタン）
 	 * 
 	 * @param symbol
 	 * @param content_nm

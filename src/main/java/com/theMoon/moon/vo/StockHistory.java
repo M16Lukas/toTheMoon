@@ -8,6 +8,13 @@ import lombok.Getter;
 import lombok.Setter;
 import yahoofinance.histquotes.HistoricalQuote;
 
+/**
+ * 時系列データ　VO
+ * 
+ * @author ipark
+ *
+ */
+
 @Getter
 @Setter
 public class StockHistory {
@@ -15,14 +22,14 @@ public class StockHistory {
 	    
     private String date;
     
-    private BigDecimal open;
-    private BigDecimal low;
-    private BigDecimal high;
-    private BigDecimal close;
+    private BigDecimal open;	// 始値
+    private BigDecimal low;		//　安値
+    private BigDecimal high;	//　高値
+    private BigDecimal close;	//　前日終値
     
     private BigDecimal adjClose;
     
-    private Long volume;
+    private Long volume;		//　出来高
 
     public StockHistory() {}
     

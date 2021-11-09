@@ -4,6 +4,13 @@ package com.theMoon.moon.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * リプライ　VO
+ * 
+ * @author ipark
+ *
+ */
+
 @Getter @Setter
 public class Reply {
 	
@@ -17,14 +24,14 @@ public class Reply {
 	
 	public Reply() {}
 	
-	// 생성자 : input reply
+	// Constructor : input reply
 	public Reply(int content_nm, String reply, String replyer) {
 		this.content_nm = content_nm;
 		this.reply = reply;
 		this.replyer = replyer;
 	}
 	
-	// 생성자 : get reply
+	// Constructor : get reply
 	public Reply(int reply_nm, String firstName, String lastName, String reply, String replyer, String reply_indate) {
 		this.reply_nm = reply_nm;
 		this.firstName = firstName;
@@ -34,7 +41,7 @@ public class Reply {
 		this.reply_indate = reply_indate;
 	}
 	
-	// 생성자 : remove reply
+	// Constructor : remove reply
 	public Reply(int reply_nm, String replyer) {
 		this.reply_nm = reply_nm;
 		this.replyer = replyer;

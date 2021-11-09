@@ -23,7 +23,7 @@ public class StockController {
 	@Autowired
 	private StockService service;
 	/**
-	 * 주식 검색 (search stock info by Symbol)
+	 * 株式検索 (search stock info by Symbol)
 	 * 
 	 * @param symbol
 	 * @param model
@@ -41,10 +41,11 @@ public class StockController {
 			return "redirect:/";
 		}
 		
-
+		//　存在していない株式の場合
 		if (info == null) {
 			return "redirect:/";
 		} else {
+			// 該当株式のグーグルニュース
 			newsLists = service.googleNewsRSSParser(symbol);
 			model.addAttribute("info", info);
 			model.addAttribute("newsLists", newsLists);

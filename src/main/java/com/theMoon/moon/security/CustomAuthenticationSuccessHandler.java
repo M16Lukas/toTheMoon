@@ -24,7 +24,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 
-		// redirect url 작업을 위한 메서드 호출
+		// redirect url 作業のためのメソッド呼び出し
 		resultRedirectStrategy(request, response, authentication);
 	}
 
@@ -39,7 +39,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
 	/**
 	 * 
-	 * 로그인 성공시, Redirect URL 설정
+	 * ログインに成功した場合、Redirect URL設定
 	 * 
 	 * @param request
 	 * @param response
@@ -52,12 +52,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 
-		// 세션에 이동할 url 정보 있을 경우
+		// セッションに移動するURL情報がある場合
 		if (savedRequest != null) {
 			String targetUrl = savedRequest.getRedirectUrl();
 			redirectStrategy.sendRedirect(request, response, targetUrl);
 		} 
-		// 직접 로그인 화면에 이동
+		// 直接ログイン画面に移動
 		else {
 			redirectStrategy.sendRedirect(request, response, defaultUrl);
 		}

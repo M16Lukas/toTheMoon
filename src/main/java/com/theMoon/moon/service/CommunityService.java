@@ -47,7 +47,7 @@ public class CommunityService {
 	}
 	
 	/**
-	 * Enter the comments
+	 * Enter the comments（コメント投稿）
 	 * 
 	 * @param symbol
 	 * @param content
@@ -69,7 +69,7 @@ public class CommunityService {
 	}
 	
 	/**
-	 * Modify the comments
+	 * Modify the comments（コメント修正）
 	 * 
 	 * @param symbol
 	 * @param nm
@@ -80,6 +80,7 @@ public class CommunityService {
 		String path = "";
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		Community community = null;
+		
 		
 		if (loginEmail == null) {
 			return "redirect:/member/login";
@@ -97,7 +98,7 @@ public class CommunityService {
 	}
 	
 	/**
-	 * Delete the comments
+	 * Delete the comments（コメント削除）
 	 * 
 	 * @param symbol
 	 * @param nm
@@ -115,7 +116,7 @@ public class CommunityService {
 	}
 	
 	/**
-	 * Recommendation
+	 * Recommendation（[そう思う]ボタン）
 	 * 
 	 * @param symbol
 	 * @param content_nm
@@ -126,24 +127,24 @@ public class CommunityService {
 		Community content = new Community();
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		
-		// 로그인을 한 경우
+		// ログインした場合
 		if (loginEmail != null) {
 			content.setContent_nm(content_nm);
 			content.setEmail(loginEmail);
 			content.setSymbol(symbol);
 			
 			HashMap<String, String> map = dao.checkContentLikeHistory(content);
-			// 로그인한 계정으로 추천 이력이 없는 경우
+			// ログインしたアカウントで推薦をしたヒストリーがない場合
 			if(map == null) {
-				// 추천 기능 수행 & 추천 이력 추가
+				// 推薦　&　ヒストリー追加
 				if (dao.contentUp(content) > 0 && dao.insertContentLikeHistory(content) > 0) {
 					isValid = true;
 				}
 			} 
-			// 로그인한 계정으로 추천 이력 중 해당 comment에 추천한 이력이 없는 경우
+			// ログインしたアカウントの推薦ヒストリーの中で該当コメントに推薦をしたヒストリーがない場合
 			else {
 				if(map.get("CHECK_LIKE").equals("N")) {
-					// 추천 기능 수행 & 추천 이력 추가
+					// 推薦　&　ヒストリーアップデート
 					if (dao.contentUp(content) > 0 && dao.updateContentLikeHistory(content) > 0) {
 						isValid = true;
 					}
@@ -155,7 +156,7 @@ public class CommunityService {
 	}
 	
 	/**
-	 * Not recommendation
+	 * Not recommendation（[そう思わない]ボタン）
 	 * 
 	 * @param symbol
 	 * @param content_nm
@@ -166,24 +167,24 @@ public class CommunityService {
 		Community content = new Community();
 		String loginEmail = (String) session.getAttribute("loginEmail");
 		
-		// 로그인을 한 경우
+		// ログインした場合
 		if (loginEmail != null) {
 			content.setContent_nm(content_nm);
 			content.setEmail(loginEmail);
 			content.setSymbol(symbol);
 			
 			HashMap<String, String> map = dao.checkContentLikeHistory(content);
-			// 로그인한 계정으로 추천 이력이 없는 경우
+			// ログインしたアカウントで非推薦をしたヒストリーがない場合
 			if(map == null) {
-				// 추천 기능 수행 & 추천 이력 추가
+				// 非推薦　&　ヒストリー追加
 				if (dao.contentDown(content) > 0 && dao.insertContentDisLikeHistory(content) > 0) {
 					isValid = true;
 				}
 			} 
-			// 로그인한 계정으로 추천 이력 중 해당 comment에 비추천한 이력이 없는 경우
+			// ログインしたアカウントの非推薦ヒストリーの中で該当コメントに非推薦をしたヒストリーがない場合
 			else {
 				if(map.get("CHECK_DISLIKE").equals("N")) {
-					// 추천 기능 수행 & 추천 이력 추가
+					// 非推薦　&　ヒストリーアップデート
 					if (dao.contentDown(content) > 0 && dao.updateContentDisLikeHistory(content) > 0) {
 						isValid = true;
 					}

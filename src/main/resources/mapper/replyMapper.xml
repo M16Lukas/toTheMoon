@@ -5,7 +5,7 @@
 
 <mapper namespace="com.theMoon.moon.dao.ReplyMapper">
 
-<!-- 대댓글 등록 -->
+<!-- リプライ登録 -->
 <insert id="insertReply" parameterType="reply">
 	insert into
 		reply_tb(
@@ -21,7 +21,7 @@
 	) 
 </insert>
 
-<!-- 대댓글 가져오기 -->
+<!-- リプライ出力 -->
 <select id="getReply" parameterType="int" resultType="hashmap">
 select
 	reply_nm 											as reply_nm
@@ -36,7 +36,7 @@ order by
 	reply_indate desc
 </select>
 
-<!-- 대댓글 수정 -->
+<!-- リプライ修正 -->
 <update id="modifyReply" parameterType="reply">
 update
 	reply_tb
@@ -48,7 +48,7 @@ and
 	replyer = #{replyer}
 </update>
 
-<!-- 대댓글 삭제 -->
+<!-- リプライ削除 -->
 <delete id="removeReply" parameterType="reply">
 delete from
 	reply_tb

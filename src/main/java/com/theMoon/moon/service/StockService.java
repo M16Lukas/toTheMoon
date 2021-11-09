@@ -20,7 +20,7 @@ import com.theMoon.moon.vo.StockInfo;
 public class StockService {
 
 	/**
-	 * 주식 검색 (search stock info by Symbol)
+	 * 株式検索 (search stock info by Symbol)
 	 * 
 	 * @param symbol
 	 * @return

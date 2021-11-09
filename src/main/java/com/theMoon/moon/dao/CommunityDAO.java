@@ -16,7 +16,7 @@ public class CommunityDAO {
 	private SqlSession session;
 	
 	/**
-	 * 해당 주식의 댓글 가져오기
+	 * 検索した株式のコメント出力
 	 * 
 	 * @param symbol
 	 * @return
@@ -34,7 +34,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 등록
+	 * コメント登録
 	 * 
 	 * @param community
 	 * @return
@@ -53,7 +53,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 삭제
+	 * コメント削除
 	 * 
 	 * @param community
 	 * @return
@@ -72,7 +72,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 *  댓글 수정
+	 *  コメント修正
 	 * 
 	 * @param community
 	 * @return
@@ -91,7 +91,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 추천 여부 확인
+	 * コメントの推薦ヒストリー確認
 	 * 
 	 * @param community
 	 * @return
@@ -109,7 +109,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 추천 이력 추가
+	 * ヒストリーに推薦履歴追加
 	 * 
 	 * @param community
 	 * @return
@@ -128,7 +128,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 추천 이력 수정
+	 * 推薦ヒストリーアップデート
 	 * 
 	 * @param community
 	 * @return
@@ -147,7 +147,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 추천
+	 * [そう思う]ボタン
 	 * 
 	 * @param community
 	 * @return
@@ -166,7 +166,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 비추천 이력 추가
+	 * ヒストリーに非推薦履歴追加
 	 * 
 	 * @param community
 	 * @return
@@ -185,7 +185,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 비추천 이력 수정
+	 * 非推薦ヒストリーアップデート
 	 * 
 	 * @param community
 	 * @return
@@ -204,7 +204,7 @@ public class CommunityDAO {
 	}
 	
 	/**
-	 * 댓글 비추천
+	 * [そう思わない]ボタン
 	 * 
 	 * @param community
 	 * @return

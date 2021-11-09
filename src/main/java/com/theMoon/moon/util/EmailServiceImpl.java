@@ -14,29 +14,29 @@ import com.theMoon.moon.vo.EmailDTO;
 public class EmailServiceImpl implements EmailService{
 	
 	@Inject
-	JavaMailSender mailSender;	// root-context.xml에 설정한 bean
+	JavaMailSender mailSender;	// root-context.xmlに設定したbean
 
 	@Override
 	public void sendMail(EmailDTO email) {
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			
-			// 수신자
+			// 宛先
 			message.addRecipient(RecipientType.TO, new InternetAddress(email.getReceiveMail()));
 			
-			// 발신자
+			// 差出人
 			message.addFrom( new InternetAddress[] {
 					new InternetAddress(email.getSenderMail(), email.getSenderName())
 				}
 			);
 			
-			// 이메일 제목
+			// メールのタイトル
 			message.setSubject(email.getSubject(), "utf-8");
 			
-			// 이메일 본문
+			// メールの本文
 			message.setText(email.getMessage(), "utf-8");
 			
-			// 이메일 전송
+			// メール転送
 			mailSender.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();

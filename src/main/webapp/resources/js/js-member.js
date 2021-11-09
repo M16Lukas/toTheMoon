@@ -76,7 +76,7 @@ function register(){
 	var form = document.getElementById("registerAccount");
 
 	/*
-	 * Check Validation
+	 * Check Validation of firstName
 	 */
 	if(form.firstName.value == null || form.firstName.value == "" || form.firstName.value == 'undefined'){
 		form.firstName.focus();
@@ -88,6 +88,9 @@ function register(){
 		return false;
 	}
 	
+	/*
+	 * Check Validation of lastName
+	 */
 	if(form.lastName.value == null || form.lastName.value == "" || form.lastName.value == 'undefined'){
 		form.lastName.focus();
 		toastWarning("last Name");
@@ -98,6 +101,9 @@ function register(){
 		return false;
 	}
 	
+	/*
+	 * Check Validation of email
+	 */
 	if(form.inputEmail.value == null || form.inputEmail.value == "" || form.inputEmail.value == 'undefined'){
 		form.inputEmail.focus();
 		toastWarning("email address");
@@ -114,6 +120,9 @@ function register(){
 		return false;
 	}
 	
+	/*
+	 * Check Validation of password
+	 */
 	if(form.inputPassword.value == null || form.inputPassword.value == "" || form.inputPassword.value == 'undefined'){
 		form.inputPassword.focus();
 		toastWarning("password");
@@ -163,7 +172,7 @@ function register(){
 function login(){
 	
 	/*
-	 * Check Validation
+	 * Check Validation of email
 	 */
 	var form = document.getElementById("loginForm");
 	
@@ -177,6 +186,9 @@ function login(){
 		return false;			
 	}
 	
+	/*
+	 * Check Validation of password
+	 */
 	if(form.inputPassword.value == null || form.inputPassword.value == "" || form.inputPassword.value == 'undefined'){
 		inputPassword.focus();
 		toastWarning("password");

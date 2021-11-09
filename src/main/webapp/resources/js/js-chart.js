@@ -12,11 +12,11 @@ $(function(){
 	var symbol = $("#chartSymbol").val();
 	var pathname = $(location).attr('pathname');
 	
-	// index Page 인 경우
+	// index Page
 	if(pathname.search("chart") == -1){
 		indexPageChart(symbol);
 	} 
-	// Chart Page 인 경우
+	// Chart Page
 	else {
 		chartPageChart();
 	}
@@ -137,7 +137,7 @@ var stockChart = new CanvasJS.StockChart(ctx, {
 });
 
  /*
-  * 단워 설정
+  * 単位設定
   */
 function addSymbols(e){
     var suffixes = ["", "K", "M", "B"];

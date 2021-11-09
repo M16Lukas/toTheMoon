@@ -24,7 +24,7 @@ function modifyForm(id){
 }
 
 /*
- * 댓글(Comments) 수정 폼
+ * コメント(Comments) 修正　フォーム
  */
 function contentModefyForm(num){
 	
@@ -39,7 +39,7 @@ function contentModefyForm(num){
 }
 
 /*
- * 추천 기능
+ * [そう思う]　機能
  */
 function contentUp(num){
 	var id = "#" + num + "upCnt";
@@ -59,7 +59,7 @@ function contentUp(num){
 }
 
 /*
- * 비추천 기능
+ * [そう思わない]　機能
  */
 function contentDown(num){
 	var id = "#" + num + "downCnt";
@@ -80,7 +80,7 @@ function contentDown(num){
 
 
 /*
- * 댓글(Comment)의 대댓글(reply) list
+ * コメント(Comment)のリプライ(reply)リスト
  */
 function viewReply(num){
 	var re = "#reply" + num + " .reply-card";
@@ -98,7 +98,7 @@ function viewReply(num){
 				context += "<span class='h6 m-0 font-weight-bold text-primary flex-grow-1 bd-highlight'>" + this.replyer + "</span>";
 				context += "<span class='bd-highlight'>" + this.reply_indate + "</span>";
 				
-				// reply 작성자와 로그인 정보가 일치하는 경우
+				// リプライの作成者とログイン情報が一致している場合
 				if(email == this.replyer){
 					context += '<div class="dropdown no-arrow bd-highlight">';
 					context += '<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
@@ -126,10 +126,10 @@ function viewReply(num){
 }
 
 /*
- * reply 등록
+ * リプライ登録
  */
 
-// 현재 댓글의 reply 갯수 추출
+// コメントのリプライ数を抽出
 function getReplyCount(num){
 	var cnt_str = $("#" + num + "reply_cnt").text();
 	var cnt = cnt_str.substring(cnt_str.indexOf("(") + 1, cnt_str.indexOf(")"));
@@ -137,7 +137,7 @@ function getReplyCount(num){
 	return Number(cnt);
 }
 
-// reply 등록
+// リプライ登録ボタン
 function clkInsertReplyBtn(num){
 	var reply = $("#insertReply" + num).serialize();
 	var cnt = getReplyCount(num);
@@ -155,7 +155,7 @@ function clkInsertReplyBtn(num){
 	});
 }
 
-// reply 수정
+// リプライ修正フォーム
 function replymodifyForm(num, reply_nm){
 	var id = "#" + reply_nm + "reply";
 	
@@ -187,7 +187,7 @@ function replymodifyForm(num, reply_nm){
 }
 
 
-// reply 삭제
+// リプライ削除
 function replyDelete(num, reply_nm){
 	var cnt = getReplyCount(num);
 	

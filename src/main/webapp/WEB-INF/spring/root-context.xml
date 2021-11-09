@@ -37,7 +37,7 @@
 		<constructor-arg index="0" name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	
-	<!-- 이메일 발송 빈설정 -->
+	<!-- e-mail発送　bean設定　-->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587"/>

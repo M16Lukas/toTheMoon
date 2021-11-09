@@ -2,24 +2,31 @@ package com.theMoon.moon.vo;
 
 import lombok.Data;
 
+/**
+ * 時系列データのページング　DTO
+ * 
+ * @author ipark
+ *
+ */
+
 @Data
 public class PageDTO {
-	private int total;			// 전체 데이터 수
+	private int total;						// 全体データの数
 	
 	/* Table data */
-	private int startDataIdxNum;	// 시작 데이터 인덱스 번호(0 부터 시작)
-	private int endDataIdxNum;		// 끝 데이터 인덱스 번호
+	private int startDataIdxNum;			// スタートデータのインデックス番号（0からスタート）
+	private int endDataIdxNum;				// エンドデータのインデックス番号
 	
 	/* Page */
-	private int countPerPage;	// 한 페이지 당 보여줄 데이터 수
-	private int currentPage;	// 현재 페이지(1부터 시작)
-	private int totalPageCount;	// 전체 페이지 수(마지막 페이지 번호)
+	private int countPerPage;				// ページあたり表記するデータ数
+	private int currentPage;				// 現在ページ（1からスタート）
+	private int totalPageCount;				// 全体ページ数（最後のページ番号）
 
 	/* Group */
-	private final int pagePerGroup = 10;	// 그룹 당 페이지 수
-	private int startPageGroup; 			// 현재 그룹의 시작 페이지
-	private int endPageGroup; 				// 현재 그룹의 마지막 페이지
-	private int currentGroup;				// 현재 그룹(0 부터 시작)
+	private final int pagePerGroup = 10;	// グループあたりページ数
+	private int startPageGroup; 			// 現在グループのスタートページ
+	private int endPageGroup; 				// 現在グループの最後のページ
+	private int currentGroup;				// 現在グループ（0からスタート）
 	
 	private boolean prev, next;
 	
@@ -33,43 +40,43 @@ public class PageDTO {
 	public PageDTO(int countPerPage, int currentPage, int total) {
 		this.total = total;
 		
-		// 전체 페이지 수(마지막 페이지 번호)
+		// 全体ページ数（最後のページ番号）
 		this.totalPageCount = (total + countPerPage - 1) / countPerPage;
 		
-		// 현재 페이지가 1 보다 작으면 1 페이지로 이동
+		// 現在ページが1より小さい場合、1ページに移動
 		if (currentPage < 1) currentPage = 1;
 		
-		// 현재 페이지가 마지막 페이지보다 크면 마지막 페이지로 이동
+		// 現在ページが最後のページより大きい場合、最後のページに移動
 		if (currentPage > totalPageCount) currentPage = totalPageCount;
-		
 		this.currentPage = currentPage;
 		
-		// 현재 페이지 시작 데이터 인덱스 번호(0 부터 시작)
+		// 現在ページのスタートデータのインデックス番号（0からスタート）
 		this.startDataIdxNum = (currentPage - 1) * countPerPage;
 				
-		// 현재 페이지 마지막 데이터 인덱스 번호
+		// 現在ページのエンドデータのインデックス番号
 		endDataIdxNum = startDataIdxNum + countPerPage - 1;
 		
-		// 현재 페이지 마지막 데이터 인덱스 번호가 전체 데이터 마지막 인덱스 보다 크면 total - 1로 처리
+		// 現在ページのエンドデータのインデックス番号が全体データの最後のインデックスより大きい場合
 		this.endDataIdxNum = (total - 1) < endDataIdxNum ? (total - 1) : endDataIdxNum;
 		
-		// 현재 그룹(0 부터 시작)
+		// 現在グループ（0からスタート）
 		this.currentGroup = (currentPage - 1) / pagePerGroup;
 		
-		// 현재 그룹의 시작 페이지
+		// 現在グループのスタートページ
 		startPageGroup = (pagePerGroup * currentGroup) + 1;
 		
-		// 현재 그룹의 첫 페이지가 1 보다 작으면 1로 처리
+		// 現在グループのスタートページが1より小さい場合
 		this.startPageGroup = startPageGroup < 1 ? 1 : startPageGroup;
 		
-		// 현재 그룹의 마지막 페이지
+		// 現在グループの最後のページ
 		endPageGroup = startPageGroup + pagePerGroup - 1;
 		
-		// 현재 그룹의 마지막 페이지가 전체 페이지 수보다 작으면 전체 페이지 수로 처리
+		// 現在グループの最後のページが全体ページの数より小さい場合
 		this.endPageGroup = endPageGroup < totalPageCount ? endPageGroup : totalPageCount;
 		
-		// 이전, 다음 그룹으로 이동
+		// 以前グループに移動
 		this.prev = this.startPageGroup > 1;
+		//　次のグループに移動
 		this.next = this.endPageGroup < totalPageCount;
 	}
 	

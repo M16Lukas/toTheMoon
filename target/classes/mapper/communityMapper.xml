@@ -5,7 +5,7 @@
 
 <mapper namespace="com.theMoon.moon.dao.CommunityMapper">
 
-<!-- 댓글 등록 -->
+<!-- コメント登録 -->
 <insert id="insertContent" parameterType="community">
 	insert into
 		community(
@@ -21,7 +21,7 @@
 	) 
 </insert>
 
-<!-- 해당 주식의 댓글 가져오기 -->
+<!-- 検索した株式のコメント出力　-->
 <resultMap type="hashmap" id="getContentList">
 	<result property="CONTENT" column="content" jdbcType="CLOB" javaType="java.lang.String"/>
 </resultMap>
@@ -43,7 +43,7 @@ order by
 	c.content_indate desc
 </select>
 
-<!-- 댓글 수정 -->
+<!-- コメント修正 -->
 <update id="modifyContent" parameterType="community">
 update
 	community
@@ -57,7 +57,7 @@ and
 	content_nm = #{content_nm}
 </update>
 
-<!-- 댓글 삭제 -->
+<!-- コメント削除 -->
 <delete id="removeContent" parameterType="community">
 delete from
 	community
@@ -69,7 +69,7 @@ and
 	email = #{email}
 </delete>
 
-<!-- 댓글 추천 여부 확인 -->
+<!-- コメントの推薦ヒストリー確認 -->
 <select id="checkContentLikeHistory" resultType="hashmap" parameterType="community">
 select
 	check_like
@@ -82,7 +82,7 @@ and
 	email = #{email}
 </select>
 
-<!-- 댓글 추천 이력 추가 -->
+<!-- ヒストリーに推薦履歴追加 -->
 <insert id="insertContentLikeHistory" parameterType="community">
 insert into community_like_history_tb
 	(content_nm, email, check_like)
@@ -90,7 +90,7 @@ values
 	(#{content_nm}, #{email}, 'Y')
 </insert>
 
-<!-- 댓글 추천 이력 수정 -->
+<!-- 推薦ヒストリーアップデート -->
 <update id="updateContentLikeHistory" parameterType="community">
 update
 	community_like_history_tb
@@ -102,7 +102,7 @@ and
 	email = #{email}
 </update>
 
-<!-- 댓글 추천 -->
+<!-- [そう思う]ボタン -->
 <update id="contentUp" parameterType="community">
 update
 	community
@@ -114,7 +114,7 @@ and
 	content_nm = #{content_nm}
 </update>
 
-<!-- 댓글 비추천 이력 추가 -->
+<!-- ヒストリーに非推薦履歴追加 -->
 <insert id="insertContentDisLikeHistory" parameterType="community">
 insert into community_like_history_tb
 	(content_nm, email, check_dislike)
@@ -122,7 +122,7 @@ values
 	(#{content_nm}, #{email}, 'Y')
 </insert>
 
-<!-- 댓글 비추천 이력 수정 -->
+<!-- 非推薦ヒストリーアップデート -->
 <update id="updateContentDisLikeHistory" parameterType="community">
 update
 	community_like_history_tb
@@ -134,7 +134,7 @@ and
 	email = #{email}
 </update>
 
-<!-- 댓글 비추천 -->
+<!-- [そう思わない]ボタン -->
 <update id="contentDown" parameterType="community">
 update
 	community

@@ -39,7 +39,7 @@ public class MemberService {
 	private PasswordEncoder passwordEncoder;
 	
 	/**
-	 * 세션에 저장된 모든 정보 삭제
+	 * セッションに貯蔵されたデータの削除
 	 */
 	private void removeSessionAttr() {
 		session.removeAttribute("loginFirstName");
@@ -55,6 +55,7 @@ public class MemberService {
 	 * @return
 	 */
 	public boolean registerMember(Member member) {
+		//　パスワードの暗号化
 		String encodedPassword = passwordEncoder.encode(member.getPw());
 		member.setPw(encodedPassword);
 		return dao.registerMember(member) > 0 ? true : false;
@@ -72,16 +73,16 @@ public class MemberService {
 		Member loginUser = dao.login(member.getEmail());
 
 		if (loginUser != null) {
-			// 비밀번호 일치 여부 확인
+			// パスワード確認
 			boolean isRegisterd = passwordEncoder.matches(member.getPw(), loginUser.getPw());
 			
-			// 일치 하지 않을 경우
+			// パスワードが一致していない場合
 			if(!isRegisterd) { return isValid; }
 			
-			session.setAttribute("loginFirstName", loginUser.getFirstName());
-			session.setAttribute("loginLastName", loginUser.getLastName());
-			session.setAttribute("loginEmail", loginUser.getEmail());
-			session.setAttribute("loginByLocalAccount", true);
+			session.setAttribute("loginFirstName", loginUser.getFirstName());	//　名
+			session.setAttribute("loginLastName", loginUser.getLastName());		//　姓　
+			session.setAttribute("loginEmail", loginUser.getEmail());			//　e-mail
+			session.setAttribute("loginByLocalAccount", true);					//　会員登録したアカウントでログイン
 			
 			isValid = true;
 		}
@@ -96,6 +97,7 @@ public class MemberService {
 	 * @return
 	 */
 	public String logout(String referer) {
+		//セッション情報削除
 		removeSessionAttr();
 		return "redirect:" + referer;
 	}
@@ -107,18 +109,18 @@ public class MemberService {
 	public boolean forgotPassword(String inputEmail) {
 		boolean isVaild = false;
 		
-		// 입력한 이메일로 등록된 계정이 있는지 확인
+		// 入力したe-mailがDBに登録されているか確認
 		int isRegisteredEmail = dao.findUserByEmail(inputEmail);
 		
-		// 등록된 계정이 있는 경우
+		// 登録されている場合
 		if (isRegisteredEmail == 1) {
-			// 임의 비밀번호 생성 
+			// ランダムパスワード生成
 			String randomPassword = generatePassword(10);
 			
-			// 임의 비밀번호 암호화
+			// ランダムパスワード暗号化
 			String encodedRandomPassword = passwordEncoder.encode(randomPassword);
 			
-			// 임의 비밀번호 DB에 저장
+			// ランダムパスワードをDBに貯蔵
 			Member member = new Member();
 			member.setEmail(inputEmail);
 			member.setPw(encodedRandomPassword);
@@ -135,7 +137,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * 비밀번호 랜덤 생성기
+	 * ランダムパスワード生成
 	 * 
 	 * @param length
 	 * @return
@@ -155,7 +157,7 @@ public class MemberService {
 	
 	/**
 	 * 
-	 * 비밀번호 수정
+	 * パスワード変更
 	 * 
 	 * @param updatePassword
 	 * @return
@@ -190,7 +192,7 @@ public class MemberService {
 		JsonFactory jsonFactory = Utils.getDefaultJsonFactory();
 		
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-											// Specify the CLIENT_ID of the app that accesses the backend:
+											// Specify the CLIENT_ID of the app that accesses the backend
 											.setAudience(Collections.singletonList(CLIENT_ID))
 											.build();
 		
@@ -206,9 +208,9 @@ public class MemberService {
 			String givenName = (String) payload.get("given_name");
 			
 			// store profile information in Session
-			session.setAttribute("loginEmail", email);
-			session.setAttribute("loginFirstName", givenName);
-			session.setAttribute("loginLastName", familyName);
+			session.setAttribute("loginEmail", email);			//　e-mail
+			session.setAttribute("loginFirstName", givenName);	//　名
+			session.setAttribute("loginLastName", familyName);	//　姓　
 			session.setAttribute("loginByLocalAccount", false);
 			
 			// set isValid : true

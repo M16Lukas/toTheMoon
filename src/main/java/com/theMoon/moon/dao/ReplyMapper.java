@@ -8,15 +8,15 @@ import com.theMoon.moon.vo.Reply;
 
 public interface ReplyMapper {
 	
-	// reply 입력
+	// リプライ登録
 	public int insertReply(Reply reply);
 	
-	// reply 목록 출력
+	// リプライ出力
 	public ArrayList<HashMap<String, Object>> getReply(int content_nm);
 	
-	// reply 수정
+	// リプライ修正
 	public int modifyReply(Reply reply);
 
-	// reply 삭제
+	// リプライ削除
 	public int removeReply(Reply reply);
 }

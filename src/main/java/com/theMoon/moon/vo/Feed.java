@@ -5,15 +5,22 @@ import java.util.List;
 
 import lombok.Getter;
 
+/**
+ * 株式ニュース　VO
+ * 
+ * @author ipark
+ *
+ */
+
 @Getter
 public class Feed {
 
 	private String title;
 	private String link;
-	private String description;
+	private String description;	//　内容
 	private String language;
-	private String copyright;
-	private String pubDate;
+	private String copyright;	
+	private String pubDate;		//　作成時間
 	
 	private List<FeedMessage> entries = new ArrayList<FeedMessage>();
 

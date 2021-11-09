@@ -17,7 +17,7 @@ public class ReplyDAO {
 	private SqlSession session;
 	
 	/**
-	 * reply 입력
+	 * リプライ登録
 	 * 
 	 * @param reply
 	 * @return
@@ -36,7 +36,7 @@ public class ReplyDAO {
 	}
 	
 	/**
-	 * 해당 댓글의 reply 목록 출력
+	 * リプライリスト出力
 	 * 
 	 * @param content_nm
 	 * @return
@@ -54,7 +54,7 @@ public class ReplyDAO {
 	}
 	
 	/**
-	 * reply 수정
+	 * リプライ修正
 	 * 
 	 * @param reply
 	 * @return
@@ -73,7 +73,7 @@ public class ReplyDAO {
 	}
 	
 	/**
-	 * reply 삭제
+	 * リプライ削除
 	 * 
 	 * @param reply
 	 * @return

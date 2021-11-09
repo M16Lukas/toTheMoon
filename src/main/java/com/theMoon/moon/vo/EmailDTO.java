@@ -2,15 +2,22 @@ package com.theMoon.moon.vo;
 
 import lombok.Getter;
 
+/**
+ * e-mail転送　VO
+ * 
+ * @author ipark
+ *
+ */
+
 @Getter
 public class EmailDTO {
 	
-	private final String senderName = "toTheMoon";
-	private final String senderMail = "themoon.information@gmail.com";	// 발신자 이메일
-	private final String subject = "Reset Password Notification";	// 제목
+	private final String senderName = "toTheMoon";						// 差出人
+	private final String senderMail = "themoon.information@gmail.com";	// 差出人e-mail
+	private final String subject = "Reset Password Notification";		// タイトル
 	
-	private String receiveMail; // 수신자 이메일
-	private String message;		// 내용
+	private String receiveMail; // 宛先　e-mail
+	private String message;		// 本文
 	
 	public EmailDTO(){}
 	

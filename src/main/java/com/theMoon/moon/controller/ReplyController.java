@@ -22,25 +22,25 @@ public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	
-	// reply 출력
+	// リプライ出力
 	@GetMapping("/{content_nm}")
 	private ArrayList<Reply> getReply(@PathVariable String symbol, @PathVariable int content_nm) {
 		return service.getReply(content_nm);
 	}
 
-	// reply 등록
+	// リプライ登録
 	@PostMapping("/{content_nm}")
 	private boolean insertReply(@PathVariable String symbol, @PathVariable int content_nm, String reply) {
 		return service.insertReply(content_nm, reply);
 	}
 	
-	// reply 수정
+	// リプライ修正
 	@PatchMapping("/{reply_nm}")
 	private int modifyReply(@PathVariable int reply_nm, @RequestBody String newReply) {
 		return service.modifyReply(reply_nm, newReply);
 	}
 	
-	// reply 삭제
+	// リプライ削除
 	@DeleteMapping("/{reply_nm}")
 	private int deleteReply(@PathVariable int reply_nm) {
 		return service.deleteReply(reply_nm);

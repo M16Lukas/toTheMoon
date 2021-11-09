@@ -21,7 +21,7 @@ public class ReplyService {
 	private ReplyDAO dao;
 	
 	/**
-	 * 대댓글 등록
+	 * リプライ登録
 	 * 
 	 * @param content_nm
 	 * @param reply
@@ -39,7 +39,7 @@ public class ReplyService {
 	}
 	
 	/**
-	 * 대댓글 목록 출력
+	 * リプライ出力
 	 * 
 	 * @param content_nm
 	 * @return
@@ -68,7 +68,7 @@ public class ReplyService {
 	}
 	
 	/**
-	 * 대댓글 수정
+	 * リプライ修正
 	 * 
 	 * @param reply_nm
 	 * @param reply
@@ -84,7 +84,7 @@ public class ReplyService {
 	
 	
 	/**
-	 * 대댓글 수정
+	 * リプライ削除
 	 * 
 	 * @param reply_nm
 	 * @return

@@ -10,18 +10,24 @@ import yahoofinance.quotes.stock.StockStats;
 @Setter
 public class StockInfo {
 	
-	private String symbol;
-	private String name;
-	private String exchange;
+	private String symbol;		//　シンボル
+	private String name;		//　名称
+	private String exchange;	//　取引所
 	
+	/**
+	 * 参考指標
+	 */
 	private StockQuote quote = null;
 	private StockStats stats = null;
-	private StockDividend dividend = null;
+	private StockDividend dividend = null;	// 配当情報
 	
 	
-	private double dailyReturn = 0.0;		// 전일 대비 증감
-	private double fluctuationRate = 0.0;   // 전일 대비 증감률
+	private double dailyReturn = 0.0;		// 前日比増減
+	private double fluctuationRate = 0.0;   // 前日比増減率
 	
+	/**
+	 * Constructor
+	 */
 	public StockInfo() {}
 	
 	public StockInfo(String symbol, String name, String exchange, StockQuote quote, StockStats stats, StockDividend dividend) {

@@ -48,15 +48,17 @@ public class HistoricalService {
 		Calendar to = Calendar.getInstance();
 		
 		// start date
-		// 검색 기간을 설정한 경우
+		// 期間を設定した場合
 		if (period1 != null) {
 			from.setTime(period1);
-		} else {
+		} 
+		// default : 1年前
+		else {
 			from.add(Calendar.YEAR, -1);
 		}
 		
 		// end date
-		// 검색 기간을 설정한 경우
+		// 期間を設定した場合
 		if (period2 != null) {
 			to.setTime(period2);
 		}
@@ -164,24 +166,32 @@ public class HistoricalService {
 		// body
 		for(StockHistory hist : history) {
 			row = sheet.createRow(rowNum++);
+			// Date
 			cell = row.createCell(0);
 			cell.setCellValue(hist.getDate());
+			// Open
 			cell = row.createCell(1);
 			cell.setCellValue(hist.getOpen().doubleValue());
+			// High
 			cell = row.createCell(2);
 			cell.setCellValue(hist.getHigh().doubleValue());
+			// Low
 			cell = row.createCell(3);
 			cell.setCellValue(hist.getLow().doubleValue());
+			// Close
 			cell = row.createCell(4);
 			cell.setCellValue(hist.getClose().doubleValue());
+			// Adj Close
 			cell = row.createCell(5);
 			cell.setCellValue(hist.getAdjClose().doubleValue());
+			// Volume
 			cell = row.createCell(6);
 			cell.setCellValue(hist.getVolume().doubleValue());
 		}
 		
-		// set content type & file name
+		// set content type
 		response.setContentType("ms-vnd/excel");
+		// set file name
 		response.setHeader("Content-Disposition", "attachment;filename=" + symbol + ".xlsx");
 		
 		// Excel file Output
